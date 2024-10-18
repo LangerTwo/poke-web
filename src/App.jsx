@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-      <div>
-        <ul>
+      <div className='container mx-auto w-1/2'>
+        <ul className='flex flex-col justify-center text-center'>
           {error && <li>Error: {error}</li>}
           {loading && <li>Loading...</li>}
           {data?.results?.map((poke) => (
