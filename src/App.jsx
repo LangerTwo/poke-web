@@ -6,19 +6,22 @@ function App() {
 
   return (
     <>
-      <div className='container mx-auto w-1/2 flex flex-col justify-center items-center'>
+      <div className='flex flex-wrap gap-4 justify-center items-center'>
         {error && <div>Error: {error}</div>}
         {loading && <div>Loading...</div>}
         {data?.map((poke) => (
-          <div key={poke.id}>
+          <div className='w-24' key={poke.id}>
             {poke.sprites?.other?.dream_world?.front_default && ( 
               <img 
                 src={poke.sprites.other.dream_world.front_default} 
                 alt={poke.name} 
-                className='mb-4'
+                className='mb-4 h-20 cursor-pointer'
               />
             )}
-            <h3>{poke.name}</h3>
+            <div className='flex justify-between'>
+              <h3>{poke.name}</h3>
+              <p>{poke.id}°</p>
+            </div>
           </div>
         ))}
       </div>

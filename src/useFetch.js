@@ -7,7 +7,7 @@ export function useFetch() {
     
     useEffect(() => {
         // Primera petición para obtener la lista de Pokémon
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=1")
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
             .then((response) => response.json())
             .then(async (data) =>{
                 // Segunda petición para obtener detalles de cada Pokémon
