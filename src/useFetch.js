@@ -6,12 +6,24 @@ export function useFetch() {
     const [error, setError] = useState(null)
     
     useEffect(() => {
-        setLoading(true)
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=9")
+        // Primera petición para obtener la lista de Pokémon
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
             .then((response) => response.json())
-            .then((data) => setData(data))
-            .catch((error) => setError(error))
-            .finally(() => setLoading(false));
+            .then(async (data) =>{
+                // Segunda petición para obtener detalles de cada Pokémon
+                const pokemonDetails = await Promise.all(
+                    data.results.map(async (poke) => {
+                        const res = await fetch(poke.url)
+                        return res.json();
+                    })
+                )
+                setData(pokemonDetails);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error.message);
+                setLoading(false);
+            });
     }, []);
 
     return { data, loading, error };

@@ -6,17 +6,34 @@ function App() {
 
   return (
     <>
-      <div className='container mx-auto w-1/2'>
-        <ul className='flex flex-col justify-center text-center'>
-          {error && <li>Error: {error}</li>}
-          {loading && <li>Loading...</li>}
-          {data?.results?.map((poke) => (
-            <li key={poke.name}>{poke.name}</li>
-          ))}
-        </ul>
+      <div className='flex flex-col'>
+        {error && <div>Error: {error}</div>}
+        {loading && <div>Loading...</div>}
+        {data?.map((poke) => (
+          <div className='flex w-full justify-between border items-center' key={poke.id}>
+              <p className='text-xl'>{poke.id}°</p>
+              {poke.sprites?.other?.dream_world?.front_default && ( 
+                <img 
+                  src={poke.sprites.other.dream_world.front_default} 
+                  alt={poke.name} 
+                  className='h-10 w-10 cursor-pointer'
+                />
+              )}
+              <div>
+                <h3 className='text-xl'>{poke.name}</h3>
+              </div> 
+              <div className="flex gap-5">
+                  {poke.types.map(type => (
+                    <span key={type.type.name} className={`${type.type.name}`}>
+                      {type.type.name}
+                    </span>
+                  ))}
+              </div>          
+          </div>
+        ))}
       </div>
     </>
   )
 }
 
-export default App
+export default App;
