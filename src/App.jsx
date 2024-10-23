@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className='flex flex-col'>
+      <div className=''>
         {error && <div>Error: {error}</div>}
         {loading && <div>Loading...</div>}
         {data?.map((poke) => (
