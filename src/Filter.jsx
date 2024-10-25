@@ -1,36 +1,47 @@
-import { useFilter } from "./useFilter";
-import './App.css'
+import React from 'react';
+import { useFilter } from './useFilter';
 
-function App() {
-    const {selectedCategory, setSelectedCategory, options, loading, error} = useFilter()
-    
-    return (
-        <div>
-        {/* Primer select estático */}
-        <select onChange={(e) => setSelectedCategory(e.target.value)}>
-            <option value="">Seleccione una categoría</option>
-            <option value="region">Región</option>
-            <option value="type">Tipo</option>
-            <option value="ability">Habilidad</option>
+function Filter({ onCategoryChange }) {
+  const { selectedCategory, setSelectedCategory, options, loading, error } = useFilter();
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+    onCategoryChange(e.target.value, null); // Resetea la opción seleccionada
+  };
+
+  const handleOptionChange = (e) => {
+    onCategoryChange(selectedCategory, e.target.value);
+  };
+
+  return (
+    <div>
+      <label>
+        Seleccionar categoría:
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          <option value="">Seleccione una categoría</option>
+          <option value="region">Región</option>
+          <option value="type">Tipo</option>
+          <option value="ability">Habilidad</option>
         </select>
+      </label>
 
-        {/* Segundo select dinámico basado en la selección del primero */}
-        {loading ? (
-            <p>Cargando opciones...</p>
-        ) : error ? (
-            <p>{error}</p>
-        ) : (
-            <select>
-            <option value="">Seleccione una opción</option>
-            {options.map((option, index) => (
-                <option key={index} value={option}>
-                {option.charAt(0).toUpperCase() + option.slice(1)} {/* Capitalizar */}
-                </option>
-            ))}
-            </select>
-        )}
-        </div>
-    );
+      <br />
+
+      <label>
+        Opciones:
+        <select onChange={handleOptionChange} disabled={!selectedCategory || loading}>
+          <option value="">{loading ? 'Cargando...' : 'Seleccione una opción'}</option>
+          {options.map((option, index) => (
+            <option key={index} value={index + 1}>
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
+  );
 }
 
-export default App;
+export default Filter;

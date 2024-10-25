@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 
-export function useFetch() {   
+export function useFetch(url) {   
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     
     useEffect(() => {
-        // Primera petición para obtener la lista de Pokémon
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
-            .then((response) => response.json())
-            .then(async (data) =>{
-                // Segunda petición para obtener detalles de cada Pokémon
+        // Si la URL es null o vacía, no hacer nada
+        if (!url) return;
+
+        setLoading(true);
+        setError(null);
+
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(async (data) => {
                 const pokemonDetails = await Promise.all(
-                    data.results.map(async (poke) => {
-                        const res = await fetch(poke.url)
+                    data.pokemon_species.map(async (species) => {
+                        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.name}`);
                         return res.json();
                     })
-                )
+                );
                 setData(pokemonDetails);
                 setLoading(false);
             })
@@ -24,7 +33,7 @@ export function useFetch() {
                 setError(error.message);
                 setLoading(false);
             });
-    }, []);
+    }, [url]);
 
     return { data, loading, error };
 }
