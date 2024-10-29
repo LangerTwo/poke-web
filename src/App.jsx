@@ -10,6 +10,8 @@ function App() {
   const handleCategoryChange = (category, option) => {
     if (category === 'region' && option) {
       setGenerationUrl(`https://pokeapi.co/api/v2/generation/${option}`);
+    } if (category === 'type' && option) {
+      setGenerationUrl(`https://pokeapi.co/api/v2/type/${option}`);
     }
   };
 
@@ -23,12 +25,20 @@ function App() {
           {data?.map((poke) => (
             <div className="flex w-full justify-between border items-center" key={poke.id}>
               <p className="text-xl">{poke.id}°</p>
-              {poke.sprites?.other?.dream_world?.front_default && (
-                <img 
-                  src={poke.sprites.other.dream_world.front_default} 
-                  alt={poke.name} 
-                  className="h-10 w-10 cursor-pointer"
-                />
+              {poke.sprites?.other?.['official-artwork']?.front_default || 
+                poke.sprites?.other?.dream_world?.front_default || 
+                poke.sprites?.front_default ? (
+                  <img 
+                    src={
+                      poke.sprites?.other?.['official-artwork']?.front_default ||
+                      poke.sprites?.other?.dream_world?.front_default ||
+                      poke.sprites?.front_default
+                    }
+                    alt={poke.name}
+                    className='h-10 w-10 cursor-pointer'
+                  />
+                ) : (
+                  <span>No image available</span>
               )}
               <div>
                 <h3 className="text-xl">{poke.name}</h3>

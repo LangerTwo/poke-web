@@ -2,38 +2,55 @@ import { useEffect, useState } from "react";
 
 export function useFetch(url) {   
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
     useEffect(() => {
-        // Si la URL es null o vacía, no hacer nada
         if (!url) return;
 
         setLoading(true);
         setError(null);
 
         fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
+            .then((response) => response.json())
+            .then(async (resultData) => {
+                let pokemonDetails;
+
+                if (resultData.pokemon_species) {
+                    // Si es una región
+                    pokemonDetails = await Promise.all(
+                        resultData.pokemon_species.map(async (pokemon) => {
+                            try {
+                                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+                                if (!res.ok) throw new Error(`Pokémon ${pokemon.name} no encontrado`);
+                                return await res.json();
+                            } catch (error) {
+                                return null;
+                            }
+                        })
+                    );
+                } else if (resultData.pokemon) {
+                    // Si es un tipo
+                    pokemonDetails = await Promise.all(
+                        resultData.pokemon.map(async (pokemon) => {
+                            try {
+                                const res = await fetch(pokemon.pokemon.url);
+                                if (!res.ok) throw new Error(`Pokémon ${pokemon.pokemon.name} no encontrado`);
+                                return await res.json();
+                            } catch (error) {
+                                return null;
+                            }
+                        })
+                    );
                 }
-                return response.json();
-            })
-            .then(async (data) => {
-                const pokemonDetails = await Promise.all(
-                    data.pokemon_species.map(async (species) => {
-                        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.name}`);
-                        return res.json();
-                    })
-                );
-                setData(pokemonDetails);
+                const sortedData = pokemonDetails.filter(Boolean).sort((a, b) => a.id - b.id);
+                setData(sortedData);
                 setLoading(false);
             })
             .catch((error) => {
-                setError(error.message);
+                setError("Error al cargar los Pokémon");
                 setLoading(false);
             });
     }, [url]);
-
     return { data, loading, error };
 }
