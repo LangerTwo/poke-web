@@ -14,7 +14,7 @@ function Filter({ onCategoryChange }) {
   };
 
   return (
-    <div>
+    <div className='flex gap-5 my-9'>
       <label>
         Seleccionar categoría:
         <select value={selectedCategory} onChange={handleCategoryChange}>
