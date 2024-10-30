@@ -12,6 +12,8 @@ function App() {
       setGenerationUrl(`https://pokeapi.co/api/v2/generation/${option}`);
     } if (category === 'type' && option) {
       setGenerationUrl(`https://pokeapi.co/api/v2/type/${option}`);
+    } if (category === 'ability' && option) {
+      setGenerationUrl(`https://pokeapi.co/api/v2/ability/${option}`);
     }
   };
 

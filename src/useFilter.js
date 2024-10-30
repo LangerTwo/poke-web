@@ -44,6 +44,8 @@ export function useFilter() {
         } else if (selectedCategory === 'type') {
           // Devuelve nombres de tipos directamente
           return data.results.map((type) => type.name);
+        } else if (selectedCategory === 'ability') {
+          return data.results.map((ability) => ability.name);
         } else {
           // Para habilidades
           return data.results.map((item) => item.name);
