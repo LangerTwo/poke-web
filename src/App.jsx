@@ -21,11 +21,11 @@ function App() {
     <>
       <Filter onCategoryChange={handleCategoryChange} />
       {generationUrl && ( // Solo renderizar cuando haya una URL de generación seleccionada
-          <div className="flex flex-wrap gap-6">
+          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-4">
           {error && <div>Error: {error}</div>}
           {loading && <div>Loading...</div>}
           {data?.map((poke) => (
-            <div className="flex flex-col bg-gray-300 border border-white rounded-md w-28 text-black" key={poke.id}>
+            <div className="bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
               {poke.sprites?.other?.['official-artwork']?.front_default || 
                 poke.sprites?.other?.dream_world?.front_default || 
                 poke.sprites?.front_default ? (
@@ -36,22 +36,24 @@ function App() {
                       poke.sprites?.front_default
                     }
                     alt={poke.name}
-                    className='w-24'
+                    className='w-full'
                   />
                 ) : (
                   <span>No image available</span>
               )}
-              <div className='flex justify-center gap-3 border border-white'>
-                {/* <p className="">{poke.id}°</p> */}
-                <h3 className="">{poke.name}</h3>
-              </div> 
-              <div className="flex justify-center gap-3">
-                {poke.types.map(type => (
-                  <span key={type.type.name} className='text-xs'>
-                    {type.type.name}
-                  </span>
-                ))}
-              </div>          
+              <div className="p-1 text-center">
+                <div className=''>
+                  {/* <p className="">{poke.id}°</p> */}
+                  <h3 className="">{poke.name}</h3>
+                </div> 
+                <div className="flex justify-around">
+                  {poke.types.map(type => (
+                    <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
+                      {type.type.name}
+                    </span>
+                  ))}
+                </div>          
+              </div>
             </div>
           ))}
         </div>
