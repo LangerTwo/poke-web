@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useFetch } from './useFetch';
 import Filter from './Filter';
+// import Card from '.Card'
 import './App.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     <>
       <Filter onCategoryChange={handleCategoryChange} />
       {generationUrl && ( // Solo renderizar cuando haya una URL de generación seleccionada
-          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-4">
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {error && <div>Error: {error}</div>}
           {loading && <div>Loading...</div>}
           {data?.map((poke) => (
@@ -42,7 +43,7 @@ function App() {
                   <span>No image available</span>
               )}
               <div className="p-1 text-center">
-                <div className=''>
+                <div className='mb-2'>
                   {/* <p className="">{poke.id}°</p> */}
                   <h3 className="">{poke.name}</h3>
                 </div> 

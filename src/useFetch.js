@@ -6,7 +6,10 @@ export function useFetch(url) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!url) return;
+        if (!url) {
+            setData(null); // Limpia la pantalla cuando no hay URL
+            return;
+        }
 
         setLoading(true);
         setError(null);
