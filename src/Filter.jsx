@@ -14,7 +14,7 @@ function Filter({ onCategoryChange }) {
   };
 
   return (
-    <div className='flex gap-5 my-9'>
+    <div className='flex justify-center gap-5 my-9'>
       <label>
         Seleccionar categoría:
         <select value={selectedCategory} onChange={handleCategoryChange}>

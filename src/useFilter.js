@@ -16,6 +16,7 @@ export function useFilter() {
   // Función genérica para obtener datos desde una URL
   const fetchData = async (url, extractOptions) => {
     setLoading(true);
+    setOptions([]);
     setError(null);
     try {
       const response = await fetch(url);
