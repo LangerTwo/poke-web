@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from './useFetch';
-import Filter from './Filter';
-import Card from './Card';
+import Filter from './component/Filter';
+import Card from './component/Card';
 import './App.css';
 
 function App() {
