@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Card({ data }) { // Recibe data como prop
     return (
@@ -22,7 +23,9 @@ function Card({ data }) { // Recibe data como prop
                     )}
                     <div className="p-1 text-center">
                         <div className='mb-2'>
-                            <a href='#' className="cursor-pointer hover:underline">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</a>
+                            <Link to={`/pokemon/${poke.name}`}>
+                                <h3>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>
+                            </Link>
                         </div> 
                         <div className="flex justify-around">
                             {poke.types.map(type => (
