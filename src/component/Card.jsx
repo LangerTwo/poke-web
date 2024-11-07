@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 function Card({ data }) { // Recibe data como prop
     return (
@@ -23,12 +22,12 @@ function Card({ data }) { // Recibe data como prop
                     )}
                     <div className="p-1 text-center">
                         <div className='mb-2'>
-                            <h3 className="">{poke.name}</h3>
+                            <a href='#' className="cursor-pointer hover:underline">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</a>
                         </div> 
                         <div className="flex justify-around">
                             {poke.types.map(type => (
                                 <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
-                                    {type.type.name}
+                                    {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                                 </span>
                             ))}
                         </div>          
