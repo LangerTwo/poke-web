@@ -5,7 +5,7 @@ function Card({ data }) { // Recibe data como prop
     return (
         <>
             {data?.map((poke) => (
-                <div className="bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
+                <div className="cursor-pointer bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
                     {poke.sprites?.other?.['official-artwork']?.front_default || 
                     poke.sprites?.other?.dream_world?.front_default || 
                     poke.sprites?.front_default ? (
@@ -24,7 +24,7 @@ function Card({ data }) { // Recibe data como prop
                     <div className="p-1 text-center">
                         <div className='mb-2'>
                             <Link to={`/pokemon/${poke.name}`}>
-                                <h3>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>
+                                <h3 className='hover:underline'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>
                             </Link>
                         </div> 
                         <div className="flex justify-around">
