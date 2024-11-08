@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFilter } from './useFilter';
+import { useFilter } from '../useFilter';
 
 function Filter({ onCategoryChange }) {
   const { selectedCategory, setSelectedCategory, options, loading, error } = useFilter();
