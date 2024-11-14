@@ -1,52 +1,53 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useFetch } from './useFetch';
-import Filter from './component/Filter';
-import Card from './component/Card';
-import PokemonDetails from './page/PokemonDetails'; // Nuevo componente para los detalles
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import RegionDetail from './page/RegionDetail';
+import './index.css';
 
-function App() {
-  const [generationUrl, setGenerationUrl] = useState(null);
-  const [data, setData] = useState(null);
-  const { data: fetchedData, loading, error } = useFetch(generationUrl);
+import kantoImage from './assets/kanto-region.png';
+import johtoImage from './assets/johto-region.png';
+import hoenImage from './assets/hoen-region.png';
+import sinnohImage from './assets/sinnoh-region.png';
+import teseliaImage from './assets/teselia-region.png';
+import kalosImage from './assets/kalos-region.png';
+import alolaImage from './assets/alola-region.png';
+import galarImage from './assets/galar-region.png';
 
-  // Actualiza los datos cuando `fetchedData` cambia
-  useEffect(() => {
-    setData(fetchedData);
-  }, [fetchedData]);
+const regions = [
+  { name: 'Kanto', image: kantoImage  },
+  { name: 'Johto', image: johtoImage },
+  { name: 'Hoenn', image: hoenImage },
+  { name: 'Sinnoh', image: sinnohImage },
+  { name: 'Unova', image: teseliaImage },
+  { name: 'Kalos', image: kalosImage },
+  { name: 'Alola', image: alolaImage },
+  { name: 'Galar', image: galarImage },
+];
 
-  const handleCategoryChange = (category, option) => {
-    // Limpiar datos antes de cambiar la URL
-    setData(null);
-    if (category === 'region' && option) {
-      setGenerationUrl(`https://pokeapi.co/api/v2/generation/${option}`);
-    } else if (category === 'type' && option) {
-      setGenerationUrl(`https://pokeapi.co/api/v2/type/${option}`);
-    } else if (category === 'ability' && option) {
-      setGenerationUrl(`https://pokeapi.co/api/v2/ability/${option}`);
-    }
+function Home() {
+  const navigate = useNavigate();
+
+  const handleRegionClick = (regionName) => {
+    navigate(`/region/${regionName.toLowerCase()}`);
   };
 
   return (
+    <div className="region-grid">
+      {regions.map((region) => (
+        <div key={region.name} className="region-card" onClick={() => handleRegionClick(region.name)}>
+          <img src={region.image} alt={region.name} className="region-image" />
+          <h2>{region.name}</h2>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Filter onCategoryChange={handleCategoryChange} />
-              {generationUrl && (
-                <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {error && <div>Error: {error}</div>}
-                  {loading && <div>Loading...</div>}
-                  {data && <Card data={data} />} {/* Renderizar solo si hay datos */}
-                </div>
-              )}
-            </>
-          }
-        />
-        <Route path="/pokemon/:name" element={<PokemonDetails />} /> {/* Ruta para detalles */}
+        <Route path="/" element={<Home />} />
+        <Route path="/region/:regionName" element={<RegionDetail />} />
       </Routes>
     </Router>
   );
