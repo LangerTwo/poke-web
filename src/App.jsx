@@ -31,10 +31,10 @@ function Home() {
   };
 
   return (
-    <div className="region-grid">
+    <div className="w-full grid grid-cols-1 gap-4 mt-8">
       {regions.map((region) => (
-        <div key={region.name} className="region-card" onClick={() => handleRegionClick(region.name)}>
-          <img src={region.image} alt={region.name} className="region-image" />
+        <div key={region.name} className="grid grid-cols-2 gap-4 cursor-pointer border rounded-lg p-4 transform" onClick={() => handleRegionClick(region.name)}>
+          <img src={region.image} alt={region.name} className="w-full h-auto rounded transition duration-150 ease-out hover:scale-105" />
           <h2>{region.name}</h2>
         </div>
       ))}
