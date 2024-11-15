@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+// import PokemonPage from './page/pokemonPage';
 import RegionDetail from './page/RegionDetail';
 import './index.css';
 
