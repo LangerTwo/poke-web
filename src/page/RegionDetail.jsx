@@ -18,12 +18,10 @@ function RegionDetail() {
 
 function RoutePage() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<RegionDetail />} />
-                <Route path="/region/:regionName" element={<PokemonPage />} />
-            </Routes>
-        </Router>
+        <Routes>
+            <Route path="/" element={<RegionDetail />} />
+            <Route path="/lista/:lista" element={<PokemonPage />} />
+        </Routes>
     );
 }
 
