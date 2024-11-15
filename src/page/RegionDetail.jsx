@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-
+import PokemonPage from './pokemonPage';
 function RegionDetail() {
     return (
         <>
@@ -16,4 +16,15 @@ function RegionDetail() {
     );
 }
 
-export default RegionDetail
+function RoutePage() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<RegionDetail />} />
+                <Route path="/region/:regionName" element={<PokemonPage />} />
+            </Routes>
+        </Router>
+    );
+}
+
+export default RoutePage
