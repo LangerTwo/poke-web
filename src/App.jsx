@@ -11,6 +11,7 @@ import teseliaImage from './assets/teselia-region.png';
 import kalosImage from './assets/kalos-region.png';
 import alolaImage from './assets/alola-region.png';
 import galarImage from './assets/galar-region.png';
+import PokemonPage from './page/pokemonPage';
 
 const regions = [
   { name: 'Kanto', image: kantoImage  },
@@ -28,6 +29,7 @@ function Home() {
 
   const handleRegionClick = (regionName) => {
     navigate(`/region/${regionName.toLowerCase()}`);
+    console.log(regionName.toLowerCase())
   };
 
   return (
@@ -48,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/region/:regionName" element={<RegionDetail />} />
+        <Route path="/region/:regionName/lista" element={<PokemonPage />} />
       </Routes>
     </Router>
   );
