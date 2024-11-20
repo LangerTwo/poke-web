@@ -21,7 +21,7 @@ function Card({ data }) { // Recibe data como prop
                     ) : (
                         <span>No image available</span>
                     )}
-                    <div className="p-1 text-center">
+                    <div className="p-4 text-center">
                         <div className='mb-2'>
                             <Link to={`/pokemon/${poke.name}`}>
                                 <h3 className='hover:underline'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>

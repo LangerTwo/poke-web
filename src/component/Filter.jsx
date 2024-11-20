@@ -19,13 +19,10 @@ function Filter({ onCategoryChange }) {
         Seleccionar categoría:
         <select value={selectedCategory} onChange={handleCategoryChange}>
           <option value="">Seleccione una categoría</option>
-          {/* <option value="region">Región</option> */}
           <option value="type">Tipo</option>
           <option value="ability">Habilidad</option>
         </select>
       </label>
-
-      <br />
 
       <label>
         Opciones:

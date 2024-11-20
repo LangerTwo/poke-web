@@ -31,17 +31,17 @@ function RegionDetail() {
     }, [regionName]);
 
     const handleRegionClick = () => {
-        navigate(`/region/${regionName?.toLowerCase() || 'unknown'}/lista`);
+        navigate(`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`);
     };
 
     return (
-        <div>
-            <div>
-                <h3 onClick={() => handleRegionClick()} style={{ cursor: 'pointer', color: 'blue' }}>
+        <div className="region-grid mt-8">
+            <div className='region-card'>
+                <h3 onClick={() => handleRegionClick()}>
                     Lista Pokémon
                 </h3>
             </div>
-            <div>
+            <div className='region-card'>
                 <h3>Líderes de Gimnasio</h3>
             </div>
         </div>
