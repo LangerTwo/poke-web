@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Card({ data }) { // Recibe data como prop
+function Card({ filteredList }) { // Recibe data como prop
     return (
         <>
-            {data?.map((poke) => (
+            {filteredList?.map((poke) => (
                 <div className="cursor-pointer bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
                     {poke.sprites?.other?.['official-artwork']?.front_default || 
                     poke.sprites?.other?.dream_world?.front_default || 

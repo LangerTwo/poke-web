@@ -2,35 +2,39 @@ import React from 'react';
 import { useFilter } from '../useFilter';
 
 function Filter({ onCategoryChange }) {
-  const { selectedCategory, setSelectedCategory, options, loading, error } = useFilter();
+  const { types, abilities, loading, error } = useFilter();
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-    onCategoryChange(e.target.value, null); // Resetea la opción seleccionada
+  const handleTypeChange = (e) => {
+    const selectedType = e.target.value;
+    onCategoryChange('type', selectedType);
   };
 
-  const handleOptionChange = (e) => {
-    onCategoryChange(selectedCategory, e.target.value);
+  const handleAbilityChange = (e) => {
+    const selectedAbility = e.target.value;
+    onCategoryChange('ability', selectedAbility);
   };
 
   return (
-    <div className='flex justify-center gap-5 my-9'>
+    <div className="flex justify-center gap-5 my-9">
       <label>
-        Seleccionar categoría:
-        <select value={selectedCategory} onChange={handleCategoryChange}>
-          <option value="">Seleccione una categoría</option>
-          <option value="type">Tipo</option>
-          <option value="ability">Habilidad</option>
+        Tipo:
+        <select onChange={handleTypeChange} disabled={loading}>
+          <option value="">{loading ? 'Cargando...' : 'Seleccione un tipo'}</option>
+          {types.map((type, index) => (
+            <option key={index} value={type}>
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </option>
+          ))}
         </select>
       </label>
 
       <label>
-        Opciones:
-        <select onChange={handleOptionChange} disabled={!selectedCategory || loading}>
-          <option value="">{loading ? 'Cargando...' : 'Seleccione una opción'}</option>
-          {options.map((option, index) => (
-            <option key={index} value={index + 1}>
-              {option.charAt(0).toUpperCase() + option.slice(1)}
+        Habilidad:
+        <select onChange={handleAbilityChange} disabled={loading}>
+          <option value="">{loading ? 'Cargando...' : 'Seleccione una habilidad'}</option>
+          {abilities.map((ability, index) => (
+            <option key={index} value={ability}>
+              {ability.charAt(0).toUpperCase() + ability.slice(1)}
             </option>
           ))}
         </select>
