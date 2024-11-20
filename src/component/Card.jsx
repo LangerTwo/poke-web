@@ -22,18 +22,18 @@ function Card({ filteredList }) { // Recibe data como prop
                         <span>No image available</span>
                     )}
                     <div className="p-4 text-center">
-                        <div className='mb-2'>
-                            <Link to={`/pokemon/${poke.name}`}>
-                                <h3 className='hover:underline'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>
-                            </Link>
-                        </div> 
-                        <div className="flex justify-around">
-                            {poke.types.map(type => (
-                                <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
-                                    {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                                </span>
-                            ))}
-                        </div>          
+                        <Link to={`/region/kanto/lista-pokemon/pokemon/${poke.name}`}>
+                            <div className='mb-2'>
+                                    <h3 className='hover:underline'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>                             
+                            </div> 
+                            <div className="flex justify-around">
+                                {poke.types.map(type => (
+                                    <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
+                                        {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                                    </span>
+                                ))}
+                            </div> 
+                        </Link>         
                     </div>
                 </div>
             ))}

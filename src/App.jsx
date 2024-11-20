@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import RegionDetail from './page/RegionDetail';
+import PokemonPage from './page/pokemonPage';
+import PokemonDetails from './page/PokemonDetails';
 import './index.css';
 
 import kantoImage from './assets/kanto-region.png';
@@ -11,7 +13,6 @@ import teseliaImage from './assets/teselia-region.png';
 import kalosImage from './assets/kalos-region.png';
 import alolaImage from './assets/alola-region.png';
 import galarImage from './assets/galar-region.png';
-import PokemonPage from './page/pokemonPage';
 
 const regions = [
   { name: 'Kanto', 
@@ -59,7 +60,7 @@ function Home() {
   return (
     <div className="w-full lg:mx-auto lg:w-[90%] grid grid-cols-1 mt-8 gap-4">
       {regions.map((region) => (
-        <div key={region.name} className="grid lg:grid-cols-2 cursor-pointer border rounded-lg" onClick={() => handleRegionClick(region.name)}>
+        <div key={region.name} className="grid lg:grid-cols-2 md:grid-cols-2 cursor-pointer border rounded-lg" onClick={() => handleRegionClick(region.name)}>
           <div className='p-4 transform'>
             <img src={region.image} alt={region.name} className="w-full rounded transition duration-150 ease-out hover:scale-105" />
           </div>
@@ -80,6 +81,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/region/:regionName" element={<RegionDetail />} />
         <Route path="/region/:regionName/lista-pokemon" element={<PokemonPage />} />
+        <Route path="/region/:regionName/lista-pokemon/pokemon" element={<PokemonDetails />} />
       </Routes>
     </Router>
   );

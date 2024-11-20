@@ -91,12 +91,12 @@ function PokemonPage() {
 
   return (
       <>
-          <Filter onCategoryChange={handleCategoryChange} />
-          <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {error && <div style={{ color: 'red' }}>Error: {error}</div>}
-              {loading && <div>Loading...</div>}
-              {filteredList && <Card filteredList={filteredList} />}
-          </div>
+        <Filter onCategoryChange={handleCategoryChange} />
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {error && <div style={{ color: 'red' }}>Error: {error}</div>}
+          {loading && <div>Loading...</div>}
+          {filteredList && <Card filteredList={filteredList} />}
+        </div>
       </>
   );
 }
