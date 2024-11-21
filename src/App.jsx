@@ -81,7 +81,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/region/:regionName" element={<RegionDetail />} />
         <Route path="/region/:regionName/lista-pokemon" element={<PokemonPage />} />
-        <Route path="/region/:regionName/lista-pokemon/pokemon" element={<PokemonDetails />} />
+        <Route path="/region/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
       </Routes>
     </Router>
   );
