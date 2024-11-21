@@ -53,7 +53,7 @@ function PokemonDetails() {
 
   return (
     <div className="pokemon-details">
-      <h1 className='text-3xl'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+      <h1 className='text-3xl underline'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
       <div className='grid grid-cols-2'>
         <img 
           src={
