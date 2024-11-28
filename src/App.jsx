@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import RegionDetail from './page/RegionDetail';
 import PokemonPage from './page/pokemonPage';
 import PokemonDetails from './page/PokemonDetails';
+import Navbar from './component/Navbar';
 import './index.css';
 
 import kantoImage from './assets/kanto-region.png';
@@ -77,6 +78,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/region/:regionName" element={<RegionDetail />} />

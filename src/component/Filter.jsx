@@ -15,7 +15,7 @@ function Filter({ onCategoryChange }) {
   };
 
   return (
-    <div className="flex justify-center gap-5 my-9">
+    <div className="flex justify-center gap-5">
       <label>
         Tipo:
         <select onChange={handleTypeChange} disabled={loading}>
