@@ -35,7 +35,7 @@ function RegionDetail() {
     };
 
     return (
-        <div className="region-grid mt-8">
+        <div className="region-grid mx-auto container pt-24">
             <div className='region-card hover:border-blue-500'>
                 <h3 onClick={() => handleRegionClick()}>
                     Lista Pokémon

@@ -59,7 +59,7 @@ function Home() {
   };
 
   return (
-    <div className="w-full lg:mx-auto lg:w-[90%] grid grid-cols-1 mt-8 gap-4">
+    <div className="w-full lg:mx-auto lg:w-[90%] grid grid-cols-1 pt-24 gap-4">
       {regions.map((region) => (
         <div key={region.name} className="grid lg:grid-cols-2 md:grid-cols-2 cursor-pointer border rounded-lg" onClick={() => handleRegionClick(region.name)}>
           <div className='p-4 transform'>

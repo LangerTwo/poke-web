@@ -52,7 +52,7 @@ function PokemonDetails() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="pokemon-details">
+    <div className="pokemon-details container mx-auto pt-24">
       <h1 className='text-3xl underline'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
       <div className='grid grid-cols-2'>
         <img 
