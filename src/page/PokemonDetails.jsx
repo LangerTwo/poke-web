@@ -52,38 +52,47 @@ function PokemonDetails() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="pokemon-details container mx-auto pt-24">
-      <h1 className='text-3xl underline'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
-      <div className='grid grid-cols-2'>
-        <img 
-          src={
-            pokemon.sprites?.other?.['official-artwork']?.front_default ||
-            pokemon.sprites?.other?.dream_world?.front_default ||
-            pokemon.sprites?.front_default
-          }
-          alt={pokemon.name}
-        />
-        <div className='flex flex-col gap-5'>
-          <p><strong>Weight:</strong> {pokemon.weight}</p>
-          <p><strong>Height:</strong> {pokemon.height}</p>
-          <div className="w-fit flex gap-8">
-            {pokemon.types.map((type) => (
-              <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
-                {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-              </span>
+    <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
+      <div className='grid grid-cols-2 mx-auto w-4/5'>
+        <div className="w-64 h-64 relative">
+          <img 
+              src={
+                pokemon.sprites?.other?.['official-artwork']?.front_default ||
+                pokemon.sprites?.other?.dream_world?.front_default ||
+                pokemon.sprites?.front_default
+              }
+              alt={pokemon.name}
+              layout="fill" objectFit="contain" className="rounded-lg"
+            />
+        </div>
+        <div className="flex-1">
+          <h1 className='text-3xl font-bold capitalize mb-2'>{pokemon.name}</h1>
+          <div className='flex flex-col gap-5'>
+            {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
+            <p><strong>Height:</strong> {pokemon.height}</p> */}
+            <div className="flex space-x-2 mb-4">
+              {pokemon.types.map((type) => (
+                <span key={type.type.name} className={`${type.type.name} px-3 py-1 rounded-full text-sm font-semibold text-white`}>
+                  {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div>
+        <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
+          <div className='flex space-x-4'>
+            {evolutions.map((evo, index) => (
+              <>
+                <div key={evo} className="flex items-center">
+                  {index > 0 && <span className='mx-2'>→</span>}
+                  <span key={index} className="capitalize">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
+                </div>
+              </>
             ))}
           </div>
         </div>
       </div>
-
-      <ul className='w-fit flex gap-5'>
-        {evolutions.map((evo, index) => (
-          <>
-            {index > 0 && <span className='mx-2'>→</span>}
-            <li key={index}>{evo.charAt(0).toUpperCase() + evo.slice(1)}</li>
-          </>
-        ))}
-      </ul>
     </div>
   );
 }

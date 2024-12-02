@@ -35,13 +35,13 @@ function RegionDetail() {
     };
 
     return (
-        <div className="region-grid mx-auto container pt-24">
-            <div className='region-card hover:border-blue-500'>
+        <div className="region-grid w-[90%] mx-auto container pt-24">
+            <div className='region-card w-[80%] hover:border-blue-500'>
                 <h3 onClick={() => handleRegionClick()}>
                     Lista Pokémon
                 </h3>
             </div>
-            <div className='region-card'>
+            <div className='region-card w-[80%] hover:border-blue-500'>
                 <h3>Líderes de Gimnasio</h3>
             </div>
         </div>
