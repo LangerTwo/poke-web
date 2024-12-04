@@ -26,13 +26,20 @@ function PokemonPage() {
 
   // Función para obtener detalles de cada Pokémon
   const fetchPokemonDetails = async (pokemonNames) => {
-    const promises = pokemonNames.map(async (name) => {
+  const promises = pokemonNames.map(async (name) => {
+    try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      if (!response.ok) throw new Error(`Error fetching ${name}`);
       return response.json();
-    });
+    } catch (error) {
+      console.error(`Failed to fetch ${name}:`, error);
+      return null; // Devuelve null si falla
+    }
+  });
 
-    return Promise.all(promises);
-  };
+  const results = await Promise.all(promises);
+  return results.filter((result) => result !== null); // Filtra los nulos
+};
 
   // Carga los Pokémon de la región
   useEffect(() => {
@@ -52,7 +59,7 @@ function PokemonPage() {
         setPokemonList(pokemonDetails); // Guarda todos los detalles
         setFilteredList(pokemonDetails); // Inicialmente no hay filtro
       } catch (error) {
-        setError('Error al cargar los Pokémon');
+        setError('Error al cargar los Pokémon!!!');
       } finally {
         setLoading(false);
       }

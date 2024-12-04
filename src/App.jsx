@@ -55,7 +55,7 @@ function Home() {
 
   const handleRegionClick = (regionName) => {
     navigate(`/region/${regionName.toLowerCase()}`);
-    console.log(regionName.toLowerCase())
+    // console.log(regionName.toLowerCase())
   };
 
   return (
