@@ -8,6 +8,8 @@ function PokemonDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [description, setDescription] = useState('');
+
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       setLoading(true);
@@ -22,6 +24,10 @@ function PokemonDetails() {
         // Obtén la URL de la especie
         const speciesResponse = await fetch(data.species.url);
         const speciesData = await speciesResponse.json();
+
+        // Obtener la description del pokemon
+        const flavorText = speciesData.flavor_text_entries[42]?.flavor_text || 'Description not available.';
+        setDescription(flavorText);
 
         // Obtén la cadena de evolución
         const evolutionResponse = await fetch(speciesData.evolution_chain.url);
@@ -52,46 +58,52 @@ function PokemonDetails() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
-      <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center md:justify-items-start mx-auto w-4/5'>
-        <div className="w-64 h-64 relative">
-          <img 
-              src={
-                pokemon.sprites?.other?.['official-artwork']?.front_default ||
-                pokemon.sprites?.other?.dream_world?.front_default ||
-                pokemon.sprites?.front_default
-              }
-              alt={pokemon.name}
-              className="rounded-lg w-full h-full object-contain"
-            />
-        </div>
-        <div className="flex-1">
-          <h1 className='text-3xl font-bold capitalize mb-2'>{pokemon.name}</h1>
-          <div className='flex flex-col gap-5'>
-            {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
-            <p><strong>Height:</strong> {pokemon.height}</p> */}
-            <div className="flex space-x-2 mb-4">
-              {pokemon.types.map((type) => (
-                <span key={type.type.name} className={`${type.type.name} px-3 py-1 rounded-full text-sm font-semibold text-white`}>
-                  {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                </span>
+    <>
+      <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
+        <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center md:justify-items-start mx-auto w-4/5'>
+          <div className="w-64 h-64 relative">
+            <img 
+                src={
+                  pokemon.sprites?.other?.['official-artwork']?.front_default ||
+                  pokemon.sprites?.other?.dream_world?.front_default ||
+                  pokemon.sprites?.front_default
+                }
+                alt={pokemon.name}
+                className="rounded-lg w-full h-full object-contain"
+              />
+          </div>
+          <div className="flex-1">
+            <h1 className='text-3xl font-bold capitalize mb-2'>{pokemon.name}</h1>
+            <div className='flex flex-col gap-5'>
+              {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
+              <p><strong>Height:</strong> {pokemon.height}</p> */}
+              <div className="flex space-x-2 mb-4">
+                {pokemon.types.map((type) => (
+                  <span key={type.type.name} className={`${type.type.name} px-3 py-1 rounded-full text-sm font-semibold text-white`}>
+                    {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div >
+            <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
+            <div className="flex space-x-4">
+              {evolutions.map((evo, index) => (
+                <div key={index} className="flex items-center">
+                  {index > 0 && <span className="mx-2">→</span>}
+                  <span className="capitalize">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
+                </div>
               ))}
             </div>
           </div>
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
-          <div className="flex space-x-4">
-            {evolutions.map((evo, index) => (
-              <div key={index} className="flex items-center">
-                {index > 0 && <span className="mx-2">→</span>}
-                <span className="capitalize">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
-    </div>
+      <div>
+        <h3 className="text-xl font-semibold mb-2">Descripción:</h3>
+        <p className="text-gray-700">{description}</p>
+      </div>
+    </>
   );
 }
 
