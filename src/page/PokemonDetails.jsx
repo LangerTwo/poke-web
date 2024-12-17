@@ -58,7 +58,7 @@ function PokemonDetails() {
   if (error) return <div>{error}</div>;
 
   return (
-    <>
+    <div className='flex flex-col gap-8'>
       <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
         <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center md:justify-items-start mx-auto w-4/5'>
           <div className="w-64 h-64 relative">
@@ -77,6 +77,13 @@ function PokemonDetails() {
             <div className='flex flex-col gap-5'>
               {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
               <p><strong>Height:</strong> {pokemon.height}</p> */}
+              <div className='flex flex-col'>
+                {pokemon.stats.map((stat) => (
+                  <span key={stat.stat.name}>
+                    {stat.stat.name} {stat.base_stat}
+                  </span>
+                ))}
+              </div>
               <div className="flex space-x-2 mb-4">
                 {pokemon.types.map((type) => (
                   <span key={type.type.name} className={`${type.type.name} px-3 py-1 rounded-full text-sm font-semibold text-white`}>
@@ -99,11 +106,11 @@ function PokemonDetails() {
           </div>
         </div>
       </div>
-      <div>
+      <div className='w-4/5 mx-auto'>
         <h3 className="text-xl font-semibold mb-2">Descripción:</h3>
         <p className="text-gray-700">{description}</p>
       </div>
-    </>
+    </div>
   );
 }
 
