@@ -67,11 +67,20 @@ function PokemonDetails() {
     return "bg-red-500"
   }
 
+  const statMapping = {
+    'hp': 'HP',
+    'attack': 'Atk',
+    'defense': 'Def',
+    'special-attack': 'SpAtk',
+    'special-defense': 'SpDef',
+    'speed': 'Spd',
+  };
+
   return (
     <div className='flex flex-col gap-8'>
       <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
-        <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center md:justify-items-start mx-auto w-4/5'>
-          <div className="w-64 h-64 relative">
+        <div className='grid grid-cols-2 justify-items-center md:justify-items-start mx-auto w-4/5'>
+          <div className="w-48 sm:w-64 h-64 relative">
             <img 
                 src={
                   pokemon.sprites?.other?.['official-artwork']?.front_default ||
@@ -100,12 +109,14 @@ function PokemonDetails() {
                     {pokemon.stats.map((stat) => (
                       <div key={stat.stat.name} className="flex flex-col">
                         <div className="flex justify-between mb-1">
-                          <span className="text-sm font-medium">{stat.stat.name}</span>
+                          <span className="text-sm font-medium">
+                            {statMapping[stat.stat.name] || stat.stat.name}
+                          </span>
                           <span className="text-sm font-medium">{stat.base_stat}</span>
                         </div>
                         <Progress
                           value={stat.base_stat}
-                          max={100}
+                          max={150}
                           className="h-2"
                           indicatorClassName={getStatColor(stat.base_stat)}
                         />
@@ -115,7 +126,7 @@ function PokemonDetails() {
                 </div>
             </div>
           </div>
-          <div >
+          <div className='w-full'>
             <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
             <div className="flex space-x-4">
               {evolutions.map((evo, index) => (
