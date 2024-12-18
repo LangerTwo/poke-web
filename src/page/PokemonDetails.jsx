@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Progress from "../component/Progress";
+
 
 function PokemonDetails() {
   const { name } = useParams();
@@ -26,7 +28,9 @@ function PokemonDetails() {
         const speciesData = await speciesResponse.json();
 
         // Obtener la description del pokemon
-        const flavorText = speciesData.flavor_text_entries[42]?.flavor_text || 'Description not available.';
+        const flavorText = speciesData.flavor_text_entries.find(
+          (entry) => entry.language.name === 'es' // Asegúrate de usar el idioma correcto
+        )?.flavor_text || 'Description not available.';
         setDescription(flavorText);
 
         // Obtén la cadena de evolución
@@ -57,6 +61,12 @@ function PokemonDetails() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const getStatColor = (value) => {
+    if (value > 80) return "bg-green-500"
+    if (value > 40) return "bg-yellow-500"
+    return "bg-red-500"
+  }
+
   return (
     <div className='flex flex-col gap-8'>
       <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
@@ -75,22 +85,34 @@ function PokemonDetails() {
           <div className="flex-1">
             <h1 className='text-3xl font-bold capitalize mb-2'>{pokemon.name}</h1>
             <div className='flex flex-col gap-5'>
-              {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
-              <p><strong>Height:</strong> {pokemon.height}</p> */}
-              <div className='flex flex-col'>
-                {pokemon.stats.map((stat) => (
-                  <span key={stat.stat.name}>
-                    {stat.stat.name} {stat.base_stat}
-                  </span>
-                ))}
-              </div>
-              <div className="flex space-x-2 mb-4">
+              <div className="flex space-x-2">
                 {pokemon.types.map((type) => (
                   <span key={type.type.name} className={`${type.type.name} px-3 py-1 rounded-full text-sm font-semibold text-white`}>
                     {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                   </span>
                 ))}
               </div>
+              {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
+              <p><strong>Height:</strong> {pokemon.height}</p> */}
+              <div>
+                  <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
+                  <div className="space-y-2">
+                    {pokemon.stats.map((stat) => (
+                      <div key={stat.stat.name} className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">{stat.stat.name}</span>
+                          <span className="text-sm font-medium">{stat.base_stat}</span>
+                        </div>
+                        <Progress
+                          value={stat.base_stat}
+                          max={100}
+                          className="h-2"
+                          indicatorClassName={getStatColor(stat.base_stat)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
             </div>
           </div>
           <div >
