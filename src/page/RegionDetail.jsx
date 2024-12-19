@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 // import PokemonPage from './pokemonPage';
 
+import listPoke from '../assets/list-poke.jpg';
+
 function RegionDetail() {
     const { regionName } = useParams();
     const [generationUrl, setGenerationUrl] = useState(``);
@@ -36,12 +38,13 @@ function RegionDetail() {
 
     return (
         <div className="region-grid w-[90%] mx-auto container pt-24">
-            <div className='region-card w-[80%] hover:border-blue-500'>
-                <h3 onClick={() => handleRegionClick()}>
+            <div onClick={() => handleRegionClick()} className='region-card w-[80%] hover:border-red-600'>
+                <img className='w-full h-80 rounded-md' src={listPoke} alt="" />
+                <h3 className='mt-3'>
                     Lista Pokémon
                 </h3>
             </div>
-            <div className='region-card w-[80%] hover:border-blue-500'>
+            <div className='region-card w-[80%] hover:border-red-600 mt-3'>
                 <h3>Líderes de Gimnasio</h3>
             </div>
         </div>
