@@ -10,7 +10,7 @@ function Navbar() {
                 <div className="container mx-auto flex items-center justify-between">
                     <Link to="/" className="flex items-center space-x-2 text-2xl font-bold">
                         {/* <Pokeball className="h-8 w-8" /> */}
-                        <span>Poké Web</span>
+                        <span>Poke Web</span>
                     </Link>
                 </div>
             </header>
