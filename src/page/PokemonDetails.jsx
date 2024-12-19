@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Progress from "../component/Progress";
 
@@ -57,6 +57,31 @@ function PokemonDetails() {
 
     fetchPokemonDetails();
   }, [name]);
+
+  const { regionName } = useParams();
+  const [generationUrl, setGenerationUrl] = useState(``);
+
+  useEffect(() => {
+    if (regionName) {
+        // console.log("RegionName:", regionName);
+        // console.log("URL Param (regionName):", regionName);
+        // Convierte el nombre de la región a minúsculas para coincidir con la API
+      const regionIdMap = {
+        kanto: 1,
+        johto: 2,
+        hoenn: 3,
+        sinnoh: 4,
+        unova: 5,
+        kalos: 6,
+        alola: 7,
+        galar: 8
+      };
+      const regionId = regionIdMap[regionName.toLowerCase()];
+      if (regionId) {
+        setGenerationUrl(`https://pokeapi.co/api/v2/generation/${regionId}`);
+      }
+    }
+  }, [regionName]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -130,10 +155,12 @@ function PokemonDetails() {
             <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
             <div className="flex space-x-4">
               {evolutions.map((evo, index) => (
+                <Link key={index} to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
                 <div key={index} className="flex items-center">
                   {index > 0 && <span className="mx-2">→</span>}
-                  <span className="capitalize">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
+                  <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
                 </div>
+                </Link>
               ))}
             </div>
           </div>
