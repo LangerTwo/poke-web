@@ -32,23 +32,25 @@ function Card({ filteredList }) { // Recibe data como prop
         <>
             {filteredList?.map((poke) => (
                 <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                    <div className="group cursor-pointer bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
+                    <div className="group cursor-pointer bg-gray-100 rounded-md shadow-sm hover:shadow-lg text-black" key={poke.id}>
                         {poke.sprites?.other?.['official-artwork']?.front_default || 
                         poke.sprites?.other?.dream_world?.front_default || 
                         poke.sprites?.front_default ? (
-                            <img 
-                                src={
-                                    poke.sprites?.other?.['official-artwork']?.front_default ||
-                                    poke.sprites?.other?.dream_world?.front_default ||
-                                    poke.sprites?.front_default
-                                }
-                                alt={poke.name}
-                                className='w-full group-hover:scale-75 transition-transform duration-500'
-                            />
+                            <div className='w-full border rounded-t-lg relative'>
+                                <img 
+                                    src={
+                                        poke.sprites?.other?.['official-artwork']?.front_default ||
+                                        poke.sprites?.other?.dream_world?.front_default ||
+                                        poke.sprites?.front_default
+                                    }
+                                    alt={poke.name}
+                                    className='w-[90%] mx-auto group-hover:scale-75 transition-transform duration-500'
+                                />
+                            </div>
                         ) : (
                             <span>No image available</span>
                         )}
-                        <div className="p-4 text-center bg-black/70 group-hover:bg-black/40">
+                        <div className="p-4 text-center rounded-b-lg bg-black/70 group-hover:bg-black/40">
                                 <div className='mb-2 text-white'>
                                         <h3 className='group-hover:underline underline-offset-2'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>                             
                                 </div> 

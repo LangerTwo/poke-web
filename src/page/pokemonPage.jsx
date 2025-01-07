@@ -100,7 +100,7 @@ function PokemonPage() {
       <>
       <div className='flex flex-col gap-12 pt-24'>
         <Filter onCategoryChange={handleCategoryChange} />
-        <div className="w-[90%] mx-auto container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="w-[90%] mx-auto container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-8">
           {error && <div style={{ color: 'red' }}>Error: {error}</div>}
           {loading && <div>Loading...</div>}
           {filteredList && <Card filteredList={filteredList} />}
