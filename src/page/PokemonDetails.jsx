@@ -104,7 +104,7 @@ function PokemonDetails() {
   return (
     <div className='flex flex-col gap-8'>
       <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 pt-24">
-        <div className='grid grid-cols-2 justify-items-center items-center mx-auto w-4/5'>
+        <div className='grid grid-cols-2 gap-x-4 justify-items-center items-center sm:mx-auto w-4/5'>
           <div className="w-48 sm:w-64 h-64 relative">
             <img 
                 src={

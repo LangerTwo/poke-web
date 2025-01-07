@@ -50,13 +50,13 @@ function Card({ filteredList }) { // Recibe data como prop
                         ) : (
                             <span>No image available</span>
                         )}
-                        <div className="p-4 text-center rounded-b-lg bg-black/70 group-hover:bg-black/40">
+                        <div className="px-2 py-2 text-center rounded-b-lg bg-red-600 group-hover:bg-red-500 transition-transform duration-500">
                                 <div className='mb-2 text-white'>
                                         <h3 className='group-hover:underline underline-offset-2'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>                             
                                 </div> 
                                 <div className="flex justify-around">
                                     {poke.types.map(type => (
-                                        <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
+                                        <span key={type.type.name} className={`${type.type.name} border-2 rounded py-1 px-2 text-white`}>
                                             {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                                         </span>
                                     ))}
