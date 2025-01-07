@@ -31,37 +31,37 @@ function Card({ filteredList }) { // Recibe data como prop
     return (
         <>
             {filteredList?.map((poke) => (
-                <div className="cursor-pointer bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
-                    {poke.sprites?.other?.['official-artwork']?.front_default || 
-                    poke.sprites?.other?.dream_world?.front_default || 
-                    poke.sprites?.front_default ? (
-                        <img 
-                            src={
-                                poke.sprites?.other?.['official-artwork']?.front_default ||
-                                poke.sprites?.other?.dream_world?.front_default ||
-                                poke.sprites?.front_default
-                            }
-                            alt={poke.name}
-                            className='w-full'
-                        />
-                    ) : (
-                        <span>No image available</span>
-                    )}
-                    <div className="p-4 text-center">
-                        <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                            <div className='mb-2'>
-                                    <h3 className='hover:underline'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>                             
-                            </div> 
-                            <div className="flex justify-around">
-                                {poke.types.map(type => (
-                                    <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
-                                        {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                                    </span>
-                                ))}
-                            </div> 
-                        </Link>         
+                <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
+                    <div className="group cursor-pointer bg-gray-300 border border-white rounded-md text-black" key={poke.id}>
+                        {poke.sprites?.other?.['official-artwork']?.front_default || 
+                        poke.sprites?.other?.dream_world?.front_default || 
+                        poke.sprites?.front_default ? (
+                            <img 
+                                src={
+                                    poke.sprites?.other?.['official-artwork']?.front_default ||
+                                    poke.sprites?.other?.dream_world?.front_default ||
+                                    poke.sprites?.front_default
+                                }
+                                alt={poke.name}
+                                className='w-full group-hover:scale-75 transition-transform duration-500'
+                            />
+                        ) : (
+                            <span>No image available</span>
+                        )}
+                        <div className="p-4 text-center bg-black/70 group-hover:bg-black/40">
+                                <div className='mb-2 text-white'>
+                                        <h3 className='group-hover:underline underline-offset-2'>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h3>                             
+                                </div> 
+                                <div className="flex justify-around">
+                                    {poke.types.map(type => (
+                                        <span key={type.type.name} className={`${type.type.name} rounded py-1 px-2 text-white`}>
+                                            {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                                        </span>
+                                    ))}
+                                </div> 
+                        </div>
                     </div>
-                </div>
+                </Link>         
             ))}
         </>
     );
