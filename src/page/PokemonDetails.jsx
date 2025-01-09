@@ -63,9 +63,6 @@ function PokemonDetails() {
 
   useEffect(() => {
     if (regionName) {
-        // console.log("RegionName:", regionName);
-        // console.log("URL Param (regionName):", regionName);
-        // Convierte el nombre de la región a minúsculas para coincidir con la API
       const regionIdMap = {
         kanto: 1,
         johto: 2,

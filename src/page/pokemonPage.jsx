@@ -38,7 +38,9 @@ function PokemonPage() {
   });
 
   const results = await Promise.all(promises);
-  return results.filter((result) => result !== null); // Filtra los nulos
+  return results
+    .filter((result) => result !== null) // Filtra los nulos
+    .sort((a, b) => a.id - b.id) // Ordena por ID
 };
 
   // Carga los Pokémon de la región
