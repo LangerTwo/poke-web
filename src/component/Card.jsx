@@ -29,7 +29,6 @@ function Card({ filteredList }) { // Recibe data como prop
         <>
             {filteredList?.map((poke) => (
                     <div className="group bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg" key={poke.id}>
-                        <h2 className='absolute'>{poke.id}</h2>
                         <div className="p-4 flex-grow">
                             {poke.sprites?.other?.['official-artwork']?.front_default || 
                             poke.sprites?.other?.dream_world?.front_default || 
@@ -67,7 +66,7 @@ function Card({ filteredList }) { // Recibe data como prop
                         <div className="p-4 bg-gray-50 border-t border-gray-100">
                             <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
                                 <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center">
-                                View <span className="mx-2">→</span>
+                                Ver Más <span className="mx-2">→</span>
                                 </button>
                             </Link>         
                         </div>

@@ -100,7 +100,7 @@ function PokemonPage() {
 
   return (
       <>
-      <div className='flex flex-col bg-gray-100 gap-12 pt-24'>
+      <div className='flex flex-col bg-gray-100 gap-6 pt-28'>
         <Filter onCategoryChange={handleCategoryChange} />
         <div className="mx-auto container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {error && <div style={{ color: 'red' }}>Error: {error}</div>}
