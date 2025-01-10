@@ -53,7 +53,7 @@ function RegionDetail() {
         <div className="grid gap-6 md:grid-cols-2 p-4 max-w-6xl mx-auto pt-28">
 
             {/* Primera Card */}
-            <div onClick={() => handleRegionClick()} className='group overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg border bg-card text-card-foreground'>
+            <div className='group overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg border bg-card text-card-foreground'>
                 <div className="flex flex-col space-y-1.5 p-6">
                     <h3 className="text-2xl font-bold">Lista Pokémon</h3>
                     <p className="text-sm text-muted-foreground">
@@ -71,7 +71,7 @@ function RegionDetail() {
                         <Info className="w-4 h-4 text-muted-foreground" />
                         <span className="text-sm text-muted-foreground">{numPokemon} Pokémon originales</span>
                     </div>
-                    <button className="bg-stone-200 inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 group-hover:translate-x-1 transition-transform">
+                    <button onClick={() => handleRegionClick()} className="bg-stone-200 inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 group-hover:translate-x-1 transition-transform hover:shadow-lg hover:scale-105 hover:bg-secondary/90 hover:text-secondary-foreground hover:ring-2 hover:ring-secondary/80">
                         Ver todos
                         <ChevronRight className="w-4 h-4 ml-2" />
                     </button>
@@ -100,7 +100,7 @@ function RegionDetail() {
                 <Info className="w-4 h-4 text-muted-foreground" />
                 <span className="text-sm text-muted-foreground">8 Líderes disponibles</span>
             </div>
-            <button className="bg-stone-200 inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 group-hover:translate-x-1 transition-transform">
+            <button className="bg-stone-200 inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 group-hover:translate-x-1 transition-transform hover:scale-105 hover:bg-secondary/90 hover:text-secondary-foreground hover:ring-2 hover:ring-secondary/80">
                 Explorar
                 <ChevronRight className="w-4 h-4 ml-2" />
             </button>
