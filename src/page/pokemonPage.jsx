@@ -55,6 +55,7 @@ function PokemonPage() {
 
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${regionId}`);
         const data = await response.json();
+        // console.log(data.pokemon_species.length);
         const pokemonNames = data.pokemon_species.map((species) => species.name);
 
         const pokemonDetails = await fetchPokemonDetails(pokemonNames);
