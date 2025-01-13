@@ -105,181 +105,110 @@ function PokemonDetails() {
       <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
         <div className="flex items-center justify-between p-6 border-b border-green-100">
 
-          <div className='flex items-center gap-2'>
-            <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
-            <div className="flex space-x-2">
-              {pokemon.types.map((type) => (
-                <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full`}>
-                  {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className='p-6'>
-            <div className="flex border-b border-gray-200">
-              <button
-                className={`px-4 py-2 font-medium ${
-                  activeTab === 'info' 
-                    ? 'text-green-600 border-b-2 border-green-600' 
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-                onClick={() => setActiveTab('info')}
-              >
-                Información
-              </button>
-
-              <button
-                className={`px-4 py-2 font-medium ${
-                  activeTab === 'stats' 
-                    ? 'text-green-600 border-b-2 border-green-600' 
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-                onClick={() => setActiveTab('stats')}
-              >
-                Estadísticas
-              </button>
-          </div>
-
-          {activeTab === 'info' ? (
-            <div className="space-y-4 pt-4">
-              <div className="relative h-64 w-full">
-                <img 
-                  src={
-                    pokemon.sprites?.other?.['official-artwork']?.front_default ||
-                    pokemon.sprites?.other?.dream_world?.front_default ||
-                    pokemon.sprites?.front_default
-                  }
-                  alt={pokemon.name}
-                  className="rounded-lg w-full h-full object-contain"
-                />
+          <div>
+            <div className='flex items-center gap-2'>
+              <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
+              <div className="flex space-x-2">
+                {pokemon.types.map((type) => (
+                  <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full`}>
+                    {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                  </span>
+                ))}
               </div>
+            </div>
 
-              <div className="space-y-2">
-                <h2 className="font-semibold">Evoluciones</h2>
-                <div className="flex items-center justify-center gap-4">
-                  {evolutions.map((evo, index) => (
-                    <Link key={index} to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
-                      <div key={index} className="flex items-center">
-                        {index > 0 && <span className="mx-2">→</span>}
-                        <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
+            <div className='p-6 mx-auto'>
+              <div className="flex border-b border-gray-200">
+                <button
+                  className={`px-4 py-2 font-medium ${
+                    activeTab === 'info' 
+                      ? 'text-green-600 border-b-2 border-green-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab('info')}
+                >
+                  Información
+                </button>
+
+                <button
+                  className={`px-4 py-2 font-medium ${
+                    activeTab === 'stats' 
+                      ? 'text-green-600 border-b-2 border-green-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab('stats')}
+                >
+                  Estadísticas
+                </button>
+            </div>
+
+            {activeTab === 'info' ? (
+              <div className="space-y-4 pt-4">
+                <div className="relative h-64 w-full">
+                  <img 
+                    src={
+                      pokemon.sprites?.other?.['official-artwork']?.front_default ||
+                      pokemon.sprites?.other?.dream_world?.front_default ||
+                      pokemon.sprites?.front_default
+                    }
+                    alt={pokemon.name}
+                    className="rounded-lg w-full h-full object-contain"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <h2 className="font-semibold">Evoluciones</h2>
+                  <div className="flex items-center justify-center gap-4">
+                    {evolutions.map((evo, index) => (
+                      <Link key={index} to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
+                        <div key={index} className="flex items-center">
+                          {index > 0 && <span className="mx-2">→</span>}
+                          <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Descripción</h3>
+                  <p className="text-gray-600">{description}</p>
+                </div>
+
+              </div>
+            ) : (
+              <div className="space-y-4 pt-4">
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
+                    {pokemon.stats.map((stat) => (
+                      <div key={stat.stat.name} className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-sm font-medium">
+                            {statMapping[stat.stat.name] || stat.stat.name}
+                          </span>
+                          <span className="text-sm font-medium">{stat.base_stat}</span>
+                        </div>
+                        
+                        <Progress
+                          value={stat.base_stat}
+                          max={150}
+                          className="h-2"
+                          indicatorClassName={getStatColor(stat.base_stat)}
+                        />
                       </div>
-                    </Link>
-                  ))}
+                    ))}
                 </div>
               </div>
-
-              <div className="space-y-2">
-                <h3 className="font-semibold">Descripción</h3>
-                <p className="text-gray-600">{description}</p>
-              </div>
+            )}
 
             </div>
-          ) : (
-            <div className="space-y-4 pt-4">
-              <div>
-                <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
-                  {pokemon.stats.map((stat) => (
-                    <div key={stat.stat.name} className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-sm font-medium">
-                          {statMapping[stat.stat.name] || stat.stat.name}
-                        </span>
-                        <span className="text-sm font-medium">{stat.base_stat}</span>
-                      </div>
-                      
-                      <Progress
-                        value={stat.base_stat}
-                        max={150}
-                        className="h-2"
-                        indicatorClassName={getStatColor(stat.base_stat)}
-                      />
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )}
-
           </div>
         </div>
       </div>
     </div>
-    // <div className='min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex items-center justify-center pt-[8rem]'>
-    //   <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
-    //     <div className="flex items-center justify-between p-6 border-b border-green-100">
-    //       <div className='flex items-center gap-2'>
-    //         <div>
-    //           {/* <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
-    //             ← Regresar
-    //           </Link> */}
-    //           <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
-    //           <div className="flex space-x-2">
-    //               {pokemon.types.map((type) => (
-    //                 <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full`}>
-    //                   {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-    //                 </span>
-    //               ))}
-    //           </div>
-    //         </div>
-    //         <div className="w-48 sm:w-64 h-64 relative">
-    //           <img 
-    //               src={
-    //                 pokemon.sprites?.other?.['official-artwork']?.front_default ||
-    //                 pokemon.sprites?.other?.dream_world?.front_default ||
-    //                 pokemon.sprites?.front_default
-    //               }
-    //               alt={pokemon.name}
-    //               className="rounded-lg w-full h-full object-contain"
-    //             />
-    //         </div>
-    //         <div className="flex-1">
-    //           <div className='flex flex-col gap-5'>
-    //             {/* <p><strong>Weight:</strong> {pokemon.weight}</p>
-    //             <p><strong>Height:</strong> {pokemon.height}</p> */}
-    //             <div>
-    //                 <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
-    //                 <div className="space-y-2">
-    //                   {pokemon.stats.map((stat) => (
-    //                     <div key={stat.stat.name} className="flex flex-col">
-    //                       <div className="flex justify-between mb-1">
-    //                         <span className="text-sm font-medium">
-    //                           {statMapping[stat.stat.name] || stat.stat.name}
-    //                         </span>
-    //                         <span className="text-sm font-medium">{stat.base_stat}</span>
-    //                       </div>
-    //                       <Progress
-    //                         value={stat.base_stat}
-    //                         max={150}
-    //                         className="h-2"
-    //                         indicatorClassName={getStatColor(stat.base_stat)}
-    //                       />
-    //                     </div>
-    //                   ))}
-    //                 </div>
-    //               </div>
-    //           </div>
-    //         </div>
-    //         <div className='w-full'>
-    //           <h2 className="text-xl font-semibold mb-2">Evoluciones</h2>
-    //           <div className="flex space-x-4">
-    //             {evolutions.map((evo, index) => (
-    //               <Link key={index} to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
-    //               <div key={index} className="flex items-center">
-    //                 {index > 0 && <span className="mx-2">→</span>}
-    //                 <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
-    //               </div>
-    //               </Link>
-    //             ))}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className='w-4/5 mx-auto'>
-    //       <h3 className="text-xl font-semibold mb-2">Descripción:</h3>
-    //       <p className="text-gray-700">{description}</p>
-    //     </div>
-    //   </div>
-    // </div>
+      //           {/* <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
+      //             ← Regresar
+      //           </Link> */}
   );
 }
 
