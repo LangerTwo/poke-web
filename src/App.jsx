@@ -117,7 +117,7 @@ function Home() {
               className={`transform transition-all duration-500 ${animatedRegions.includes(region.id) ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`} 
               // onClick={() => handleRegionClick(region.name)}
             >
-              <div onClick={() => setSelectedRegion(region)} className="group rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer bg-gray-800 border border-gray-700">
+              <div onClick={() => setSelectedRegion(region)} className="group rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer bg-white border border-gray-700">
                 <div className='aspect-video overflow-hidden'>
                   <img 
                     src={region.image} 
@@ -126,8 +126,8 @@ function Home() {
                   />
                 </div>
                 <div className='p-6'>
-                  <h2 className='text-gray-400 text-xl font-semibold mb-2'>{region.name}</h2>
-                  <p className='text-gray-400 line-clamp-2'>{region.description}</p>
+                  <h2 className='text-gray-800 text-xl font-semibold mb-2'>{region.name}</h2>
+                  <p className='text-gray-800 line-clamp-2'>{region.description}</p>
                 </div>
               </div>
             </div>
