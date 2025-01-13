@@ -1,12 +1,14 @@
 function Progress({ value, max, className, indicatorClassName }) {
-    const percentage = Math.min((value / max) * 120, 100); // Limitar al 100%
+    const percentage = Math.min((value / max) * 100); // Limitar al 100%
   
     return (
-      <div className={`w-full bg-gray-200 rounded-full ${className}`}>
-        <div
-          className={`h-full rounded-full ${indicatorClassName}`}
-          style={{ width: `${(percentage / 120) * 100}%` }}
-        ></div>
+      <div className="relative pt-1">
+        <div className={`overflow-hidden h-2 text-xs flex rounded-full bg-gray-200 ${className}`}>
+          <div
+            style={{ width: `${percentage}%` }}
+            className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center transition-all duration-500 ${indicatorClassName}`}
+          />
+        </div>
       </div>
     );
   }

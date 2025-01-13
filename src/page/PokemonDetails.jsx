@@ -86,7 +86,9 @@ function PokemonDetails() {
   if (error) return <div>{error}</div>;
 
   const getStatColor = (value) => {
-    if (value > 80) return "bg-green-500"
+    if (value > 110) return "bg-green-500"
+    if (value > 100) return "bg-yellow-500"
+    if (value > 80) return "bg-orange-500"
     if (value > 40) return "bg-yellow-500"
     return "bg-red-500"
   }
@@ -105,7 +107,7 @@ function PokemonDetails() {
       <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
         <div className="flex items-center justify-between p-6 border-b border-green-100">
 
-          <div>
+          <div className='w-full max-w-2xl mx-auto'>
             <div className='flex items-center gap-2'>
               <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
               <div className="flex space-x-2">
@@ -117,7 +119,7 @@ function PokemonDetails() {
               </div>
             </div>
 
-            <div className='p-6 mx-auto'>
+            <div className='p-6 w-full'>
               <div className="flex border-b border-gray-200">
                 <button
                   className={`px-4 py-2 font-medium ${
@@ -177,27 +179,23 @@ function PokemonDetails() {
 
               </div>
             ) : (
-              <div className="space-y-4 pt-4">
-                <div>
+              <div className="space-y-4 pt-4 w-full">
                   <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
                     {pokemon.stats.map((stat) => (
-                      <div key={stat.stat.name} className="space-y-1">
-                        <div className="flex justify-between text-sm">
+                      <div key={stat.stat.name} className="space-y-1 w-full">
+                        <div className="flex justify-between text-sm w-full">
                           <span className="text-sm font-medium">
                             {statMapping[stat.stat.name] || stat.stat.name}
                           </span>
                           <span className="text-sm font-medium">{stat.base_stat}</span>
                         </div>
-                        
-                        <Progress
-                          value={stat.base_stat}
-                          max={150}
-                          className="h-2"
-                          indicatorClassName={getStatColor(stat.base_stat)}
-                        />
+                        <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                          <div className={`h-2 transition-all duration-500 ${getStatColor(stat.base_stat)}`}
+                            style={{ width: `${(stat.base_stat / 150) * 100}%` }}
+                          ></div>
+                        </div>
                       </div>
                     ))}
-                </div>
               </div>
             )}
 
