@@ -17,13 +17,15 @@ export function useFetch(url) {
         fetch(url)
             .then((response) => response.json())
             .then(async (resultData) => {
+                console.log("Datos obtenidos:", resultData); // Depuración
                 let pokemonDetails;
 
                 if (resultData.pokemon_species) {
-                    // Si es una región
+                    console.log("Procesando pokemon_species"); // Depuración
                     pokemonDetails = await Promise.all(
                         resultData.pokemon_species.map(async (pokemon) => {
                             try {
+                                console.log(`Buscando detalles para ${pokemon.name}`); // Depuración
                                 const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
                                 if (!res.ok) throw new Error(`Pokémon ${pokemon.name} no encontrado`);
                                 return await res.json();
@@ -33,6 +35,7 @@ export function useFetch(url) {
                         })
                     );
                 } else if (resultData.pokemon) {
+                    console.log("Procesando pokemon"); // Depuración
                     // Si es un tipo
                     pokemonDetails = await Promise.all(
                         resultData.pokemon.map(async (pokemon) => {
@@ -51,7 +54,7 @@ export function useFetch(url) {
                 setLoading(false);
             })
             .catch((error) => {
-                setError("Error al cargar los Pokémon");
+                setError("Error al cargar los Pokémon2!!");
                 setLoading(false);
             });
     }, [url]);
