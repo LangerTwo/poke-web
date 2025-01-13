@@ -22,6 +22,7 @@ function PokemonPage() {
     kalos: 6,
     alola: 7,
     galar: 8,
+    paldea: 9,
   };
 
   // Función para obtener detalles de cada Pokémon

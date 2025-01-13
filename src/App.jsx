@@ -14,6 +14,7 @@ import teseliaImage from './assets/teselia-region.png';
 import kalosImage from './assets/kalos-region.png';
 import alolaImage from './assets/alola-region.png';
 import galarImage from './assets/galar-region.png';
+import paldeaImage from './assets/paldea-region.jpg';
 import { X } from 'lucide-react';
 
 const regions = [
@@ -89,6 +90,16 @@ const regions = [
     villain: 'Team Yell y El Presidente Rose',
     legendaryPokemons: ['Zacian', 'Zamazenta', 'Eternatus'],
   },
+  {
+    id: 'paldea',
+    name: 'Paldea',
+    image: paldeaImage,
+    description: 'Región inspirada en la Península Ibérica, con paisajes diversos y cultura vibrante.',
+    professor: 'Clavel y Sada/Turo',
+    starterPokemons: ['Sprigatito', 'Fuecoco', 'Quaxly'],
+    villain: 'El Team Star y la Fundación Área Cero',
+    legendaryPokemons: ['Koraidon', 'Miraidon', 'Los cuatro tesoros de la ruina (Wo-Chien, Chien-Pao, Ting-Lu, Chi-Yu)'],
+  }
 ];
 
 function Home() {

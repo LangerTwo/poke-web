@@ -73,7 +73,8 @@ function PokemonDetails() {
         unova: 5,
         kalos: 6,
         alola: 7,
-        galar: 8
+        galar: 8,
+        paldea: 9,
       };
       const regionId = regionIdMap[regionName.toLowerCase()];
       if (regionId) {
