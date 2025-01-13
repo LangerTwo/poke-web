@@ -181,7 +181,7 @@ function Home() {
                 
                 <div>
                   <h3 className="text-gray-300 font-semibold mb-1">Villanos:</h3>
-                  <p className="text-gray-400">{selectedRegion.villains}</p>
+                  <p className="text-gray-400">{selectedRegion.villain}</p>
                 </div>
                 
                 <div>
