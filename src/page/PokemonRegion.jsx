@@ -57,7 +57,7 @@ const regions = [
     professor: 'La Profesor Juniper',
     starterPokemons: ['Snivy', 'Tepig', 'Oshawott'],
     villain: 'Team Plasma',
-    legendary: ['Reshiram, Zekrom, Kyurem'],
+    legendaryPokemons: ['Reshiram, Zekrom, Kyurem'],
   },
   { id: 'kalos',
     name: 'Kalos', 
@@ -86,8 +86,7 @@ const regions = [
     villain: 'Team Yell y El Presidente Rose',
     legendaryPokemons: ['Zacian', 'Zamazenta', 'Eternatus'],
   },
-  {
-    id: 'paldea',
+  { id: 'paldea',
     name: 'Paldea',
     image: paldeaImage,
     description: 'Región inspirada en la Península Ibérica, con paisajes diversos y cultura vibrante.',
@@ -105,7 +104,7 @@ function PokemonRegion() {
 
   const handleRegionClick = (regionName) => {
     navigate(`/${regionName.toLowerCase()}`);
-    // console.log(regionName.toLowerCase())
+    console.log(regionName.toLowerCase())
   };
 
   useEffect(() => {
