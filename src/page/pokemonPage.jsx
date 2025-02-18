@@ -18,7 +18,7 @@ function PokemonPage() {
     johto: 2,
     hoenn: 3,
     sinnoh: 4,
-    unova: 5,
+    teselia: 5,
     kalos: 6,
     alola: 7,
     galar: 8,
@@ -68,7 +68,6 @@ function PokemonPage() {
         setLoading(false);
       }
     };
-
     if (regionName) fetchPokemonByRegion();
   }, [regionName]);
 
