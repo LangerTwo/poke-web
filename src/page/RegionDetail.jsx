@@ -47,7 +47,7 @@ function RegionDetail() {
     }, [regionName, generationUrl]); // Ejecuta cuando la URL de generación cambie
 
     const handleRegionClick = () => {
-        navigate(`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`);
+        navigate(`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`);
     };
 
     return (

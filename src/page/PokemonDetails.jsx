@@ -109,6 +109,7 @@ function PokemonDetails() {
         <div className="flex items-center justify-between p-6 border-b border-green-100">
 
           <div className='w-full max-w-2xl mx-auto'>
+
             <div className='flex items-center gap-2'>
               <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
               <div className="flex space-x-2">
@@ -163,7 +164,7 @@ function PokemonDetails() {
                   <h2 className="font-semibold">Evoluciones</h2>
                   <div className="flex items-center justify-center gap-4">
                     {evolutions.map((evo, index) => (
-                      <Link key={index} to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
+                      <Link key={index} to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
                         <div key={index} className="flex items-center">
                           {index > 0 && <span className="mx-2">→</span>}
                           <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
@@ -202,6 +203,7 @@ function PokemonDetails() {
 
             </div>
           </div>
+          
         </div>
       </div>
     </div>

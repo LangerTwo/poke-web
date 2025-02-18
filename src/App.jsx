@@ -108,7 +108,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleRegionClick = (regionName) => {
-    navigate(`/region/${regionName.toLowerCase()}`);
+    navigate(`/${regionName.toLowerCase()}`);
     // console.log(regionName.toLowerCase())
   };
 
@@ -211,9 +211,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/region/:regionName" element={<RegionDetail />} />
-        <Route path="/region/:regionName/lista-pokemon" element={<PokemonPage />} />
-        <Route path="/region/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
+        <Route path="/:regionName" element={<RegionDetail />} />
+        <Route path="/:regionName/lista-pokemon" element={<PokemonPage />} />
+        <Route path="/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
       </Routes>
     </Router>
   );

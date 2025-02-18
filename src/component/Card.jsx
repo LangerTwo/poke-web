@@ -65,7 +65,7 @@ function Card({ filteredList }) { // Recibe data como prop
                         </div>
                     </div>
                     <div className="p-4 bg-gray-50 border-t border-gray-100">
-                        <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
+                        <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
                             <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5">
                             Ver Más <span className="mx-2">→</span>
                             </button>
