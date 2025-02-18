@@ -104,7 +104,7 @@ function PokemonRegion() {
 
   const handleRegionClick = (regionName) => {
     navigate(`/${regionName.toLowerCase()}`);
-    console.log(regionName.toLowerCase())
+    // console.log(regionName.toLowerCase())
   };
 
   useEffect(() => {
