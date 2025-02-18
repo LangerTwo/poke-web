@@ -1,30 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import useRegionId from '../hooks/useRegionId';
 
 function Card({ filteredList }) { // Recibe data como prop
-
-    const { regionName } = useParams();
-    const [generationUrl, setGenerationUrl] = useState(``);
-
-    useEffect(() => {
-            if (regionName) {
-              const regionIdMap = {
-                kanto: 1,
-                johto: 2,
-                hoenn: 3,
-                sinnoh: 4,
-                unova: 5,
-                kalos: 6,
-                alola: 7,
-                galar: 8,
-                paldea: 9,
-              };
-              const regionId = regionIdMap[regionName.toLowerCase()];
-              if (regionId) {
-                setGenerationUrl(`https://pokeapi.co/api/v2/generation/${regionId}`);
-              }
-            }
-        }, [regionName]);
+    const { regionName } = useRegionId();
 
     return (
         <>

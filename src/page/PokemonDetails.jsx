@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Progress from "../component/Progress";
+import useRegionId from '../hooks/useRegionId';
 
 
 function PokemonDetails() {
@@ -13,6 +14,8 @@ function PokemonDetails() {
   const [activeTab, setActiveTab] = useState('info')
 
   const [description, setDescription] = useState('');
+
+  const { regionName } = useRegionId();
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
@@ -60,28 +63,6 @@ function PokemonDetails() {
     fetchPokemonDetails();
   }, [name]);
 
-  const { regionName } = useParams();
-  const [generationUrl, setGenerationUrl] = useState(``);
-
-  useEffect(() => {
-    if (regionName) {
-      const regionIdMap = {
-        kanto: 1,
-        johto: 2,
-        hoenn: 3,
-        sinnoh: 4,
-        unova: 5,
-        kalos: 6,
-        alola: 7,
-        galar: 8,
-        paldea: 9,
-      };
-      const regionId = regionIdMap[regionName.toLowerCase()];
-      if (regionId) {
-        setGenerationUrl(`https://pokeapi.co/api/v2/generation/${regionId}`);
-      }
-    }
-  }, [regionName]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
