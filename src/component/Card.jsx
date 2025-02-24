@@ -17,6 +17,7 @@ function Card({ filteredList }) {
                         key={poke.id} 
                         className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${mainType}`}
                     >
+                        <div>{poke.id}</div>
                         <div className="p-4 flex-grow">
                             {poke.sprites?.other?.['official-artwork']?.front_default || 
                             poke.sprites?.other?.dream_world?.front_default || 
