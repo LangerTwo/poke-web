@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Progress from "../component/Progress";
 import useRegionId from '../hooks/useRegionId';
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../useFetch';
+// import { useFetch } from '../useFetch';
 import Filter from '../component/Filter';
 import Card from '../component/Card';
 // import './PokemonPage.css';
@@ -27,22 +27,22 @@ function PokemonPage() {
 
   // Función para obtener detalles de cada Pokémon
   const fetchPokemonDetails = async (pokemonNames) => {
-  const promises = pokemonNames.map(async (name) => {
-    try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-      if (!response.ok) throw new Error(`Error fetching ${name}`);
-      return response.json();
-    } catch (error) {
-      console.error(`Failed to fetch ${name}:`, error);
-      return null; // Devuelve null si falla
-    }
-  });
+    const promises = pokemonNames.map(async (name) => {
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        if (!response.ok) throw new Error(`Error fetching ${name}`);
+        return response.json();
+      } catch (error) {
+        console.error(`Failed to fetch ${name}:`, error);
+        return null; // Devuelve null si falla
+      }
+    });
 
-  const results = await Promise.all(promises);
-  return results
-    .filter((result) => result !== null) // Filtra los nulos
-    .sort((a, b) => a.id - b.id) // Ordena por ID
-};
+    const results = await Promise.all(promises);
+    return results
+      .filter((result) => result !== null) // Filtra los nulos
+      .sort((a, b) => a.id - b.id) // Ordena por ID
+  };
 
   // Carga los Pokémon de la región
   useEffect(() => {

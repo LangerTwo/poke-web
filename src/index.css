@@ -100,3 +100,15 @@
 .dark {
 	background-color: var(--color-dark);
 }
+
+img {
+	filter: drop-shadow(
+		0 0 10px rgba(0, 0, 0, .3)
+	);
+}
+
+img:hover {
+	filter: drop-shadow(
+		0 0 10px rgba(0, 0, 0, .6)
+	);
+}
