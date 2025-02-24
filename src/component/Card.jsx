@@ -20,7 +20,7 @@ function Card({ filteredList }) {
                             poke.sprites?.other?.dream_world?.front_default || 
                             poke.sprites?.front_default ? (
                                 <div className="aspect-square relative mb-3">
-                                    <div className="absolute inset-0 img rounded-lg group-hover:scale-110 transition-transform duration-300">
+                                    <div className="absolute inset-0 img rounded-lg group-hover:scale-110 group-hover:drop-shadow-customHover transition-transform duration-300">
                                         <img 
                                             src={
                                                 poke.sprites?.other?.['official-artwork']?.front_default ||
@@ -28,7 +28,7 @@ function Card({ filteredList }) {
                                                 poke.sprites?.front_default
                                             }
                                             alt={poke.name}
-                                            className='w-full h-full object-contain p-4'
+                                            className='w-full h-full object-contain p-4 drop-shadow-custom'
                                         />
                                     </div>
                                 </div>
