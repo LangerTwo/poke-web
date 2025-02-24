@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
 
+import { ArrowRight} from 'lucide-react';
+
 function Card({ filteredList }) {
     const { regionName } = useRegionId();
 
@@ -40,11 +42,11 @@ function Card({ filteredList }) {
                                 <h2 className='font-semibold text-center text-white'>
                                     {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                                 </h2>                              
-                                <div className="flex gap-2 justify-center flex-wrap">
+                                <div className="flex gap-2 justify-center flex-wrap relative">
                                     {poke.types.map(type => (
                                         <span 
                                             key={type.type.name} 
-                                            className={`${type.type.name} px-2.5 py-0.5 rounded-full text-sm font-medium text-white border border-white`}
+                                            className={`${type.type.name} px-2.5 py-0.5 rounded-full text-sm font-medium text-white border border-white tag-shine`}
                                         >
                                             {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                                         </span>
@@ -54,8 +56,11 @@ function Card({ filteredList }) {
                         </div>
                         <div className="p-4">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5">
-                                    Ver Más <span className="mx-2">→</span>
+                                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
+                                    Ver Más 
+                                    <div className='icon'>
+                                        <ArrowRight className="w-6 h-6 ml-2 arrow" />
+                                    </div>
                                 </button>
                             </Link>         
                         </div>
