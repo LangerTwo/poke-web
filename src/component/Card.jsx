@@ -17,13 +17,16 @@ function Card({ filteredList }) {
                         key={poke.id} 
                         className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${mainType}`}
                     >
-                        <div>{poke.id}</div>
+                        <div className='ml-1 mt-1 text-white text-sm font-medium absolute z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>
+                            <span>N° </span>
+                            {poke.id}
+                        </div>
                         <div className="p-4 flex-grow">
                             {poke.sprites?.other?.['official-artwork']?.front_default || 
                             poke.sprites?.other?.dream_world?.front_default || 
                             poke.sprites?.front_default ? (
                                 <div className="aspect-square relative mb-3">
-                                    <div className="absolute inset-0 img rounded-lg group-hover:scale-110 group-hover:drop-shadow-customHover transition-transform duration-300">
+                                    <div className="absolute inset-0 img bg-slate-50 rounded-full">
                                         <img 
                                             src={
                                                 poke.sprites?.other?.['official-artwork']?.front_default ||
@@ -31,7 +34,7 @@ function Card({ filteredList }) {
                                                 poke.sprites?.front_default
                                             }
                                             alt={poke.name}
-                                            className='w-full h-full object-contain p-4 drop-shadow-custom'
+                                            className='w-full h-full object-contain p-4 drop-shadow-custom hover:scale-125 hover:drop-shadow-customHover transition-transform duration-300'
                                         />
                                     </div>
                                 </div>
@@ -47,13 +50,24 @@ function Card({ filteredList }) {
                                     {poke.types.map(type => (
                                         <span 
                                             key={type.type.name} 
-                                            className={`${type.type.name} px-2.5 py-0.5 rounded-full text-sm font-medium text-white border border-white tag-shine`}
+                                            className={`${type.type.name} px-2.5 py-1 rounded-full text-sm font-medium text-white border border-white type`}
                                         >
                                             {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                                         </span>
                                     ))}
                                 </div> 
                             </div>
+                        </div>
+                        {/* añadir pero y altura */}
+                        <div className='flex flex-col items-center gap-2 justify-center flex-wrap relative'>
+                            <div className='flex gap-2 items-center'>
+                                <span className='font-semibold text-white'>Peso:</span>
+                                <span className='text-white'>{poke.weight} kg</span>
+                            </div>
+                            <div className='flex gap-2 items-center'>
+                                <span className='font-semibold text-white'>Altura:</span>
+                                <span className='text-white'>{poke.height} m</span>
+                            </div>                                                   
                         </div>
                         <div className="p-4">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>

@@ -101,18 +101,6 @@
 	background-color: var(--color-dark);
 }
 
-/* img {
-	filter: drop-shadow(
-		0 0 10px rgba(0, 0, 0, .3)
-	);
-}
-
-img:hover {
-	filter: drop-shadow(
-		0 0 10px rgba(0, 0, 0, .6)
-	);
-} */
-
 .cssbuttons-io-button {
 	border-radius: 0.9em;
 	border: none;
@@ -156,21 +144,36 @@ img:hover {
 }
 
 
-.tag-shine {	
+.type {
+	display: inline-block;
+	font-weight: bold;
+	color: white; /* Asegura que el texto tenga color base */
+	position: relative;
+	overflow: hidden;
+}
+  
+.type::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	background: linear-gradient(to right, #9f9f9f 0%, #fff 50%, #868686 100%);
 	background-size: 200% auto;
-	background-position: 0%;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	animation: shine 8s infinite linear;
+	mix-blend-mode: overlay;
+	opacity: 0.6;
+	pointer-events: none;
 }
 
 @keyframes shine {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+	0% {
+	  background-position: -200% 0;
+	}
+	100% {
+	  background-position: 200% 0;
+	}
 }
+  
 
