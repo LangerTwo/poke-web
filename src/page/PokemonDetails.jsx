@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 
+import {ChevronDown} from 'lucide-react';
+
 
 function PokemonDetails() {
   const { name } = useParams();
@@ -18,6 +20,8 @@ function PokemonDetails() {
   const [abilitiesDetails, setAbilitiesDetails] = useState({});
   const [loadingAbilities, setLoadingAbilities] = useState(true);
   const [moves, setMoves] = useState([]);
+
+  const [openMoveIndex, setOpenMoveIndex] = useState(null)
 
   // obtener los detalles del pokemon
   useEffect(() => {
@@ -136,6 +140,11 @@ function PokemonDetails() {
     'special-defense': 'SpDef',
     'speed': 'Spd',
   };
+
+
+  const toggleMove = (index) => {
+    setOpenMoveIndex(openMoveIndex === index ? null : index)
+  }
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex items-center justify-center pt-[8rem]'>
@@ -300,7 +309,7 @@ function PokemonDetails() {
                   <div className="space-y-4 pt-4">
                     <h2 className="text-xl font-semibold mb-2">Movimientos</h2>
                     <div className="grid grid-row-1 gap-2">
-                    <MovesList moves={moves} />
+                      <MovesList moves={moves} />
                     </div>
                   </div>
                 ) : (

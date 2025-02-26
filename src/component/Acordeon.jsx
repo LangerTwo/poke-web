@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import {ChevronDown} from 'lucide-react';
+
 
 const MovesList = ({ moves }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -15,18 +17,25 @@ const MovesList = ({ moves }) => {
                 className="flex justify-between items-center w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
               >
                 <h3 className="font-semibold">{move.name}</h3>
-                <span
-                  className={`${move.type} px-3 py-1 text-sm font-medium capitalize rounded-full type`}
-                >
-                  {move.type}
-                </span>
+                <div className="flex justify-between items-center space-x-2">
+                    <span
+                        className={`${move.type} px-3 py-1 text-sm font-medium capitalize rounded-full type`}
+                    >
+                        {move.type}
+                    </span>
+                    <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-200 ${
+                        openIndex === index ? "transform rotate-180" : ""
+                        }`}
+                    />
+                </div>
               </button>
     
               {openIndex === index && (
-                <div className="p-4 space-y-2 bg-white">
-                  <p className="text-sm text-gray-600">{move.effect}</p>
+                <div className="p-4 bg-gray-50 border-t border-gray-200">
+                  <p className="text-sm text-gray-600 mb-2">{move.effect}</p>
                   <div className="flex justify-between text-sm font-medium">
-                    <span>Poder: {move.power || 0}</span>
+                    <span>Poder: {move.power || "N/A"}</span>
                     <span>PP: {move.pp}</span>
                   </div>
                 </div>
