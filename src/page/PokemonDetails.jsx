@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
+import MovesList from '../component/Acordeon';
 
 
 function PokemonDetails() {
@@ -11,11 +12,14 @@ function PokemonDetails() {
   const [error, setError] = useState(null);
 
   const [activeTab, setActiveTab] = useState('info')
-
   const [description, setDescription] = useState('');
-
   const { regionName } = useRegionId();
 
+  const [abilitiesDetails, setAbilitiesDetails] = useState({});
+  const [loadingAbilities, setLoadingAbilities] = useState(true);
+  const [moves, setMoves] = useState([]);
+
+  // obtener los detalles del pokemon
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       setLoading(true);
@@ -43,14 +47,31 @@ function PokemonDetails() {
 
         // Extrae las evoluciones
         const evolutionChain = [];
-        let current = evolutionData.chain;
-
+        let current = evolutionData.chain;      
         while (current) {
           evolutionChain.push(current.species.name);
           current = current.evolves_to[0];
         }
-
         setEvolutions(evolutionChain);
+
+        // obtner los movimientos del pokemon
+        const moveDetails = await Promise.all(
+          data.moves.map(async (move) => {
+            const moveResponse = await fetch(move.move.url);
+            const moveData = await moveResponse.json();
+            return {
+              name: move.move.name,
+              type: moveData.type.name,
+              power: moveData.power,
+              pp: moveData.pp,
+              damage_class: moveData.damage_class.name,
+              effect: moveData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Efecto no disponible.",             
+            };
+          })
+        );
+        setMoves(moveDetails);
+
+
       } catch (err) {
         setError('Error al cargar los detalles del Pokémon');
         console.error(err);
@@ -62,10 +83,42 @@ function PokemonDetails() {
     fetchPokemonDetails();
   }, [name]);
 
+  // obtener los efectos de las habilidades
+  useEffect(() => {
+    const fetchAbilityDetails = async () => {
+      if (!pokemon || !pokemon.abilities) return; // Verifica que `pokemon` no sea null
+  
+      setLoadingAbilities(true); // Iniciar carga
+      const abilitiesData = {};
+  
+      await Promise.all(
+        pokemon.abilities.map(async (ability) => {
+          if (!ability.ability.url) return; // Evitar errores si `url` es undefined
+  
+          try {
+            const response = await fetch(ability.ability.url);
+            if (!response.ok) throw new Error("Error al obtener la habilidad");
+  
+            const data = await response.json();
+            const effect = data.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Sin descripción";
+            abilitiesData[ability.ability.name] = effect;
+          } catch (error) {
+            console.error(`Error al obtener detalles de la habilidad ${ability.ability.name}:`, error);
+          }
+        })
+      );
+  
+      setAbilitiesDetails(abilitiesData);
+      setLoadingAbilities(false); // Finalizar carga
+    };
+  
+    fetchAbilityDetails();
+  }, [pokemon]); // Se ejecuta cuando `pokemon` cambia
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  // Obtener el color de la barra de estadísticas
   const getStatColor = (value) => {
     if (value >= 100) return "bg-green-500"
     if (value > 80) return "bg-yellow-500"
@@ -74,6 +127,7 @@ function PokemonDetails() {
     return "bg-red-500"
   }
 
+  // Mapear las estadísticas
   const statMapping = {
     'hp': 'HP',
     'attack': 'Atk',
@@ -94,7 +148,7 @@ function PokemonDetails() {
               <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
               <div className="flex space-x-2">
                 {pokemon.types.map((type) => (
-                  <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full`}>
+                  <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
                     {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                   </span>
                 ))}
@@ -124,50 +178,109 @@ function PokemonDetails() {
                 >
                   Estadísticas
                 </button>
-            </div>
-
-            {activeTab === 'info' ? (
-              <div className="space-y-4 pt-4">
-                <div className="relative h-64 w-full">
-                  <img 
-                    src={
-                      pokemon.sprites?.other?.['official-artwork']?.front_default ||
-                      pokemon.sprites?.other?.dream_world?.front_default ||
-                      pokemon.sprites?.front_default
-                    }
-                    alt={pokemon.name}
-                    className="rounded-lg w-full h-full object-contain"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <h2 className="font-semibold">Evoluciones</h2>
-                  <div className="flex items-center justify-center gap-4">
-                    {evolutions.map((evo, index) => (
-                      <Link key={index} to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
-                        <div key={index} className="flex items-center">
-                          {index > 0 && <span className="mx-2">→</span>}
-                          <span className="capitalize hover:underline hover:text-red-600">{evo.charAt(0).toUpperCase() + evo.slice(1)}</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold">Descripción</h3>
-                  <p className="text-gray-600">{description}</p>
-                </div>
-
+                <button
+                  className={`px-4 py-2 font-medium ${
+                    activeTab === 'moves' 
+                      ? 'text-green-600 border-b-2 border-green-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab('moves')}
+                >
+                  Movimientos
+                </button>
               </div>
-            ) : (
-              <div className="space-y-4 pt-4 w-full">
-                  <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
-                    {pokemon.stats.map((stat) => (
+
+              {activeTab === 'info' ? (
+                pokemon ? (
+                  // Información del Pokémon
+                  // Imagen, habilidades, evoluciones, descripción
+                  <div className="space-y-4 pt-4">
+                    {/* Imagen del Pokemon */}
+                    <div className="relative h-64 w-full">
+                      <img 
+                        src={
+                          pokemon.sprites?.other?.['official-artwork']?.front_default ||
+                          pokemon.sprites?.other?.dream_world?.front_default ||
+                          pokemon.sprites?.front_default
+                        }
+                        alt={pokemon.name}
+                        className="rounded-lg w-full h-full object-contain"
+                      />
+                    </div>
+
+                    {/* Añadir habilidad */}
+                    {pokemon.abilities && (
+                      <div className='space-y-2'>
+                        <h2 className='font-semibold'>Habilidad</h2>
+                        <div className='space-y-4'>
+                          {pokemon.abilities
+                            .filter(ability => !ability.is_hidden)
+                            .map((ability, index) => (
+                              <div key={index} className='space-y-1'>
+                                <span className='capitalize font-medium'>{ability.ability.name}</span>
+                                <p className="text-sm text-gray-600">
+                                  {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                </p>
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Habilidades ocultas */}
+                    {pokemon.abilities?.some(ability => ability.is_hidden) && (
+                      <div className='space-y-2'>
+                        <h2 className='font-semibold'>Habilidad Oculta</h2>
+                        <div className='space-y-4'>
+                          {pokemon.abilities
+                            .filter(ability => ability.is_hidden)
+                            .map((ability, index) => (
+                              <div key={index} className='space-y-1'>
+                                <span className='capitalize font-medium'>{ability.ability.name}</span>
+                                <p className="text-sm text-gray-600">
+                                  {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                </p>
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Evoluciones */}
+                    <div className="space-y-2">
+                      <h2 className="font-semibold">Evoluciones</h2>
+                      <div className="flex">
+                        {evolutions.map((evo, index) => (
+                          <Link key={index} to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
+                            <div className="flex items-center">
+                              {index > 0 && <span className="mx-2">→</span>}
+                              <span className="capitalize hover:underline hover:text-red-600">
+                                {evo.charAt(0).toUpperCase() + evo.slice(1)}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Descripcion Pokemon */}
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Descripción</h3>
+                      <p className="text-gray-600">{description}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <p>Cargando...</p>
+                )
+              ) : activeTab === 'stats' ? (
+                pokemon ? (
+                  <div className="space-y-4 pt-4 w-full">
+                    <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
+                    {pokemon.stats?.map((stat) => (
                       <div key={stat.stat.name} className="space-y-1 w-full">
                         <div className="flex justify-between text-sm w-full">
                           <span className="text-sm font-medium">
-                            {statMapping[stat.stat.name] || stat.stat.name}
+                            {statMapping?.[stat.stat.name] || stat.stat.name}
                           </span>
                           <span className="text-sm font-medium">{stat.base_stat}</span>
                         </div>
@@ -178,8 +291,22 @@ function PokemonDetails() {
                         </div>
                       </div>
                     ))}
-              </div>
-            )}
+                  </div>
+                ) : (
+                  <p>Cargando...</p>
+                )
+              ) : activeTab === 'moves' ? (
+                pokemon ? (
+                  <div className="space-y-4 pt-4">
+                    <h2 className="text-xl font-semibold mb-2">Movimientos</h2>
+                    <div className="grid grid-row-1 gap-2">
+                    <MovesList moves={moves} />
+                    </div>
+                  </div>
+                ) : (
+                  <p>Cargando...</p>
+                )
+              ) : null}
 
             </div>
           </div>

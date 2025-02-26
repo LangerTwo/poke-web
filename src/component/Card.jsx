@@ -15,7 +15,7 @@ function Card({ filteredList }) {
                 return (
                     <div 
                         key={poke.id} 
-                        className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${mainType}`}
+                        className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${mainType} shadow-lg`}
                     >
                         <div className='ml-1 mt-1 text-white text-sm font-medium absolute z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>
                             <span>N° </span>
@@ -71,7 +71,7 @@ function Card({ filteredList }) {
                         </div>
                         <div className="p-4">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
+                                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative border border-white">
                                     Ver Más 
                                     <div className='icon'>
                                         <ArrowRight className="w-6 h-6 ml-2 arrow" />
