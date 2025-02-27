@@ -22,6 +22,7 @@ function PokemonDetails() {
   const [moves, setMoves] = useState([]);
 
   const [openMoveIndex, setOpenMoveIndex] = useState(null)
+  const [openIndex, setOpenIndex] = useState(null);
 
   // obtener los detalles del pokemon
   useEffect(() => {
@@ -63,6 +64,7 @@ function PokemonDetails() {
           data.moves.map(async (move) => {
             const moveResponse = await fetch(move.move.url);
             const moveData = await moveResponse.json();
+            // console.log(moveData);
             return {
               name: move.move.name,
               type: moveData.type.name,
@@ -146,6 +148,10 @@ function PokemonDetails() {
     setOpenMoveIndex(openMoveIndex === index ? null : index)
   }
 
+  const toggleAccordion = (key) => {
+    setOpenIndex(openIndex === key ? null : key);
+  }
+
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex items-center justify-center pt-[8rem]'>
       <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
@@ -203,9 +209,9 @@ function PokemonDetails() {
                 pokemon ? (
                   // Información del Pokémon
                   // Imagen, habilidades, evoluciones, descripción
-                  <div className="space-y-4 pt-4">
+                  <div className="space-y-3">
                     {/* Imagen del Pokemon */}
-                    <div className="relative h-64 w-full">
+                    <div className="relative h-64 w-full pt-4">
                       <img 
                         src={
                           pokemon.sprites?.other?.['official-artwork']?.front_default ||
@@ -217,48 +223,10 @@ function PokemonDetails() {
                       />
                     </div>
 
-                    {/* Añadir habilidad */}
-                    {pokemon.abilities && (
-                      <div className='space-y-2'>
-                        <h2 className='font-semibold'>Habilidad</h2>
-                        <div className='space-y-4'>
-                          {pokemon.abilities
-                            .filter(ability => !ability.is_hidden)
-                            .map((ability, index) => (
-                              <div key={index} className='space-y-1'>
-                                <span className='capitalize font-medium'>{ability.ability.name}</span>
-                                <p className="text-sm text-gray-600">
-                                  {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
-                                </p>
-                              </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Habilidades ocultas */}
-                    {pokemon.abilities?.some(ability => ability.is_hidden) && (
-                      <div className='space-y-2'>
-                        <h2 className='font-semibold'>Habilidad Oculta</h2>
-                        <div className='space-y-4'>
-                          {pokemon.abilities
-                            .filter(ability => ability.is_hidden)
-                            .map((ability, index) => (
-                              <div key={index} className='space-y-1'>
-                                <span className='capitalize font-medium'>{ability.ability.name}</span>
-                                <p className="text-sm text-gray-600">
-                                  {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
-                                </p>
-                              </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
                     {/* Evoluciones */}
                     <div className="space-y-2">
                       <h2 className="font-semibold">Evoluciones</h2>
-                      <div className="flex">
+                      <div className="flex justify-center">
                         {evolutions.map((evo, index) => (
                           <Link key={index} to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
                             <div className="flex items-center">
@@ -272,10 +240,86 @@ function PokemonDetails() {
                       </div>
                     </div>
 
+                    {/* Añadir habilidad */}
+                    {pokemon.abilities && (
+                      <div>
+                        <button
+                          onClick={() => toggleAccordion("abilities")}
+                          className="flex justify-between items-center w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
+                        >
+                          <h2 className='font-semibold'>Habilidad</h2>
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform duration-200 ${
+                            openIndex === "abilities" ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "abilities" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                          <div className='p-4 bg-gray-50 border-t border-gray-200'>
+                            {pokemon.abilities
+                              .filter(ability => !ability.is_hidden)
+                              .map((ability, index) => (
+                                <div key={index} className='space-y-1'>
+                                  <span className='capitalize font-medium'>{ability.ability.name}</span>
+                                  <p className="text-sm text-gray-600">
+                                    {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                  </p>
+                                </div>
+                            ))}
+                          </div>
+                        </div>                       
+                      </div>
+                    )}
+
+                    {/* Habilidades ocultas */}
+                    {pokemon.abilities?.some(ability => ability.is_hidden) && (
+                      <div>
+                        <button
+                          onClick={() => toggleAccordion("hidden-abilities")}
+                          className="flex justify-between items-center w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
+                        >
+                        <h2 className='font-semibold'>Habilidad Oculta</h2>
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform duration-200 ${
+                          openIndex === "hidden-abilities" ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "hidden-abilities" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className='p-4 bg-gray-50 border-t border-gray-200 space-y-0'>
+                            {pokemon.abilities
+                              .filter(ability => ability.is_hidden)
+                              .map((ability, index) => (
+                                <div key={index} className='space-y-1'>
+                                  <span className='capitalize font-medium'>{ability.ability.name}</span>
+                                  <p className="text-sm text-gray-600">
+                                    {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                  </p>
+                                </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Descripcion Pokemon */}
-                    <div className="space-y-2">
+                    <div>
+                      <button
+                        onClick={() => toggleAccordion("description")}
+                        className="flex justify-between items-center w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
+                      >
                       <h3 className="font-semibold">Descripción</h3>
-                      <p className="text-gray-600">{description}</p>
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-200 ${
+                        openIndex === "description" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "description" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <div className="p-4 bg-gray-50 border-t border-gray-200">
+                          <p className="text-gray-600">{description}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (

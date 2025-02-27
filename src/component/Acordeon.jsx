@@ -25,21 +25,22 @@ const MovesList = ({ moves }) => {
                     </span>
                     <ChevronDown
                         className={`w-5 h-5 transition-transform duration-200 ${
-                        openIndex === index ? "transform rotate-180" : ""
+                        openIndex === index ? "rotate-180" : ""
                         }`}
                     />
                 </div>
               </button>
     
-              {openIndex === index && (
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="p-4 bg-gray-50 border-t border-gray-200">
                   <p className="text-sm text-gray-600 mb-2">{move.effect}</p>
                   <div className="flex justify-between text-sm font-medium">
                     <span>Poder: {move.power || "N/A"}</span>
+                    <span>Clase: {move.damage_class || "N/A"}</span>                    
                     <span>PP: {move.pp}</span>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
