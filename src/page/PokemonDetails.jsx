@@ -158,15 +158,25 @@ function PokemonDetails() {
         <div className="flex items-center justify-between p-6 border-b border-green-100">
 
           <div className='w-full max-w-2xl mx-auto'>
-
-            <div className='flex items-center gap-2'>
-              <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
-              <div className="flex space-x-2">
-                {pokemon.types.map((type) => (
-                  <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
-                    {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                  </span>
-                ))}
+              <div className='absolute top-2 left-6'>
+                <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
+                  ← Regresar
+                </Link>
+              </div>
+            <div className='flex justify-between items-center gap-2 mt-4'>
+              <div className='flex al items-center gap-2'>
+                <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
+                <div className="flex space-x-2">
+                  {pokemon.types.map((type) => (
+                    <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
+                      {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className='ml-1 mt-1 text-white text-sm font-medium z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>
+                <span>N° </span>
+                {pokemon.id}
               </div>
             </div>
 
