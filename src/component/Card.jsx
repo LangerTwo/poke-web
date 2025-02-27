@@ -71,10 +71,10 @@ function Card({ filteredList }) {
                         </div>
                         <div className="p-4">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                                <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative border border-white">
+                                <button className="w-full bg-transparent text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative border border-white">
                                     Ver Más 
                                     <div className='icon'>
-                                        <ArrowRight className="w-6 h-6 ml-2 arrow" />
+                                        <ArrowRight className="w-6 h-6 arrow" />
                                     </div>
                                 </button>
                             </Link>         
