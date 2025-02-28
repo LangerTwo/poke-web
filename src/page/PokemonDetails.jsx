@@ -65,13 +65,33 @@ function PokemonDetails() {
             const moveResponse = await fetch(move.move.url);
             const moveData = await moveResponse.json();
             // console.log(moveData);
+
+            // Obtener nombre en español del movimiento
+            const spanishName = moveData.names.find(name => name.language.name === "es")?.name || move.move.name;
+
+            // Obtener la descripción en español
+            const effectText = moveData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Efecto no disponible.";
+
+            // Hacer una segunda petición para obtener el nombre de la damage_class en español
+            let spanishDamageClass = moveData.damage_class.name; // Nombre en inglés por defecto
+            if (moveData.damage_class?.url) {
+              try {
+                const damageResponse = await fetch(moveData.damage_class.url);
+                const damageData = await damageResponse.json();
+
+                spanishDamageClass = damageData.names.find(name => name.language.name === "es")?.name || moveData.damage_class.name;
+              } catch (error) {
+                console.error("Error al obtener damage_class:", error);
+              }
+            }
+
             return {
-              name: move.move.name,
+              name: spanishName,
               type: moveData.type.name,
               power: moveData.power,
               pp: moveData.pp,
-              damage_class: moveData.damage_class.name,
-              effect: moveData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Efecto no disponible.",             
+              damage_class: spanishDamageClass,
+              effect: effectText,             
             };
           })
         );
