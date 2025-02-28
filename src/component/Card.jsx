@@ -50,7 +50,7 @@ function Card({ filteredList }) {
                                     {poke.types.map(type => (
                                         <span 
                                             key={type.type.name} 
-                                            className={`${type.type.name} px-2.5 py-1 rounded-full text-sm font-medium text-white border border-white type`}
+                                            className={`${type.type.name} px-2 py-0.5 rounded-full text-sm font-medium text-white border border-white`}
                                         >
                                             {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                                         </span>
@@ -59,7 +59,7 @@ function Card({ filteredList }) {
                             </div>
                         </div>
                         {/* añadir pero y altura */}
-                        <div className='flex flex-col items-center gap-2 justify-center flex-wrap relative'>
+                        <div className='flex flex-col items-start pl-4 gap-2 justify-center flex-wrap relative'>
                             <div className='flex gap-2 items-center'>
                                 <span className='font-semibold text-white'>Peso:</span>
                                 <span className='text-white'>{poke.weight} kg</span>
@@ -71,7 +71,7 @@ function Card({ filteredList }) {
                         </div>
                         <div className="p-4">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                                <button className="w-full bg-transparent text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative border border-white">
+                                <button className="w-full bg-white text-blue-900 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
                                     Ver Más 
                                     <div className='icon'>
                                         <ArrowRight className="w-6 h-6 arrow" />
