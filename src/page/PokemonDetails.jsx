@@ -17,7 +17,7 @@ function PokemonDetails() {
   const [description, setDescription] = useState('');
   const { regionName } = useRegionId();
 
-  const [abilitiesDetails, setAbilitiesDetails] = useState({});
+  const [abilitiesDetails, setAbilitiesDetails] = useState([]);
   const [loadingAbilities, setLoadingAbilities] = useState(true);
   const [moves, setMoves] = useState([]);
 
@@ -95,9 +95,30 @@ function PokemonDetails() {
             };
           })
         );
+
+        // Obtener las habilidades del pokemon y sus efectos
+        const abilitiesDetails = await Promise.all(
+          data.abilities.map(async (ability) => {
+            const abilityResponse = await fetch(ability.ability.url);
+            const abilityData = await abilityResponse.json();
+
+            // Obtener el nombre en español
+            const spanishName = abilityData.names.find(name => name.language.name === "es")?.name || ability.ability.name;
+            // console.log(spanishName);
+
+            // Obtener la descripción en español
+            const effect = abilityData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Sin descripción";
+            // console.log(effect);
+
+            return {
+              spanishName,
+              effect,
+            };
+          })
+        );
+
         setMoves(moveDetails);
-
-
+        setAbilitiesDetails(abilitiesDetails);
       } catch (err) {
         setError('Error al cargar los detalles del Pokémon');
         console.error(err);
@@ -110,36 +131,42 @@ function PokemonDetails() {
   }, [name]);
 
   // obtener los efectos de las habilidades
-  useEffect(() => {
-    const fetchAbilityDetails = async () => {
-      if (!pokemon || !pokemon.abilities) return; // Verifica que `pokemon` no sea null
+  // useEffect(() => {
+  //   const fetchAbilityDetails = async () => {
+  //     if (!pokemon || !pokemon.abilities) return; // Verifica que `pokemon` no sea null
   
-      setLoadingAbilities(true); // Iniciar carga
-      const abilitiesData = {};
+  //     setLoadingAbilities(true); // Iniciar carga
+  //     const abilitiesData = {};
   
-      await Promise.all(
-        pokemon.abilities.map(async (ability) => {
-          if (!ability.ability.url) return; // Evitar errores si `url` es undefined
+  //     await Promise.all(
+  //       pokemon.abilities.map(async (ability) => {
+  //         if (!ability.ability.url) return; // Evitar errores si `url` es undefined
   
-          try {
-            const response = await fetch(ability.ability.url);
-            if (!response.ok) throw new Error("Error al obtener la habilidad");
+  //         try {
+  //           const response = await fetch(ability.ability.url);
+  //           if (!response.ok) throw new Error("Error al obtener la habilidad");
   
-            const data = await response.json();
-            const effect = data.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Sin descripción";
-            abilitiesData[ability.ability.name] = effect;
-          } catch (error) {
-            console.error(`Error al obtener detalles de la habilidad ${ability.ability.name}:`, error);
-          }
-        })
-      );
+  //           const data = await response.json();
+
+  //           // Obtener el nombre en español
+  //           // const spanishName = data.names.find(name => name.language.name === "es")?.name || ability.ability.name;
+
+  //           // Obtener la descripción en español
+  //           const effect = data.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Sin descripción";
+            
+  //           abilitiesData[ability.ability.name] = effect;
+  //         } catch (error) {
+  //           console.error(`Error al obtener detalles de la habilidad ${ability.ability.name}:`, error);
+  //         }
+  //       })
+  //     );
   
-      setAbilitiesDetails(abilitiesData);
-      setLoadingAbilities(false); // Finalizar carga
-    };
+  //     setAbilitiesDetails(abilitiesData);
+  //     setLoadingAbilities(false); // Finalizar carga
+  //   };
   
-    fetchAbilityDetails();
-  }, [pokemon]); // Se ejecuta cuando `pokemon` cambia
+  //   fetchAbilityDetails();
+  // }, [pokemon]); // Se ejecuta cuando `pokemon` cambia
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -286,13 +313,23 @@ function PokemonDetails() {
                         </button>
                         <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "abilities" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                           <div className='p-4 bg-gray-50 border-t border-gray-200'>
-                            {pokemon.abilities
+                            {/* {pokemon.abilities
                               .filter(ability => !ability.is_hidden)
                               .map((ability, index) => (
                                 <div key={index} className='space-y-1'>
                                   <span className='capitalize font-medium'>{ability.ability.name}</span>
                                   <p className="text-sm text-gray-600">
                                     {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                  </p>
+                                </div>
+                            ))} */}
+                            {abilitiesDetails
+                              .filter(ability => !ability.is_hidden)
+                              .map((ability, index) => (
+                                <div key={index} className='space-y-1'>
+                                  <span className='capitalize font-medium'>{ability.spanishName}</span>
+                                  <p className="text-sm text-gray-600">
+                                    {ability.effect}
                                   </p>
                                 </div>
                             ))}
@@ -317,13 +354,13 @@ function PokemonDetails() {
                       </button>
                       <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "hidden-abilities" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                         <div className='p-4 bg-gray-50 border-t border-gray-200 space-y-0'>
-                            {pokemon.abilities
+                            {abilitiesDetails
                               .filter(ability => ability.is_hidden)
                               .map((ability, index) => (
                                 <div key={index} className='space-y-1'>
-                                  <span className='capitalize font-medium'>{ability.ability.name}</span>
+                                  <span className='capitalize font-medium'>{ability.spanishName}</span>
                                   <p className="text-sm text-gray-600">
-                                    {abilitiesDetails?.[ability.ability.name] || "Cargando..."}
+                                    {ability.effect}
                                   </p>
                                 </div>
                             ))}
