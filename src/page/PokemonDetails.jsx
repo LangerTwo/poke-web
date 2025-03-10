@@ -20,6 +20,7 @@ function PokemonDetails() {
   const [abilitiesDetails, setAbilitiesDetails] = useState([]);
   const [loadingAbilities, setLoadingAbilities] = useState(true);
   const [moves, setMoves] = useState([]);
+  const [types, setTypes] = useState([]);
 
   const [openMoveIndex, setOpenMoveIndex] = useState(null)
   const [openIndex, setOpenIndex] = useState(null);
@@ -85,9 +86,22 @@ function PokemonDetails() {
               }
             }
 
+            // obtener el tipo del movimiento en español
+            // Hacer una segunda petición para obtener el nombre del tipo en español
+            let spanishType = moveData.type.name; // Nombre en inglés por defecto
+            if (moveData.type?.url) {
+              try {
+                const typeResponse = await fetch(moveData.type.url);
+                const typeData = await typeResponse.json();
+                spanishType = typeData.names.find(name => name.language.name === "es")?.name || moveData.type.name;
+              } catch (error) {
+                console.error("Error al obtener el tipo:", error);
+              }
+            }
+
             return {
               name: spanishName,
-              type: moveData.type.name,
+              type: spanishType,
               power: moveData.power,
               pp: moveData.pp,
               damage_class: spanishDamageClass,
@@ -119,6 +133,19 @@ function PokemonDetails() {
           })
         );
         setAbilitiesDetails(abilitiesDetails);
+
+        // Obtener el tipo del pokemon en español
+        const types = await Promise.all(
+          data.types.map(async (type) => {
+            const typeResponse = await fetch(type.type.url);
+            const typeData = await typeResponse.json();
+
+            // Obtener el nombre en español
+            const spanishType = typeData.names.find(name => name.language.name === "es")?.name || type.type.name;
+            return spanishType;
+          })
+        );
+        setTypes(types);
       } catch (err) {
         setError('Error al cargar los detalles del Pokémon');
         console.error(err);
@@ -152,7 +179,6 @@ function PokemonDetails() {
     'speed': 'Spd',
   };
 
-
   const toggleMove = (index) => {
     setOpenMoveIndex(openMoveIndex === index ? null : index)
   }
@@ -176,9 +202,9 @@ function PokemonDetails() {
               <div className='flex al items-center gap-2'>
                 <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
                 <div className="flex space-x-2">
-                  {pokemon.types.map((type) => (
-                    <span key={type.type.name} className={`${type.type.name} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
-                      {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                  {types.map((type, index) => (
+                    <span key={index} className={`${type} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
                     </span>
                   ))}
                 </div>

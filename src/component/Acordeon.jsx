@@ -4,7 +4,6 @@ import {ChevronDown} from 'lucide-react';
 
 const MovesList = ({ moves }) => {
     const [openIndex, setOpenIndex] = useState(null);
-
     const toggleAccordion = (index) => {
       setOpenIndex(openIndex === index ? null : index);
     }

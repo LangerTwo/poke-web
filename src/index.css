@@ -29,75 +29,75 @@
 @tailwind utilities;
 
 /* Types of Pokemon */
-.water {
+.Agua {
 	background-color: var(--color-water);
 }
 
-.grass {
+.Planta {
 	background-color: var(--color-grass);
 }
 
-.poison {
+.Veneno {
 	background-color: var(--color-poison);
 }
 
-.fire {
+.Fuego {
 	background-color: var(--color-fire);
 }
 
-.bug {
+.Bicho {
 	background-color: var(--color-bug);
 }
 
-.dragon {
+.Dragón {
 	background: var(--color-dragon);
 }
 
-.flying {
+.Volador {
 	background-color: var(--color-flying);
 }
 
-.ground {
+.Tierra {
 	background-color: var(--color-ground);
 }
 
-.steel {
+.Acero {
 	background-color: var(--color-steel);
 }
 
-.psychic {
+.Psíquico {
 	background-color: var(--color-psychic);
 }
 
-.ice {
+.Hielo {
 	background-color: var(--color-ice);
 }
 
-.ghost {
+.Fantasma {
 	background-color: var(--color-ghost);
 }
 
-.normal {
+.Normal {
 	background-color: var(--color-normal);
 }
 
-.rock {
+.Roca {
 	background-color: var(--color-rock);
 }
 
-.electric {
+.Eléctrico {
 	background-color: var(--color-electric);
 }
 
-.fighting {
+.Lucha {
 	background-color: var(--color-fighting);
 }
 
-.fairy {
+.Hada {
 	background-color: var(--color-fairy);
 }
 
-.dark {
+.Siniestro {
 	background-color: var(--color-dark);
 }
 

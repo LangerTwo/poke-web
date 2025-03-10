@@ -6,11 +6,32 @@ import { ArrowRight} from 'lucide-react';
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();
+    const typeTranslations = {
+        normal: "Normal",
+        fire: "Fuego",
+        water: "Agua",
+        electric: "Eléctrico",
+        grass: "Planta",
+        ice: "Hielo",
+        fighting: "Lucha",
+        poison: "Veneno",
+        ground: "Tierra",
+        flying: "Volador",
+        psychic: "Psíquico",
+        bug: "Bicho",
+        rock: "Roca",
+        ghost: "Fantasma",
+        dragon: "Dragón",
+        dark: "Siniestro",
+        steel: "Acero",
+        fairy: "Hada",
+    };
+      
 
     return (
         <>
             {filteredList?.map((poke) => {
-                const mainType = poke.types[0]?.type.name; // Obtener el primer tipo
+                const mainType = typeTranslations[poke.types[0]?.type.name] || poke.types[0]?.type.name; // Obtener el primer tipo
 
                 return (
                     <div 
@@ -47,14 +68,17 @@ function Card({ filteredList }) {
                                     {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
                                 </h2>                              
                                 <div className="flex gap-2 justify-center flex-wrap relative">
-                                    {poke.types.map(type => (
-                                        <span 
-                                            key={type.type.name} 
-                                            className={`${type.type.name} px-2 py-0.5 rounded-full text-sm font-medium text-white border border-white`}
-                                        >
-                                            {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                                        </span>
-                                    ))}
+                                    {poke.types.map((type, index) => {
+                                        const translatedType = typeTranslations[type.type.name] || type.type.name;
+                                        return(
+                                            <span 
+                                                key={index} 
+                                                className={`${translatedType} px-2 py-0.5 rounded-full text-sm font-medium text-white border border-white`}
+                                            >
+                                                {translatedType}
+                                            </span>
+                                        )
+                                    })}
                                 </div> 
                             </div>
                         </div>
