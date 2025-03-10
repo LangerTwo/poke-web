@@ -5,24 +5,14 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 
 import listPoke from '../assets/list-poke.jpg';
 import { ChevronRight, Info } from 'lucide-react';
+import useRegionId from '../hooks/useRegionId';
 
 function RegionDetail() {
-    const { regionName } = useParams();
-    const [generationUrl, setGenerationUrl] = useState(``);
     const [numPokemon, setNumPokemon] = useState(0); // Estado para el número de Pokémon
     const navigate = useNavigate();
+    const { regionName, generationUrl } = useRegionId();
 
-    const regionIdMap = {
-      kanto: 1,
-      johto: 2,
-      hoenn: 3,
-      sinnoh: 4,
-      unova: 5,
-      kalos: 6,
-      alola: 7,
-      galar: 8,
-      paldea: 9,
-    };
+    
 
     useEffect(() => {
         const fetchNumPokemons = async () => {
@@ -38,13 +28,7 @@ function RegionDetail() {
         };
         fetchNumPokemons();
         
-        if (regionName) {
-          const regionId = regionIdMap[regionName.toLowerCase()];
-          if (regionId) {
-            setGenerationUrl(`https://pokeapi.co/api/v2/generation/${regionId}`);
-          }
-        }
-    }, [regionName, generationUrl]); // Ejecuta cuando la URL de generación cambie
+    }, [generationUrl]); // Ejecuta cuando la URL de generación cambie
 
     const handleRegionClick = () => {
         navigate(`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`);

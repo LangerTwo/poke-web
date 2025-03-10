@@ -29,75 +29,151 @@
 @tailwind utilities;
 
 /* Types of Pokemon */
-.water {
+.Agua {
 	background-color: var(--color-water);
 }
 
-.grass {
+.Planta {
 	background-color: var(--color-grass);
 }
 
-.poison {
+.Veneno {
 	background-color: var(--color-poison);
 }
 
-.fire {
+.Fuego {
 	background-color: var(--color-fire);
 }
 
-.bug {
+.Bicho {
 	background-color: var(--color-bug);
 }
 
-.dragon {
+.Dragón {
 	background: var(--color-dragon);
 }
 
-.flying {
+.Volador {
 	background-color: var(--color-flying);
 }
 
-.ground {
+.Tierra {
 	background-color: var(--color-ground);
 }
 
-.steel {
+.Acero {
 	background-color: var(--color-steel);
 }
 
-.psychic {
+.Psíquico {
 	background-color: var(--color-psychic);
 }
 
-.ice {
+.Hielo {
 	background-color: var(--color-ice);
 }
 
-.ghost {
+.Fantasma {
 	background-color: var(--color-ghost);
 }
 
-.normal {
+.Normal {
 	background-color: var(--color-normal);
 }
 
-.rock {
+.Roca {
 	background-color: var(--color-rock);
 }
 
-.electric {
+.Eléctrico {
 	background-color: var(--color-electric);
 }
 
-.fighting {
+.Lucha {
 	background-color: var(--color-fighting);
 }
 
-.fairy {
+.Hada {
 	background-color: var(--color-fairy);
 }
 
-.dark {
+.Siniestro {
 	background-color: var(--color-dark);
 }
+
+.cssbuttons-io-button {
+	border-radius: 0.9em;
+	/* border: none; */
+	box-shadow: outside 0 0 1.6em -0.6em #0000FF;
+  	overflow: hidden;
+	font-size: 17px;
+	display: flex;
+}
+
+.arrow {
+	color: white;
+}
+
+.cssbuttons-io-button .icon {
+	background: #0000FF;
+	margin-right: 1em;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.0em;
+	width: 2.0em;
+	border-radius: 0.7em;
+	/* box-shadow: 0.1em 0.1em 0.6em 0.2em #0000FF; */
+	left: 0.3em;
+	transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+	width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon .arrow {
+	width: 1.1em;
+	transition: transform 0.3s;
+	/* color: #0000FF; */
+}
+
+.cssbuttons-io-button:active .icon {
+	transform: scale(0.95);
+}
+
+
+.type {
+	display: inline-block;
+	font-weight: bold;
+	color: white; /* Asegura que el texto tenga color base */
+	position: relative;
+	overflow: hidden;
+}
   
+.type::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #9f9f9f 0%, #fff 50%, #868686 100%);
+	background-size: 200% auto;
+	animation: shine 8s infinite linear;
+	mix-blend-mode: overlay;
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+@keyframes shine {
+	0% {
+	  background-position: -200% 0;
+	}
+	100% {
+	  background-position: 200% 0;
+	}
+}
+  
+
