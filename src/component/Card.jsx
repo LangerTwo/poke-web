@@ -73,7 +73,7 @@ function Card({ filteredList }) {
                                         return(
                                             <span 
                                                 key={index} 
-                                                className={`${translatedType} px-2 py-0.5 rounded-full text-sm font-medium text-white border border-white`}
+                                                className={`${translatedType} px-2 pb-0.5 rounded-full text-sm leading-4 font-medium text-white border border-white`}
                                             >
                                                 {translatedType}
                                             </span>
@@ -93,7 +93,7 @@ function Card({ filteredList }) {
                                 <span className='text-white'>{poke.height} m</span>
                             </div>                                                   
                         </div>
-                        <div className="p-4">
+                        <div className="p-4 bg-black bg-opacity-50 rounded-b-lg">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
                                 <button className="w-full bg-white text-blue-900 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
                                     Ver Más 
