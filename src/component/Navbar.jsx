@@ -10,9 +10,9 @@ function Navbar() {
                 <div className="container mx-auto px-4 py-6">
                     <div className="flex flex-col gap-6">
                         <div className="flex items-center justify-between">
-                        <Link to="/">
-                            <h1 className="text-2xl md:text-3xl font-bold">Poké Web</h1>
-                        </Link>
+                            <Link to="/">
+                                <h1 className="text-2xl md:text-3xl font-bold">Poké Web</h1>
+                            </Link>
                         <div className="relative w-full max-w-sm ml-4">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
                             <input

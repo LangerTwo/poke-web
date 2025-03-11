@@ -129,6 +129,9 @@ function PokemonPage() {
   return (
       <>
       <div className='flex flex-col bg-gray-100 gap-6 pt-28'>
+        <div>
+          <h1 className='text-4xl font-bold text-center text-gray-800'>Pokémon de {regionName?.charAt(0).toUpperCase() + regionName?.slice(1)}</h1>
+        </div>
         <Filter onCategoryChange={handleCategoryChange} />
         <div className="mx-auto container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 lg:w-[95%]">
           {error && <div style={{ color: 'red' }}>Error: {error}</div>}
