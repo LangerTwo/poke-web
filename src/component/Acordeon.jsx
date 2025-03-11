@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {ChevronDown} from 'lucide-react';
+import typeTranslations from '../hooks/typeTranslations';
 
 
 const MovesList = ({ moves }) => {
@@ -18,9 +19,9 @@ const MovesList = ({ moves }) => {
                 <h3 className="font-semibold">{move.name}</h3>
                 <div className="flex justify-between items-center space-x-2">
                     <span
-                        className={`${move.type} px-3 py-1 text-sm font-medium capitalize rounded-full type`}
+                        className={`${typeTranslations[move.type] || move.type}2 text-white leading-4 px-3 pb-0.5 text-sm font-medium capitalize rounded-full`}
                     >
-                        {move.type}
+                        {typeTranslations[move.type] || move.type}
                     </span>
                     <ChevronDown
                         className={`w-5 h-5 transition-transform duration-200 ${

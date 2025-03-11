@@ -1,23 +1,42 @@
 :root {
 	--color-fire: #ff7402;
+	--color-fire2: #fb9a4a;
 	--color-grass: #9bcc50;
+	--color-grass2: #8bbe8a;
 	--color-steel: #9eb7b8;
+	--color-steel2: #b8b8cf;
 	--color-water: #4592c4;
+	--color-water2: #48aef1;
 	--color-psychic: #f366b9;
+	--color-psychic2: #f366b9;
 	--color-ground: #ab9842;
+	--color-ground2: #d29463;
 	--color-ice: #51c4e7;
+	--color-ice2: #6dace4;
 	--color-flying: #3dc7ef;
+	--color-flying2: #83a2e3;
 	--color-ghost: #4d5b64;
+	--color-ghost2: #5f6e7a;
 	--color-normal: #a4acaf;
+	--color-normal2: #bcbdbf;
 	--color-poison: #7e0058;
+	--color-poison2: #a5529b;
 	--color-rock: #a38c21;
+	--color-rock2: #b6a136;
 	--color-fighting: #d56723;
+	--color-fighting2: #e0a32e;
 	--color-dark: #707070;
+	--color-dark2: #7a7a7a;
 	--color-bug: #729f3f;
+	--color-bug2: #8cb230;
 	--color-dragon: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+	--color-dragon2: linear-gradient(180deg, #4a7da9 50%, #f16e57 50%);
 	--color-electric: #bba909;
+	--color-electric2: #f2d94e;
 	--color-fairy: #fdb9e9;
+	--color-fairy2: #f8a1d1;
 	--color-shadow: #7b62a3;
+	--color-shadow2: #a292bc;
 	--color-unknow: #757575;
 
 	--color-primary: #006d77;
@@ -33,72 +52,144 @@
 	background-color: var(--color-water);
 }
 
+.Agua2 {
+	background-color: var(--color-water2);
+}
+
 .Planta {
 	background-color: var(--color-grass);
+}
+
+.Planta2 {
+	background-color: var(--color-grass2);
 }
 
 .Veneno {
 	background-color: var(--color-poison);
 }
 
+.Veneno2 {
+	background-color: var(--color-poison2);
+}
+
 .Fuego {
 	background-color: var(--color-fire);
+}
+
+.Fuego2 {
+	background-color: var(--color-fire2);
 }
 
 .Bicho {
 	background-color: var(--color-bug);
 }
 
+.Bicho2 {
+	background-color: var(--color-bug2);
+}
+
 .Dragón {
 	background: var(--color-dragon);
+}
+
+.Dragón2 {
+	background: var(--color-dragon2);
 }
 
 .Volador {
 	background-color: var(--color-flying);
 }
 
+.Volador2 {
+	background-color: var(--color-flying2);
+}
+
 .Tierra {
 	background-color: var(--color-ground);
+}
+
+.Tierra2 {
+	background-color: var(--color-ground2);
 }
 
 .Acero {
 	background-color: var(--color-steel);
 }
 
+.Acero2 {
+	background-color: var(--color-steel2);
+}
+
 .Psíquico {
 	background-color: var(--color-psychic);
+}
+
+.Psíquico2 {
+	background-color: var(--color-psychic2);
 }
 
 .Hielo {
 	background-color: var(--color-ice);
 }
 
+.Hielo2 {
+	background-color: var(--color-ice2);
+}
+
 .Fantasma {
 	background-color: var(--color-ghost);
+}
+
+.Fantasma2 {
+	background-color: var(--color-ghost2);
 }
 
 .Normal {
 	background-color: var(--color-normal);
 }
 
+.Normal2 {
+	background-color: var(--color-normal2);
+}
+
 .Roca {
 	background-color: var(--color-rock);
+}
+
+.Roca2 {
+	background-color: var(--color-rock2);
 }
 
 .Eléctrico {
 	background-color: var(--color-electric);
 }
 
+.Eléctrico2 {
+	background-color: var(--color-electric2);
+}
+
 .Lucha {
 	background-color: var(--color-fighting);
+}
+
+.Lucha2 {
+	background-color: var(--color-fighting2);
 }
 
 .Hada {
 	background-color: var(--color-fairy);
 }
 
+.Hada2 {
+	background-color: var(--color-fairy2);
+}
+
 .Siniestro {
 	background-color: var(--color-dark);
+}
+
+.Siniestro2 {
+	background-color: var(--color-dark2);
 }
 
 .cssbuttons-io-button {

@@ -2,8 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
-
 import {ChevronDown} from 'lucide-react';
+import typeTranslations from '../hooks/typeTranslations';
 
 
 function PokemonDetails() {
@@ -85,23 +85,10 @@ function PokemonDetails() {
                 console.error("Error al obtener damage_class:", error);
               }
             }
-
-            // obtener el tipo del movimiento en español
-            // Hacer una segunda petición para obtener el nombre del tipo en español
-            let spanishType = moveData.type.name; // Nombre en inglés por defecto
-            if (moveData.type?.url) {
-              try {
-                const typeResponse = await fetch(moveData.type.url);
-                const typeData = await typeResponse.json();
-                spanishType = typeData.names.find(name => name.language.name === "es")?.name || moveData.type.name;
-              } catch (error) {
-                console.error("Error al obtener el tipo:", error);
-              }
-            }
-
+            
             return {
               name: spanishName,
-              type: spanishType,
+              type: moveData.type.name,
               power: moveData.power,
               pp: moveData.pp,
               damage_class: spanishDamageClass,
@@ -199,12 +186,12 @@ function PokemonDetails() {
                 </Link>
               </div>
             <div className='flex justify-between items-center gap-2 mt-4'>
-              <div className='flex al items-center gap-2'>
+              <div className='flex items-center gap-2'>
                 <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
                 <div className="flex space-x-2">
-                  {types.map((type, index) => (
-                    <span key={index} className={`${type} px-3 py-1 text-sm font-semibold bg-green-500 text-white rounded-full type`}>
-                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                  {pokemon.types.map((type) => (
+                    <span key={type.type.name} className={`${typeTranslations[type.type.name] || type.type.name}2 px-3 pb-0.5 text-sm font-semibold bg-green-500 text-white rounded-full`}>
+                      {typeTranslations[type.type.name] || type.type.name.charAt(0).toUpperCase() + typeTranslations[type.type.name] || type.type.name.slice(1)}
                     </span>
                   ))}
                 </div>
@@ -412,9 +399,6 @@ function PokemonDetails() {
         </div>
       </div>
     </div>
-      //           {/* <Link to={`/region/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
-      //             ← Regresar
-      //           </Link> */}
   );
 }
 

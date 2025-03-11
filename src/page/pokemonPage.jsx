@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { useFetch } from '../useFetch';
 import Filter from '../component/Filter';
 import Card from '../component/Card';
-// import './PokemonPage.css';
 
 function PokemonPage() {
   const { regionName } = useParams();

@@ -1,32 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
+import typeTranslations from '../hooks/typeTranslations';
 
 import { ArrowRight} from 'lucide-react';
 
 function Card({ filteredList }) {
-    const { regionName } = useRegionId();
-    const typeTranslations = {
-        normal: "Normal",
-        fire: "Fuego",
-        water: "Agua",
-        electric: "Eléctrico",
-        grass: "Planta",
-        ice: "Hielo",
-        fighting: "Lucha",
-        poison: "Veneno",
-        ground: "Tierra",
-        flying: "Volador",
-        psychic: "Psíquico",
-        bug: "Bicho",
-        rock: "Roca",
-        ghost: "Fantasma",
-        dragon: "Dragón",
-        dark: "Siniestro",
-        steel: "Acero",
-        fairy: "Hada",
-    };
-      
+    const { regionName } = useRegionId();      
 
     return (
         <>
@@ -73,7 +53,7 @@ function Card({ filteredList }) {
                                         return(
                                             <span 
                                                 key={index} 
-                                                className={`${translatedType} px-2 pb-0.5 rounded-full text-sm leading-4 font-medium text-white border border-white`}
+                                                className={`${translatedType}2 px-2 pb-0.5 rounded-full text-sm leading-4 font-medium text-white border border-white`}
                                             >
                                                 {translatedType}
                                             </span>
