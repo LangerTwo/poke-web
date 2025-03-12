@@ -4,7 +4,7 @@ import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import {ChevronDown} from 'lucide-react';
 import typeTranslations from '../hooks/typeTranslations';
-
+import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 function PokemonDetails() {
   const { name } = useParams();
@@ -17,13 +17,14 @@ function PokemonDetails() {
   const [description, setDescription] = useState('');
   const { regionName } = useRegionId();
 
-  const [abilitiesDetails, setAbilitiesDetails] = useState([]);
-  const [loadingAbilities, setLoadingAbilities] = useState(true);
   const [moves, setMoves] = useState([]);
   const [types, setTypes] = useState([]);
 
   const [openMoveIndex, setOpenMoveIndex] = useState(null)
   const [openIndex, setOpenIndex] = useState(null);
+
+  const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
+  // console.log(abilitiesDetails);
 
   // obtener los detalles del pokemon
   useEffect(() => {
@@ -97,29 +98,6 @@ function PokemonDetails() {
           })
         );
         setMoves(moveDetails);
-
-        // Obtener las habilidades del pokemon y sus efectos
-        const abilitiesDetails = await Promise.all(
-          data.abilities.map(async (ability) => {
-            const abilityResponse = await fetch(ability.ability.url);
-            const abilityData = await abilityResponse.json();
-
-            // Obtener el nombre en español
-            const spanishName = abilityData.names.find(name => name.language.name === "es")?.name || ability.ability.name;
-            // console.log(spanishName);
-
-            // Obtener la descripción en español
-            const effect = abilityData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Sin descripción";
-            // console.log(effect);
-
-            return {
-              spanishName,
-              effect,
-              is_hidden: ability.is_hidden,
-            };
-          })
-        );
-        setAbilitiesDetails(abilitiesDetails);
 
         // Obtener el tipo del pokemon en español
         const types = await Promise.all(

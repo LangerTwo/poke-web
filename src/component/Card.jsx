@@ -11,6 +11,7 @@ function Card({ filteredList }) {
     return (
         <>
             {filteredList?.map((poke) => {
+                // console.log(poke.abilities[0]?.ability.name);
                 const mainType = typeTranslations[poke.types[0]?.type.name] || poke.types[0]?.type.name; // Obtener el primer tipo
 
                 return (
@@ -62,17 +63,20 @@ function Card({ filteredList }) {
                                 </div> 
                             </div>
                         </div>
-                        {/* añadir pero y altura */}
-                        <div className='flex flex-col items-start pl-4 gap-2 justify-center flex-wrap relative'>
+                        
+                        {/* Añadir las habilidades */}
+                        <div className='flex flex-col items-start pl-4 gap-2 justify-center flex-wrap relative mb-1'>
                             <div className='flex gap-2 items-center'>
-                                <span className='font-semibold text-white'>Peso:</span>
-                                <span className='text-white'>{poke.weight} kg</span>
+                                <span className='font-semibold text-white'>Habilidades:</span>
+                                <span className='text-white'>{poke.abilities[0]?.ability.name}</span>
                             </div>
                             <div className='flex gap-2 items-center'>
-                                <span className='font-semibold text-white'>Altura:</span>
-                                <span className='text-white'>{poke.height} m</span>
-                            </div>                                                   
+                                <span className='font-semibold text-white'>Habilidad oculta:</span>
+                                <span className='text-white'>{poke.abilities[1]?.ability.name}</span>
+                            </div>
                         </div>
+                        
+                        {/* Boton de ver mas */}
                         <div className="p-4 bg-black bg-opacity-50 rounded-b-lg">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
                                 <button className="w-full bg-white text-blue-900 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
