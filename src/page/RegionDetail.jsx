@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 // import PokemonPage from './pokemonPage';
 
-import listPoke from '../assets/list-poke.jpg';
+import listPoke from '../assets/list-poke-min.jpg';
 import { ChevronRight, Info} from 'lucide-react';
 import useRegionId from '../hooks/useRegionId';
 import { Link } from 'react-router-dom';

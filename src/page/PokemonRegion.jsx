@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-import kantoImage from '../assets/kanto-region.png';
-import johtoImage from '../assets/johto-region.png';
-import hoenImage from '../assets/hoen-region.png';
-import sinnohImage from '../assets/sinnoh-region.png';
-import teseliaImage from '../assets/teselia-region.png';
-import kalosImage from '../assets/kalos-region.png';
-import alolaImage from '../assets/alola-region.png';
-import galarImage from '../assets/galar-region.png';
-import paldeaImage from '../assets/paldea-region.jpg';
+import kantoImage from '../assets/kanto-region-min.png';
+import johtoImage from '../assets/johto-region-min.png';
+import hoenImage from '../assets/hoen-region-min.png';
+import sinnohImage from '../assets/sinnoh-region-min.png';
+import teseliaImage from '../assets/teselia-region-min.png';
+import kalosImage from '../assets/kalos-region-min.png';
+import alolaImage from '../assets/alola-region-min.png';
+import galarImage from '../assets/galar-region-min.png';
+import paldeaImage from '../assets/paldea-region-min.jpg';
 import { X } from 'lucide-react';
 
 const regions = [
