@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
-import typeTranslations from '../hooks/typeTranslations';
+import typeTranslations from '../hooks/usetypeTranslations';
+import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 import { ArrowRight} from 'lucide-react';
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      
-
+    
+    const { abilitiesDetails } = usePokemonAbilities(filteredList[0]?.abilities);
+    // console.log(abilitiesDetails);
     return (
         <>
-            {filteredList?.map((poke) => {
-                // console.log(poke.abilities[0]?.ability.name);
-                const mainType = typeTranslations[poke.types[0]?.type.name] || poke.types[0]?.type.name; // Obtener el primer tipo
+            {filteredList?.map((poke) => {   
 
                 return (
                     <div 
                         key={poke.id} 
-                        className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${mainType} shadow-lg`}
+                        className={`group rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-lg ${typeTranslations[poke.types[0]?.type.name] || poke.types[0]?.type.name} shadow-lg`}
                     >
                         <div className='ml-1 mt-1 text-white text-sm font-medium absolute z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>
                             <span>N° </span>
@@ -62,19 +63,18 @@ function Card({ filteredList }) {
                                     })}
                                 </div> 
                             </div>
+                            {/* Añadir las habilidades */}
+                            <div className='flex justify-center gap-3 mt-4'>
+                                {abilitiesDetails.map((ability, index) => {
+                                    return (
+                                        <div key={index} className="">
+                                                <h3 className="text-white font-semibold">{ability.spanishName}</h3>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                         
-                        {/* Añadir las habilidades */}
-                        <div className='flex flex-col items-start pl-4 gap-2 justify-center flex-wrap relative mb-1'>
-                            <div className='flex gap-2 items-center'>
-                                <span className='font-semibold text-white'>Habilidades:</span>
-                                <span className='text-white'>{poke.abilities[0]?.ability.name}</span>
-                            </div>
-                            <div className='flex gap-2 items-center'>
-                                <span className='font-semibold text-white'>Habilidad oculta:</span>
-                                <span className='text-white'>{poke.abilities[1]?.ability.name}</span>
-                            </div>
-                        </div>
                         
                         {/* Boton de ver mas */}
                         <div className="p-4 bg-black bg-opacity-50 rounded-b-lg">

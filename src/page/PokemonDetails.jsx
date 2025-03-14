@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import {ChevronDown} from 'lucide-react';
-import typeTranslations from '../hooks/typeTranslations';
+import typeTranslations from '../hooks/usetypeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 function PokemonDetails() {
