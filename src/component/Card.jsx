@@ -65,7 +65,9 @@ function Card({ filteredList }) {
                             </div>
                             {/* Añadir las habilidades */}
                             <div className='flex justify-center gap-3 mt-4'>
-                                {abilitiesDetails.map((ability, index) => {
+                                {abilitiesDetails
+                                .filter(ability => !ability.is_hidden)
+                                .map((ability, index) => {
                                     return (
                                         <div key={index} className="">
                                                 <h3 className="text-white font-semibold">{ability.spanishName}</h3>
