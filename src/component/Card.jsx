@@ -5,6 +5,7 @@ import typeTranslations from '../hooks/usetypeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 import { ArrowRight} from 'lucide-react';
+import Boton from './Boton';
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      
@@ -81,12 +82,7 @@ function Card({ filteredList }) {
                         {/* Boton de ver mas */}
                         <div className="p-4 bg-black bg-opacity-50 rounded-b-lg">
                             <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${poke.name}`}>
-                                <button className="w-full bg-white text-blue-900 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 hover:translate-y-0.5 cssbuttons-io-button relative">
-                                    Ver Más 
-                                    <div className='icon'>
-                                        <ArrowRight className="w-6 h-6 arrow" />
-                                    </div>
-                                </button>
+                                <Boton />
                             </Link>         
                         </div>
                     </div>

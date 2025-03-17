@@ -12,6 +12,7 @@ import alolaImage from '../assets/alola-region-min.png';
 import galarImage from '../assets/galar-region-min.png';
 import paldeaImage from '../assets/paldea-region-min.jpg';
 import { X } from 'lucide-react';
+import Boton from '../component/Boton';
 
 const regions = [
   { id: 'kanto',
@@ -184,13 +185,8 @@ function PokemonRegion() {
                   <p className="text-gray-400">{selectedRegion.legendaryPokemons.join(', ')}</p>
                 </div>
               </div>
-              <div className="mt-4">
-                <button
-                  onClick={() => handleRegionClick(selectedRegion.name)}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center"
-                >
-                  Ver Más <span className="mx-2">→</span>
-                </button>
+              <div className="mt-4" onClick={() => handleRegionClick(selectedRegion.name)}>
+                <Boton />
               </div>
             </div>
           </div>
