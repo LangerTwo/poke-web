@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
-import typeTranslations from '../hooks/usetypeTranslations';
+import typeTranslations from '../js/typeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 import Boton from './Boton';
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      
     
-    // const { abilitiesDetails } = usePokemonAbilities(filteredList?.abilities);
-    // console.log(abilitiesDetails);
+    const { abilitiesDetails } = usePokemonAbilities(filteredList[0]?.abilities);
     return (
         <>
             {filteredList?.map((poke) => {   

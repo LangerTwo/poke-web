@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import {ChevronDown} from 'lucide-react';
-import typeTranslations from '../hooks/usetypeTranslations';
+import typeTranslations from '../js/typeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 function PokemonDetails() {
@@ -167,11 +167,14 @@ function PokemonDetails() {
               <div className='flex items-center gap-2'>
                 <h1 className='text-3xl font-bold capitalize'>{pokemon.name}</h1>
                 <div className="flex space-x-2">
-                  {pokemon.types.map((type) => (
-                    <span key={type.type.name} className={`${typeTranslations[type.type.name] || type.type.name}2 px-3 pb-0.5 text-sm font-semibold bg-green-500 text-white rounded-full`}>
-                      {typeTranslations[type.type.name] || type.type.name.charAt(0).toUpperCase() + typeTranslations[type.type.name] || type.type.name.slice(1)}
-                    </span>
-                  ))}
+                  {pokemon.types.map((type) => {
+                    const translatedType = typeTranslations[type.type.name] || type.type.name;
+                    return (
+                      <span key={translatedType} className={`${translatedType}2 px-3 pb-0.5 text-sm font-semibold bg-green-500 text-white rounded-full`}>
+                        {translatedType}
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
               <div className='ml-1 mt-1 text-white text-sm font-medium z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>

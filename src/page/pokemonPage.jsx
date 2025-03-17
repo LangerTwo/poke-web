@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import Filter from '../component/Filter';
 import Card from '../component/Card';
 
+import typeTranslations from '../js/typeTranslations';
+
+
 function PokemonPage() {
   const { regionName } = useParams();
   const [pokemonList, setPokemonList] = useState([]); // Pokémon de la región
@@ -69,28 +72,6 @@ function PokemonPage() {
     };
     if (regionName) fetchPokemonByRegion();
   }, [regionName]);
-
-  // Maneja el filtrado
-  const typeTranslation = {
-    normal: "normal",
-    fuego: "fire",
-    agua: "water",
-    eléctrico: "electric",
-    planta: "grass",
-    hielo: "ice",
-    lucha: "fighting",
-    veneno: "poison",
-    tierra: "ground",
-    volador: "flying",
-    psíquico: "psychic",
-    bicho: "bug",
-    roca: "rock",
-    fantasma: "ghost",
-    dragón: "dragon",
-    oscuro: "dark",
-    acero: "steel",
-    hada: "fairy",
-  };
   
   const handleCategoryChange = async (category, option) => {
     if (!option) {
@@ -99,7 +80,7 @@ function PokemonPage() {
     }
   
     // Convertir el nombre del tipo al inglés
-    const englishOption = typeTranslation[option.toLowerCase()];
+    const englishOption = typeTranslations[option.toLowerCase()];
   
     if (!englishOption) {
       setError("Tipo no encontrado");
