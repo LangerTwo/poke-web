@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Filter from '../component/Filter';
 import Card from '../component/Card';
 
-import typeTranslations from '../hooks/usetypeTranslations';
+import typeTranslations from '../js/typeTranslations';
 
 
 function PokemonPage() {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {ChevronDown} from 'lucide-react';
-import typeTranslations from '../hooks/usetypeTranslations';
+import typeTranslations from '../js/typeTranslations';
 
 
 const MovesList = ({ moves }) => {
