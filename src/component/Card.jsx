@@ -3,19 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
 import typeTranslations from '../hooks/usetypeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
-
-import { ArrowRight} from 'lucide-react';
 import Boton from './Boton';
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      
     
-    const { abilitiesDetails } = usePokemonAbilities(filteredList[0]?.abilities);
+    // const { abilitiesDetails } = usePokemonAbilities(filteredList?.abilities);
     // console.log(abilitiesDetails);
     return (
         <>
             {filteredList?.map((poke) => {   
-
+                // console.log(poke.abilities[0].ability.name);
                 return (
                     <div 
                         key={poke.id} 
@@ -66,15 +64,17 @@ function Card({ filteredList }) {
                             </div>
                             {/* Añadir las habilidades */}
                             <div className='flex justify-center gap-3 mt-4'>
-                                {abilitiesDetails
-                                .filter(ability => !ability.is_hidden)
+                                {poke.abilities
+                                .filter((ability) => !ability.is_hidden)
                                 .map((ability, index) => {
                                     return (
                                         <div key={index} className="">
-                                                <h3 className="text-white font-semibold">{ability.spanishName}</h3>
+                                            <h3 className="text-white font-semibold">
+                                                {ability.ability.name}
+                                            </h3>
                                         </div>
-                                    );
-                                })}
+                                    )}
+                                )}
                             </div>
                         </div>
                         

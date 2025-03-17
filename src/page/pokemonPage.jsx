@@ -59,6 +59,7 @@ function PokemonPage() {
 
         const pokemonDetails = await fetchPokemonDetails(pokemonNames);
         setPokemonList(pokemonDetails); // Guarda todos los detalles
+        // console.log(pokemonDetails);
         setFilteredList(pokemonDetails); // Inicialmente no hay filtro
       } catch (error) {
         setError('Error al cargar los Pokémon!!!');
