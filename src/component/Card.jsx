@@ -8,7 +8,8 @@ import Boton from './Boton';
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      
     
-    const { abilitiesDetails } = usePokemonAbilities(filteredList[0]?.abilities);
+    // const { abilitiesDetails } = usePokemonAbilities(filteredList[0]?.abilities);
+    // console.log(abilitiesDetails);
     return (
         <>
             {filteredList?.map((poke) => {   
