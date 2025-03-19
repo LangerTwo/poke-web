@@ -6,101 +6,166 @@ import {ChevronDown} from 'lucide-react';
 import typeTranslations from '../js/typeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
-function PokemonDetails() {
-  const { name } = useParams();
-  const [pokemon, setPokemon] = useState(null);
-  const [evolutions, setEvolutions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const usePokemonDetails = (name) => {
+  const [data, setData] = useState({
+    pokemon: null,
+    evolutions: [],
+    description: "",
+    moves: [],
+    types: [],
+    loading: true,
+    error: null,
+  });
 
-  const [activeTab, setActiveTab] = useState('info')
-  const [description, setDescription] = useState('');
-  const { regionName } = useRegionId();
-
-  const [moves, setMoves] = useState([]);
-  const [types, setTypes] = useState([]);
-
-  const [openMoveIndex, setOpenMoveIndex] = useState(null)
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
-  // console.log(abilitiesDetails);
-
-  // obtener los detalles del pokemon
   useEffect(() => {
     const fetchPokemonDetails = async () => {
-      setLoading(true);
-      setError(null);
-  
       try {
-        // Obtén los detalles del Pokémon
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        const data = await response.json();
-  
-        // Obtén los detalles de las especies, movimientos y tipos
-        const [speciesResponse, movesDetails, typesDetails] = await Promise.all([
-          fetch(data.species.url).then(res => res.json()),
+        if (!response.ok) throw new Error("No se pudo obtener el Pokémon");
+        const pokemon = await response.json();
+
+        const [species, movesDetails, typesDetails] = await Promise.all([
+          fetch(pokemon.species.url).then((res) => res.json()),
           Promise.all(
-            data.moves.map(async (move) => {
-              const moveResponse = await fetch(move.move.url);
-              const moveData = await moveResponse.json();
-  
-              const spanishName = moveData.names.find(name => name.language.name === "es")?.name || move.move.name;
-              const effectText = moveData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Efecto no disponible.";
-  
-              // Devolver los detalles del movimiento
+            pokemon.moves.map(async (move) => {
+              const moveData = await fetch(move.move.url).then((res) => res.json());
               return {
-                name: spanishName,
+                name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
                 type: moveData.type.name,
                 power: moveData.power,
                 pp: moveData.pp,
                 damage_class: moveData.damage_class.name,
-                effect: effectText,
+                effect: moveData.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Efecto no disponible.",
               };
             })
           ),
-          // Obtener los nombres de los tipos de pokemon en español
           Promise.all(
-            data.types.map(async (type) => {
-              const typeResponse = await fetch(type.type.url);
-              const typeData = await typeResponse.json();
-              return typeData.names.find(name => name.language.name === "es")?.name || type.type.name;
+            pokemon.types.map(async (type) => {
+              const typeData = await fetch(type.type.url).then((res) => res.json());
+              return typeData.names.find((n) => n.language.name === "es")?.name || type.type.name;
             })
-          )
+          ),
         ]);
-  
-        // Extraer la descripción del Pokémon
-        const flavorText = speciesResponse.flavor_text_entries.find(
-          (entry) => entry.language.name === 'es'
-        )?.flavor_text || 'Descripción no disponible.';
-        setDescription(flavorText);
-  
-        // Obtener la cadena de evolución
-        const evolutionResponse = await fetch(speciesResponse.evolution_chain.url);
-        const evolutionData = await evolutionResponse.json();
-  
-        // Extraer la cadena de evolución
+
+        // Evolución
+        const evolutionData = await fetch(species.evolution_chain.url).then((res) => res.json());
         const evolutionChain = [];
         let current = evolutionData.chain;
         while (current) {
           evolutionChain.push(current.species.name);
           current = current.evolves_to[0];
         }
-        setEvolutions(evolutionChain);
-  
-        setPokemon(data);
-        setMoves(movesDetails);
-        setTypes(typesDetails);
-      } catch (err) {
-        setError('Error al cargar los detalles del Pokémon');
-        console.error(err);
-      } finally {
-        setLoading(false);
+
+        setData({
+          pokemon,
+          evolutions: evolutionChain,
+          description: species.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Descripción no disponible.",
+          moves: movesDetails,
+          types: typesDetails,
+          loading: false,
+          error: null,
+        });
+      } catch (error) {
+        setData((prev) => ({ ...prev, loading: false, error: error.message }));
       }
     };
-  
+
     fetchPokemonDetails();
   }, [name]);
+
+  return data;
+};
+
+function PokemonDetails() {
+  const { regionName } = useRegionId();
+  const [openIndex, setOpenIndex] = useState(null);
+  // const [openMoveIndex, setOpenMoveIndex] = useState(null)
+  // const { name } = useParams();
+  // const [pokemon, setPokemon] = useState(null);
+  // const [evolutions, setEvolutions] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  // const [activeTab, setActiveTab] = useState('info')
+  // const [description, setDescription] = useState('');
+  // const [moves, setMoves] = useState([]);
+  // const [types, setTypes] = useState([]);
+  // console.log(abilitiesDetails);
+
+  // obtener los detalles del pokemon
+  // useEffect(() => {
+  //   const fetchPokemonDetails = async () => {
+  //     setLoading(true);
+  //     setError(null);
+  
+  //     try {
+  //       // Obtén los detalles del Pokémon
+  //       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  //       const data = await response.json();
+  
+  //       // Obtén los detalles de las especies, movimientos y tipos
+  //       const [speciesResponse, movesDetails, typesDetails] = await Promise.all([
+  //         fetch(data.species.url).then(res => res.json()),
+  //         Promise.all(
+  //           data.moves.map(async (move) => {
+  //             const moveResponse = await fetch(move.move.url);
+  //             const moveData = await moveResponse.json();
+  
+  //             const spanishName = moveData.names.find(name => name.language.name === "es")?.name || move.move.name;
+  //             const effectText = moveData.flavor_text_entries.find(entry => entry.language.name === "es")?.flavor_text || "Efecto no disponible.";
+  
+  //             // Devolver los detalles del movimiento
+  //             return {
+  //               name: spanishName,
+  //               type: moveData.type.name,
+  //               power: moveData.power,
+  //               pp: moveData.pp,
+  //               damage_class: moveData.damage_class.name,
+  //               effect: effectText,
+  //             };
+  //           })
+  //         ),
+  //         // Obtener los nombres de los tipos de pokemon en español
+  //         Promise.all(
+  //           data.types.map(async (type) => {
+  //             const typeResponse = await fetch(type.type.url);
+  //             const typeData = await typeResponse.json();
+  //             return typeData.names.find(name => name.language.name === "es")?.name || type.type.name;
+  //           })
+  //         )
+  //       ]);
+  
+  //       // Extraer la descripción del Pokémon
+  //       const flavorText = speciesResponse.flavor_text_entries.find(
+  //         (entry) => entry.language.name === 'es'
+  //       )?.flavor_text || 'Descripción no disponible.';
+  //       setDescription(flavorText);
+  
+  //       // Obtener la cadena de evolución
+  //       const evolutionResponse = await fetch(speciesResponse.evolution_chain.url);
+  //       const evolutionData = await evolutionResponse.json();
+  
+  //       // Extraer la cadena de evolución
+  //       const evolutionChain = [];
+  //       let current = evolutionData.chain;
+  //       while (current) {
+  //         evolutionChain.push(current.species.name);
+  //         current = current.evolves_to[0];
+  //       }
+  //       setEvolutions(evolutionChain);
+  
+  //       setPokemon(data);
+  //       setMoves(movesDetails);
+  //       setTypes(typesDetails);
+  //     } catch (err) {
+  //       setError('Error al cargar los detalles del Pokémon');
+  //       console.error(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  
+  //   fetchPokemonDetails();
+  // }, [name]);
 
   // Obtener los detalles del pokemon
   // const [pokemonData, setPokemonData] = useState({
@@ -120,22 +185,24 @@ function PokemonDetails() {
   //   types: typesDetails,
   // });
 
-  const getPokemonImage = (sprites) => {
-    return sprites?.other?.['official-artwork']?.front_default ||
-           sprites?.other?.dream_world?.front_default ||
-           sprites?.front_default;
-  };
+  const { name } = useParams();
+  const { pokemon, evolutions, description, moves, types, loading, error } = usePokemonDetails(name);
+  const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
+  const [activeTab, setActiveTab] = useState("info");
 
-  if (loading) return <div>Loading...</div>;
-  
-  if (error) return (
-    <div className="text-red-500 text-center">
-      {error}
-      <button onClick={() => window.location.reload()} className="mt-2 px-4 py-2 bg-red-600 text-white rounded-lg">
-        Reintentar
-      </button>
-    </div>
-  );
+  const getPokemonImage = (sprites) =>
+    sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
+
+  if (loading) return <div className="text-center">Cargando...</div>;
+  if (error)
+    return (
+      <div className="text-red-500 text-center">
+        {error}
+        <button onClick={() => window.location.reload()} className="mt-2 px-4 py-2 bg-red-600 text-white rounded-lg">
+          Reintentar
+        </button>
+      </div>
+    );
 
   // Obtener el color de la barra de estadísticas
   const getStatColor = (value) => {
@@ -155,10 +222,6 @@ function PokemonDetails() {
     'special-defense': 'SpDef',
     'speed': 'Spd',
   };
-
-  const toggleMove = (index) => {
-    setOpenMoveIndex(openMoveIndex === index ? null : index)
-  }
 
   const toggleAccordion = (key) => {
     setOpenIndex(openIndex === key ? null : key);
@@ -196,38 +259,17 @@ function PokemonDetails() {
             </div>
 
             <div className='p-6 w-full'>
-              <div className="flex border-b border-gray-200">
-                <button
-                  className={`px-4 py-2 font-medium ${
-                    activeTab === 'info' 
-                      ? 'text-green-600 border-b-2 border-green-600' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                  onClick={() => setActiveTab('info')}
-                >
-                  Información
-                </button>
-
-                <button
-                  className={`px-4 py-2 font-medium ${
-                    activeTab === 'stats' 
-                      ? 'text-green-600 border-b-2 border-green-600' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                  onClick={() => setActiveTab('stats')}
-                >
-                  Estadísticas
-                </button>
-                <button
-                  className={`px-4 py-2 font-medium ${
-                    activeTab === 'moves' 
-                      ? 'text-green-600 border-b-2 border-green-600' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                  onClick={() => setActiveTab('moves')}
-                >
-                  Movimientos
-                </button>
+              {/* Tabs */}
+              <div className="flex justify-center mt-4">
+                {["info", "stats", "moves"].map((tab) => (
+                  <button
+                    key={tab}
+                    className={`px-4 py-2 font-medium ${activeTab === tab ? "text-green-600 border-b-2 border-green-600" : "text-gray-500 hover:text-gray-700"}`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab === "info" ? "Información" : tab === "stats" ? "Estadísticas" : "Movimientos"}
+                  </button>
+                ))}
               </div>
 
               {activeTab === 'info' ? (
