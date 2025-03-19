@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
 import typeTranslations from '../js/typeTranslations';
 import Boton from './Boton';
+import abilityTranslations from '../js/abilityTranslations';
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -65,13 +66,17 @@ function Card({ filteredList }) {
                             </div>
                             {/* Añadir las habilidades */}
                             <div className='flex justify-center gap-3 mt-4'>
-                                {poke.abilities?.map(({ ability, is_hidden }, index) => 
-                                    !is_hidden && (
-                                        <div key={index}>
-                                            <h3 className="text-white font-semibold">{capitalize(ability.name)}</h3>
-                                        </div>
-                                    )
-                                )}
+                                {poke.abilities?.map(({ ability, is_hidden }, index) => {
+                                    if (!is_hidden) {
+                                        const translatedAbility = abilityTranslations[ability.name] || capitalize(ability.name);
+                                        return (
+                                            <div key={index}>
+                                                <h3 className="text-white font-semibold">{translatedAbility}</h3>
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                })}                                
                             </div>
                         </div>
                         
