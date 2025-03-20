@@ -107,14 +107,6 @@ function PokemonDetails() {
   
 
   // Mapear las estadísticas
-  const statMapping = {
-    'hp': 'HP',
-    'attack': 'Atk',
-    'defense': 'Def',
-    'special-attack': 'SpAtk',
-    'special-defense': 'SpDef',
-    'speed': 'Spd',
-  };
 
   const toggleAccordion = (key) => {
     setOpenIndex(openIndex === key ? null : key);
