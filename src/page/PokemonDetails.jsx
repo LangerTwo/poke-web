@@ -8,6 +8,7 @@ import usePokemonAbilities from '../hooks/usePokemonAbilities';
 import Header from '../component/pokemonDetails/Header';
 import Tabs from '../component/pokemonDetails/Tabs';
 import PokemonStats from '../component/pokemonDetails/Stats';
+import PokemonMoves from '../component/pokemonDetails/Moves';
 
 const usePokemonDetails = (name) => {
   const [data, setData] = useState({
@@ -262,20 +263,14 @@ function PokemonDetails() {
                 )
               ) : activeTab === 'moves' ? (
                 pokemon ? (
-                  <div className="space-y-4 pt-4">
-                    <h2 className="text-xl font-semibold mb-2">Movimientos</h2>
-                    <div className="grid grid-row-1 gap-2">
-                      <MovesList moves={moves} />
-                    </div>
-                  </div>
+                  // Movimientos
+                  <MovesList moves={moves} />
                 ) : (
                   <p>Cargando...</p>
                 )
               ) : null}
-
             </div>
           </div>
-          
         </div>
       </div>
     </div>
