@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import {ChevronDown} from 'lucide-react';
-import typeTranslations from '../js/typeTranslations';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 import Header from '../component/pokemonDetails/Header';
+import Tabs from '../component/pokemonDetails/Tabs';
+import PokemonStats from '../component/pokemonDetails/Stats';
 
 const usePokemonDetails = (name) => {
   const [data, setData] = useState({
@@ -102,13 +103,7 @@ function PokemonDetails() {
     );
 
   // Obtener el color de la barra de estadísticas
-  const getStatColor = (value) => {
-    if (value >= 100) return "bg-green-500"
-    if (value > 80) return "bg-yellow-500"
-    if (value > 40) return "bg-orange-500"
-    if (value > 20) return "bg-yellow-500"
-    return "bg-red-500"
-  }
+  
 
   // Mapear las estadísticas
   const statMapping = {
@@ -140,17 +135,7 @@ function PokemonDetails() {
 
             <div className='p-6 w-full'>
               {/* Tabs */}
-              <div className="flex justify-center mt-4">
-                {["info", "stats", "moves"].map((tab) => (
-                  <button
-                    key={tab}
-                    className={`px-4 py-2 font-medium ${activeTab === tab ? "text-green-600 border-b-2 border-green-600" : "text-gray-500 hover:text-gray-700"}`}
-                    onClick={() => setActiveTab(tab)}
-                  >
-                    {tab === "info" ? "Información" : tab === "stats" ? "Estadísticas" : "Movimientos"}
-                  </button>
-                ))}
-              </div>
+              <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
               {activeTab === 'info' ? (
                 pokemon ? (
@@ -270,24 +255,8 @@ function PokemonDetails() {
                 )
               ) : activeTab === 'stats' ? (
                 pokemon ? (
-                  <div className="space-y-4 pt-4 w-full">
-                    <h2 className="text-xl font-semibold mb-2">Estadísticas</h2>
-                    {pokemon.stats?.map((stat) => (
-                      <div key={stat.stat.name} className="space-y-1 w-full">
-                        <div className="flex justify-between text-sm w-full">
-                          <span className="text-sm font-medium">
-                            {statMapping?.[stat.stat.name] || stat.stat.name}
-                          </span>
-                          <span className="text-sm font-medium">{stat.base_stat}</span>
-                        </div>
-                        <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                          <div className={`h-2 transition-all duration-500 ${getStatColor(stat.base_stat)}`}
-                            style={{ width: `${(stat.base_stat / 150) * 100}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  // Stats
+                  <PokemonStats pokemon={pokemon} />
                 ) : (
                   <p>Cargando...</p>
                 )
