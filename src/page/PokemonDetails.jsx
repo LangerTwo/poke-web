@@ -8,7 +8,6 @@ import usePokemonAbilities from '../hooks/usePokemonAbilities';
 import Header from '../component/pokemonDetails/Header';
 import Tabs from '../component/pokemonDetails/Tabs';
 import PokemonStats from '../component/pokemonDetails/Stats';
-import PokemonMoves from '../component/pokemonDetails/Moves';
 import PokemonInfo from '../component/pokemonDetails/Info';
 
 const usePokemonDetails = (name) => {
@@ -29,21 +28,8 @@ const usePokemonDetails = (name) => {
         if (!response.ok) throw new Error("No se pudo obtener el Pokémon");
         const pokemon = await response.json();
 
-        const [species, movesDetails, typesDetails] = await Promise.all([
+        const [species, typesDetails] = await Promise.all([
           fetch(pokemon.species.url).then((res) => res.json()),
-          Promise.all(
-            pokemon.moves.map(async (move) => {
-              const moveData = await fetch(move.move.url).then((res) => res.json());
-              return {
-                name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
-                type: moveData.type.name,
-                power: moveData.power,
-                pp: moveData.pp,
-                damage_class: moveData.damage_class.name,
-                effect: moveData.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Efecto no disponible.",
-              };
-            })
-          ),
           Promise.all(
             pokemon.types.map(async (type) => {
               const typeData = await fetch(type.type.url).then((res) => res.json());
@@ -60,6 +46,22 @@ const usePokemonDetails = (name) => {
           evolutionChain.push(current.species.name);
           current = current.evolves_to[0];
         }
+
+        // Movimientos
+        const movesDetails = await Promise.all(
+          pokemon.moves.slice(0, 50).map(async (move) => { // Limita a 5 movimientos
+            const moveData = await fetch(move.move.url).then((res) => res.json());
+            // console.log(moveData);
+            return {
+              name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
+              type: moveData.type.name,
+              power: moveData.power,
+              pp: moveData.pp,
+              damage_class: moveData.damage_class.name,
+              effect: moveData.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Efecto no disponible.",
+            };
+          })
+        );
 
         setData({
           pokemon,

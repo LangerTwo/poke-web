@@ -5,12 +5,19 @@ import typeTranslations from '../js/typeTranslations';
 
 const MovesList = ({ moves }) => {
     const [openIndex, setOpenIndex] = useState(null);
+    const [visibleMoves, setVisibleMoves] = useState(10); // Mostrar solo 5 movimientos inicialmente
+
     const toggleAccordion = (index) => {
       setOpenIndex(openIndex === index ? null : index);
     }
+
+    const loadMoreMoves = () => {
+      setVisibleMoves((prev) => prev + 5); // Cargar 5 más cada vez
+    };
+
     return (
         <div className="w-full space-y-2">
-          {moves.map((move, index) => {
+          {moves.slice(0, visibleMoves).map((move, index) => {
             const translatedType = typeTranslations[move.type] || move.type;
             return (
               <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
@@ -46,6 +53,15 @@ const MovesList = ({ moves }) => {
               </div>
             )
           })}
+          {/* Botón para cargar más movimientos */}
+          {visibleMoves < moves.length && (
+            <button
+              onClick={loadMoreMoves}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            >
+              Cargar más movimientos
+            </button>
+          )}
         </div>
       );
     };
