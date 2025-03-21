@@ -56,3 +56,6 @@ function PokemonRegion() {
 }
 
 export default PokemonRegion;
+
+
+// porque ahora estoy teniendo problemas con la pokeApi con errores como Error al obtener el número de Pokémon: SyntaxError: Unexpected token 'F', "Forbidden" is not valid JSON o 403 (Forbidden), cuando antes no los tenia 
