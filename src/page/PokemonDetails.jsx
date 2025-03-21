@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
-import {ChevronDown} from 'lucide-react';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
 import Header from '../component/pokemonDetails/Header';
@@ -17,6 +16,7 @@ const usePokemonDetails = (name) => {
     description: "",
     moves: [],
     types: [],
+    megaEvolutions: [],
     loading: true,
     error: null,
   });
@@ -38,6 +38,23 @@ const usePokemonDetails = (name) => {
           ),
         ]);
 
+        // Obtener Mega Evoluciones
+        const megaEvolutionsData = await Promise.all(
+          species.varieties
+            .filter((variety) => variety.pokemon.name.includes("-mega")) // Filtrar Megas
+            .map(async (variety) => {
+              const formData = await fetch(variety.pokemon.url).then((res) => res.json());
+              return {
+                name: variety.pokemon.name.replace("-mega", " Mega"),
+                sprite: formData.sprites.front_default,
+                types: formData.types.map((t) => t.type.name),
+                abilities: formData.abilities.map((a) => a.ability.name),
+                id: formData.id,
+                stats: formData.stats.map((s) => ({ name: s.stat.name, base: s.base_stat })),
+              };
+            })
+        );
+
         // Evolución
         const evolutionData = await fetch(species.evolution_chain.url).then((res) => res.json());
         const evolutionChain = [];
@@ -49,9 +66,8 @@ const usePokemonDetails = (name) => {
 
         // Movimientos
         const movesDetails = await Promise.all(
-          pokemon.moves.slice(0, 50).map(async (move) => { // Limita a 5 movimientos
+          pokemon.moves.slice(0, 50).map(async (move) => {
             const moveData = await fetch(move.move.url).then((res) => res.json());
-            // console.log(moveData);
             return {
               name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
               type: moveData.type.name,
@@ -69,6 +85,7 @@ const usePokemonDetails = (name) => {
           description: species.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Descripción no disponible.",
           moves: movesDetails,
           types: typesDetails,
+          megaEvolutions: megaEvolutionsData,
           loading: false,
           error: null,
         });
@@ -85,15 +102,11 @@ const usePokemonDetails = (name) => {
 
 function PokemonDetails() {
   const { regionName } = useRegionId();
-  const [openIndex, setOpenIndex] = useState(null);
-
   const { name } = useParams();
-  const { pokemon, evolutions, description, moves, types, loading, error } = usePokemonDetails(name);
+  const { pokemon, evolutions, description, moves, types, megaEvolutions, loading, error } = usePokemonDetails(name);
   const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
   const [activeTab, setActiveTab] = useState("info");
-
-  const getPokemonImage = (sprites) =>
-    sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
+  const [tab, setTab] = useState('normal');
 
   if (loading) return <div className="text-center">Cargando...</div>;
   if (error) {
@@ -107,51 +120,58 @@ function PokemonDetails() {
     )
   }
 
-  const toggleAccordion = (key) => {
-    setOpenIndex(openIndex === key ? null : key);
-  }
-
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex items-center justify-center pt-[8rem]'>
       <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
         <div className="flex items-center justify-between p-6 border-b border-green-100">
 
           <div className='w-full max-w-2xl mx-auto'>
-              <div className='absolute top-2 left-6'>
-                <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
-                  ← Regresar
-                </Link>
-              </div>
-              {/* Header */}
-              <Header pokemon={pokemon} />
-
-            <div className='p-6 w-full'>
-              {/* Tabs */}
-              <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-              {activeTab === 'info' ? (
-                pokemon ? (
-                  // Imagen, habilidades, evoluciones, descripción
-                  <PokemonInfo pokemon={pokemon} evolutions={evolutions} abilitiesDetails={abilitiesDetails} description={description} />
-                ) : (
-                  <p>Cargando...</p>
-                )
-              ) : activeTab === 'stats' ? (
-                pokemon ? (
-                  // Stats
-                  <PokemonStats pokemon={pokemon} />
-                ) : (
-                  <p>Cargando...</p>
-                )
-              ) : activeTab === 'moves' ? (
-                pokemon ? (
-                  // Movimientos
-                  <MovesList moves={moves} />
-                ) : (
-                  <p>Cargando...</p>
-                )
-              ) : null}
+            <div className='absolute top-2 left-6'>
+              <Link to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`} className="text-green-500 hover:underline">
+                ← Regresar
+              </Link>
             </div>
+
+            <div className='flex border-b border-gray-200'>
+              <button
+                className={`px-4 py-2 font-medium ${tab === 'normal' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
+                onClick={() => setTab('normal')}
+              >
+                Normal
+              </button>
+              <button
+                className={`px-4 py-2 font-medium ${tab === 'mega' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
+                onClick={() => setTab('mega')}
+              >
+                Mega
+              </button>
+            </div>
+
+            {tab === 'normal' ? (
+              <>
+                <Header pokemon={pokemon} />
+                <div className='p-6 w-full'>
+                  <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+                  {activeTab === 'info' && <PokemonInfo pokemon={pokemon} evolutions={evolutions} abilitiesDetails={abilitiesDetails} description={description} />}
+                  {activeTab === 'stats' && <PokemonStats pokemon={pokemon} />}
+                  {activeTab === 'moves' && <MovesList moves={moves} />}
+                </div>
+              </>
+            ) : (
+              <div className="p-6">
+                <h2 className="text-lg font-bold mb-2">Mega Evoluciones</h2>
+                <div className="flex space-x-4">
+                  {megaEvolutions.map((mega) => (
+                    <div key={mega.name} className="text-center">
+                      <img src={mega.sprite} alt={mega.name} className="w-24 h-24" />
+                      <p className="text-sm font-medium">{mega.name}</p>
+                      <p className="text-xs text-gray-600">Tipos: {mega.types.join(", ")}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       </div>
