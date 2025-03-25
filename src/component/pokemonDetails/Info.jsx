@@ -11,8 +11,8 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
         sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
 
     const toggleAccordion = (key) => {
-        setOpenIndex(openIndex === key ? null : key);
-      }
+      setOpenIndex(openIndex === key ? null : key);
+    }
 
   return (
     <div className="space-y-3">

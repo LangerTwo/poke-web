@@ -8,6 +8,7 @@ import Header from '../component/pokemonDetails/Header';
 import Tabs from '../component/pokemonDetails/Tabs';
 import PokemonStats from '../component/pokemonDetails/Stats';
 import PokemonInfo from '../component/pokemonDetails/Info';
+import MegaEvolutions from '../component/MegaPokemon';
 
 const usePokemonDetails = (name) => {
   const [data, setData] = useState({
@@ -59,7 +60,7 @@ const usePokemonDetails = (name) => {
               const formData = await fetch(variety.pokemon.url).then((res) => res.json());
               return {
                 name: variety.pokemon.name.replace("-mega", " Mega"),
-                sprite: formData.sprites.front_default,
+                sprite: formData.sprites?.other?.["official-artwork"]?.front_default || formData.sprites.front_default,
                 types: formData.types.map((t) => t.type.name),
                 abilities: formData.abilities.map((a) => a.ability.name),
                 id: formData.id,
@@ -76,21 +77,6 @@ const usePokemonDetails = (name) => {
           evolutionChain.push(current.species.name);
           current = current.evolves_to[0];
         }
-
-        // Movimientos
-        // const movesDetails = await Promise.all(
-        //   pokemon.moves.slice(0, 50).map(async (move) => {
-        //     const moveData = await fetch(move.move.url).then((res) => res.json());
-        //     return {
-        //       name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
-        //       type: moveData.type.name,
-        //       power: moveData.power,
-        //       pp: moveData.pp,
-        //       damage_class: moveData.damage_class.name,
-        //       effect: moveData.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Efecto no disponible.",
-        //     };
-        //   })
-        // );
 
         setData({
           pokemon,
@@ -171,18 +157,7 @@ function PokemonDetails() {
                 </div>
               </>
             ) : (
-              <div className="p-6">
-                <h2 className="text-lg font-bold mb-2">Mega Evoluciones</h2>
-                <div className="flex space-x-4">
-                  {megaEvolutions.map((mega) => (
-                    <div key={mega.name} className="text-center">
-                      <img src={mega.sprite} alt={mega.name} className="w-24 h-24" />
-                      <p className="text-sm font-medium">{mega.name}</p>
-                      <p className="text-xs text-gray-600">Tipos: {mega.types.join(", ")}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <MegaEvolutions megaEvolutions={megaEvolutions} />
             )}
 
           </div>
