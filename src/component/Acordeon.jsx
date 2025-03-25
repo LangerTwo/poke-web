@@ -5,7 +5,7 @@ import typeTranslations from '../js/typeTranslations';
 
 const MovesList = ({ moves }) => {
     const [openIndex, setOpenIndex] = useState(null);
-    const [visibleMoves, setVisibleMoves] = useState(5); // Mostrar solo 5 movimientos inicialmente
+    const [visibleMoves, setVisibleMoves] = useState(10); // Mostrar solo 5 movimientos inicialmente
 
     const toggleAccordion = (index) => {
       setOpenIndex(openIndex === index ? null : index);

@@ -28,8 +28,21 @@ const usePokemonDetails = (name) => {
         if (!response.ok) throw new Error("No se pudo obtener el Pokémon");
         const pokemon = await response.json();
 
-        const [species, typesDetails] = await Promise.all([
+        const [species, movesDetails, typesDetails] = await Promise.all([
           fetch(pokemon.species.url).then((res) => res.json()),
+          Promise.all(
+            pokemon.moves.map(async (move) => {
+              const moveData = await fetch(move.move.url).then((res) => res.json());
+              return {
+                name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
+                type: moveData.type.name,
+                power: moveData.power,
+                pp: moveData.pp,
+                damage_class: moveData.damage_class.name,
+                effect: moveData.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Efecto no disponible.",
+              };
+            })
+          ),
           Promise.all(
             pokemon.types.map(async (type) => {
               const typeData = await fetch(type.type.url).then((res) => res.json());
@@ -66,7 +79,7 @@ const usePokemonDetails = (name) => {
 
         // Movimientos
         // const movesDetails = await Promise.all(
-        //   pokemon.moves.slice(0, 5).map(async (move) => {
+        //   pokemon.moves.slice(0, 50).map(async (move) => {
         //     const moveData = await fetch(move.move.url).then((res) => res.json());
         //     return {
         //       name: moveData.names.find((n) => n.language.name === "es")?.name || move.move.name,
@@ -83,7 +96,7 @@ const usePokemonDetails = (name) => {
           pokemon,
           evolutions: evolutionChain,
           description: species.flavor_text_entries.find((e) => e.language.name === "es")?.flavor_text || "Descripción no disponible.",
-          // moves: movesDetails,
+          moves: movesDetails,
           types: typesDetails,
           megaEvolutions: megaEvolutionsData,
           loading: false,
@@ -154,7 +167,7 @@ function PokemonDetails() {
                   <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
                   {activeTab === 'info' && <PokemonInfo pokemon={pokemon} evolutions={evolutions} abilitiesDetails={abilitiesDetails} description={description} />}
                   {activeTab === 'stats' && <PokemonStats pokemon={pokemon} />}
-                  {/* {activeTab === 'moves' && <MovesList moves={moves} />} */}
+                  {activeTab === 'moves' && <MovesList moves={moves} />}
                 </div>
               </>
             ) : (
