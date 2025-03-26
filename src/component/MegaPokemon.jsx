@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import typeTranslations from "../js/typeTranslations";
 import abilityTranslations from "../js/abilityTranslations";
 
@@ -52,18 +52,25 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                                 />
                             </div>
 
-                            {/* Habilidad */}
-                            <div className='flex justify-center gap-3 mt-4'>
-                                {mega.abilities?.map((ability, index) => {
-                                    console.log("Habilidad: ", ability)
-                                    const translatedAbility = abilityTranslations[ability] || ability; // Traducción
-                                    return (                                        
-                                        <div key={index}>
-                                            <h3 className="font-semibold">{translatedAbility}</h3>
-                                        </div>                                        
-                                    )
-                                })}                                
+                            {/* Habilidades con efectos */}
+                            <div className='flex flex-col gap-3 mt-4'>
+                                {mega.abilities && mega.abilities.length > 0 ? (
+                                    mega.abilities.map((ability, index) => {
+                                        // console.log("Habilidad con efecto:", ability);
+                                        const abilityName = abilityTranslations[ability.name] || ability.name; // Traducción
+                                        const abilityEffect = ability.effect; // Efecto de la habilidad
+                                        return (
+                                            <div key={index} className="p-2 bg-gray-800 text-white rounded-lg">
+                                                <h3 className="font-semibold">{abilityName}</h3>
+                                                <p className="text-sm">{abilityEffect}</p>
+                                            </div>
+                                        );
+                                    })
+                                ) : (
+                                    <p className="text-white">Sin habilidad</p>
+                                )}
                             </div>
+
                         </div>
                     );
                 })}

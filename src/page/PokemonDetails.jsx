@@ -58,11 +58,29 @@ const usePokemonDetails = (name) => {
             .filter((variety) => variety.pokemon.name.includes("-mega")) // Filtrar Megas
             .map(async (variety) => {
               const formData = await fetch(variety.pokemon.url).then((res) => res.json());
+              // console.log("Mega Evoluciones:", megaEvolutionsData);
+
+              // Obtener información detallada de cada habilidad
+              const abilitiesWithEffects = await Promise.all(
+                formData.abilities.map(async (a) => {
+                  const abilityData = await fetch(a.ability.url).then((res) => res.json());
+                  // console.log("Habilidades con efectos:", abilityData);
+
+                  // Buscar la descripción en español
+                  const effectEntry = abilityData.flavor_text_entries.find(entry => entry.language.name === "es");
+                  const effect = effectEntry ? effectEntry.flavor_text : "Sin descripción";
+                  return {
+                    name: a.ability.name,
+                    effect: effect,
+                  };
+                })
+              );
+
               return {
                 name: variety.pokemon.name.replace("-mega", " Mega"),
                 sprite: formData.sprites?.other?.["official-artwork"]?.front_default || formData.sprites.front_default,
                 types: formData.types.map((t) => t.type.name),
-                abilities: formData.abilities.map((a) => a.ability.name),
+                abilities: abilitiesWithEffects,
                 id: formData.id,
                 stats: formData.stats.map((s) => ({ name: s.stat.name, base: s.base_stat })),
               };
