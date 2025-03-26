@@ -79,6 +79,7 @@ const usePokemonDetails = (name) => {
               return {
                 name: variety.pokemon.name.replace("-mega", " Mega"),
                 sprite: formData.sprites?.other?.["official-artwork"]?.front_default || formData.sprites.front_default,
+                shinySprite: formData.sprites?.other?.["official-artwork"]?.front_shiny || sprites?.front_shiny,
                 types: formData.types.map((t) => t.type.name),
                 abilities: abilitiesWithEffects,
                 id: formData.id,
@@ -86,7 +87,7 @@ const usePokemonDetails = (name) => {
               };
             })
         );
-
+        
         // Evolución
         const evolutionData = await fetch(species.evolution_chain.url).then((res) => res.json());
         const evolutionChain = [];

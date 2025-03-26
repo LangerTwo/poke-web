@@ -3,6 +3,11 @@ import typeTranslations from "../js/typeTranslations";
 import abilityTranslations from "../js/abilityTranslations";
 import { ChevronDown } from "lucide-react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
 const MegaEvolutions = ({ megaEvolutions }) => {
     const [openIndex, setOpenIndex] = useState(null);
     const [tab, setTab] = useState('info');
@@ -81,14 +86,29 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                                 </div>
                                 {tab === 'info' ? (
                                     <>
-                                        {/* Imagen */}
-                                        <div className="relative h-64 w-full pt-4">
-                                            <img 
-                                                src={mega.sprite} 
-                                                alt={mega.name} 
-                                                className="rounded-lg w-full h-full object-contain" 
-                                            />
-                                        </div>
+                                        {/* Swiper para cambiar entre imagen normal y shiny */}
+                                        <Swiper
+                                            spaceBetween={10}
+                                            slidesPerView={1}
+                                            navigation={true} // Activa las flechas de navegación
+                                            modules={[Navigation]} // Se debe importar el módulo de navegación
+                                            className="relative w-full"
+                                        >
+                                            <SwiperSlide className="relative h-64 w-full pt-4">
+                                                <img 
+                                                    src={mega.sprite} 
+                                                    alt={`${mega.name} normal`} 
+                                                    className="rounded-lg w-full h-full object-contain"
+                                                />
+                                            </SwiperSlide>
+                                            <SwiperSlide className="relative h-64 w-full pt-4">
+                                                <img 
+                                                    src={mega.shinySprite} 
+                                                    alt={`${mega.name} shiny`} 
+                                                    className="rounded-lg w-full h-full object-contain"
+                                                />
+                                            </SwiperSlide>
+                                        </Swiper>
 
                                         {/* Habilidades con efectos */}
                                         <div className='flex flex-col gap-3 mt-4'>
