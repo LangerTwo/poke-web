@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import Accordion from "./Accordion";
 import { ChevronDown } from "lucide-react";
 import useRegionId from "../../hooks/useRegionId";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
     const { regionName } = useRegionId();
     const [openIndex, setOpenIndex] = useState(null);
     const getPokemonImage = (sprites) =>
-        sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
+      sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
+
+    const getPokemonImageShiny = (sprites) =>
+      sprites?.other?.["official-artwork"]?.front_shiny || sprites?.front_shiny;
 
     const toggleAccordion = (key) => {
       setOpenIndex(openIndex === key ? null : key);
@@ -16,14 +23,29 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
 
   return (
     <div className="space-y-3">
-      {/* Imagen del Pokemon */}
-      <div className="relative h-64 w-full pt-4">
-        <img 
-          src={getPokemonImage(pokemon.sprites)}
-          alt={pokemon.name}
-          className="rounded-lg w-full h-full object-contain"
-        />
-      </div>
+      {/* Swiper para cambiar entre imagen normal y shiny */}
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={1}
+        navigation={true} // Activa las flechas de navegación
+        modules={[Navigation]} // Se debe importar el módulo de navegación
+        className="relative w-full"
+      >
+        <SwiperSlide className="relative h-64 w-full pt-4">
+          <img 
+            src={getPokemonImage(pokemon.sprites)} 
+            alt={`${pokemon.name} normal`} 
+            className="rounded-lg w-full h-full object-contain"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="relative h-64 w-full pt-4">
+          <img 
+            src={getPokemonImageShiny(pokemon.sprites)} 
+            alt={`${pokemon.name} shiny`} 
+            className="rounded-lg w-full h-full object-contain"
+          />
+        </SwiperSlide>
+      </Swiper>
 
       {/* Evoluciones */}
       <div className="space-y-2">
