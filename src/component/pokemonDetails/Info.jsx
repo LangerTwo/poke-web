@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import InfoEvoluciones from "./informacion/InfoEvoluciones";
 import InfoSwiper from "./informacion/infoSwiper";
+import InfoDescription from "./informacion/infoDescription";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -91,24 +92,7 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
       )}
 
       {/* Descripcion Pokemon */}
-      <div>
-        <button
-          onClick={() => toggleAccordion("description")}
-          className="flex justify-between items-center w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
-        >
-        <h3 className="font-semibold">Descripción</h3>
-        <ChevronDown
-          className={`w-5 h-5 transition-transform duration-200 ${
-          openIndex === "description" ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-      <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "description" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="p-4 bg-gray-50 border-t border-gray-200">
-            <p className="text-gray-600">{description}</p>
-          </div>
-        </div>
-      </div>
+      <InfoDescription description={description} openIndex={openIndex} toggleAccordion={toggleAccordion}/>
     </div>
   );
 };
