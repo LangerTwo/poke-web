@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import typeTranslations from "../js/typeTranslations";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import MegaTabs from "./megaDetails/MegaTabs";
 import MegaAbilities from "./megaDetails/MegaAbilities";
+import MegaHeader from "./megaDetails/MegaHeader";
 
 const MegaEvolutions = ({ megaEvolutions }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -44,30 +43,7 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                     return (
                         <div key={mega.id} className='w-full'> 
                             {/* Tipos, nombre, Id */}
-                            <div className='flex justify-between items-center gap-2 mt-4'>
-                                <div className='flex items-center gap-2'>
-                                    <h1 className='text-3xl font-bold capitalize'>{mega.name}</h1>
-                                    <div className="flex space-x-2">
-                                        {mega.types.map((type, index) => {
-                                            // console.log("Tipo original:", type); // Verifica cómo viene el tipo
-                                            const typeName = type?.name || type; // Manejar si viene como string o como objeto
-                                            const translatedType = typeTranslations[typeName] || typeName; // Traducción
-                                            return (
-                                                <span 
-                                                    key={index} 
-                                                    className={`${translatedType}2 px-3 pb-0.5 text-sm font-semibold bg-green-500 text-white rounded-full`}
-                                                >
-                                                    {translatedType}
-                                                </span>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                                <div className='ml-1 mt-1 text-white text-sm font-medium z-10 bg-black bg-opacity-50 px-2 py-1 rounded-full'>
-                                    <span>N° </span>
-                                    {mega.id}
-                                </div>
-                            </div>
+                            <MegaHeader name={mega.name} types={mega.types} id={mega.id} />
 
                             <div className="p-6 w-full">
                                 <MegaTabs tab={tab} setTab={setTab}/>
@@ -98,9 +74,7 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                                         </Swiper>
 
                                         {/* Habilidades con efectos */}
-                                        <MegaAbilities 
-                                            abilities={mega.abilities} 
-                                            openIndex={openIndex} 
+                                        <MegaAbilities abilities={mega.abilities} openIndex={openIndex} 
                                             toggleAccordion={toggleAccordion} 
                                         />
                                     </>
