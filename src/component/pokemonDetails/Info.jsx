@@ -29,7 +29,7 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
         slidesPerView={1}
         navigation={true} // Activa las flechas de navegación
         modules={[Navigation]} // Se debe importar el módulo de navegación
-        className="relative w-full"
+        className="relative"
       >
         <SwiperSlide className="relative h-64 w-full pt-4">
           <img 

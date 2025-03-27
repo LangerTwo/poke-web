@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import MegaTabs from "./megaDetails/MegaTabs";
 
 const MegaEvolutions = ({ megaEvolutions }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -70,20 +71,7 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                             </div>
 
                             <div className="p-6 w-full">
-                                <div className='flex justify-center mt-4 border-gray-200'>
-                                    <button
-                                        className={`px-4 py-2 font-medium ${tab === 'info' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
-                                        onClick={() => setTab('info')}
-                                    >
-                                        Informacion
-                                    </button>
-                                    <button
-                                        className={`px-4 py-2 font-medium ${tab === 'stats' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
-                                        onClick={() => setTab('stats')}
-                                    >
-                                        Estadísticas
-                                    </button>
-                                </div>
+                                <MegaTabs tab={tab} setTab={setTab}/>
                                 {tab === 'info' ? (
                                     <>
                                         {/* Swiper para cambiar entre imagen normal y shiny */}
