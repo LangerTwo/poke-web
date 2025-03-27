@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
-
 import Header from '../component/normalDetails/Header';
 import Tabs from '../component/normalDetails/Tabs';
 import PokemonStats from '../component/normalDetails/Stats';
