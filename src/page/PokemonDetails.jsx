@@ -4,11 +4,12 @@ import useRegionId from '../hooks/useRegionId';
 import MovesList from '../component/Acordeon';
 import usePokemonAbilities from '../hooks/usePokemonAbilities';
 
-import Header from '../component/pokemonDetails/Header';
-import Tabs from '../component/pokemonDetails/Tabs';
-import PokemonStats from '../component/pokemonDetails/Stats';
-import PokemonInfo from '../component/pokemonDetails/Info';
+import Header from '../component/normalDetails/Header';
+import Tabs from '../component/normalDetails/Tabs';
+import PokemonStats from '../component/normalDetails/Stats';
+import PokemonInfo from '../component/normalDetails/Info';
 import MegaEvolutions from '../component/MegaPokemon';
+import TabsDetailsPokemon from '../component/TabsDetailsPokemon';
 
 const usePokemonDetails = (name) => {
   const [data, setData] = useState({
@@ -150,21 +151,7 @@ function PokemonDetails() {
               </Link>
             </div>
 
-            <div className='flex justify-center mt-4 border-b border-gray-200'>
-              <button
-                className={`px-4 py-2 font-medium ${tab === 'normal' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
-                onClick={() => setTab('normal')}
-              >
-                Normal
-              </button>
-              <button
-                className={`px-4 py-2 font-medium ${tab === 'mega' ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-500 hover:text-gray-700'}`}
-                onClick={() => setTab('mega')}
-              >
-                Mega
-              </button>
-            </div>
-
+            <TabsDetailsPokemon activeTab={tab} setActiveTab={setTab} />
             {tab === 'normal' ? (
               <>
                 <Header pokemon={pokemon} />
