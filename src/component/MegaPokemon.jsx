@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import typeTranslations from "../js/typeTranslations";
-import abilityTranslations from "../js/abilityTranslations";
-import { ChevronDown } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import MegaTabs from "./megaDetails/MegaTabs";
+import MegaAbilities from "./megaDetails/MegaAbilities";
 
 const MegaEvolutions = ({ megaEvolutions }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -99,40 +98,11 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                                         </Swiper>
 
                                         {/* Habilidades con efectos */}
-                                        <div className='flex flex-col gap-3 mt-4'>
-                                            <div>
-                                                <button
-                                                    onClick={() => toggleAccordion("abilities")}
-                                                    className="flex justify-between w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-left"
-                                                >
-                                                    <h2 className='font-semibold'>Habilidad</h2>
-                                                    <ChevronDown
-                                                        className={`w-5 h-5 transition-transform duration-200 ${
-                                                        openIndex === "abilities" ? "rotate-180" : ""
-                                                    }`}
-                                                    />
-                                                </button>
-                                                <div className={`overflow-hidden transition-all duration-200 ease-in-out ${openIndex === "abilities" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-                                                    <div className='p-4 bg-gray-50 border-t border-gray-200'>
-                                                        {mega.abilities && mega.abilities.length > 0 ? (
-                                                            mega.abilities.map((ability, index) => {
-                                                                // console.log("Habilidad con efecto:", ability);
-                                                                const abilityName = abilityTranslations[ability.name] || ability.name; // Traducción
-                                                                const abilityEffect = ability.effect; // Efecto de la habilidad
-                                                                return (
-                                                                    <div key={index} className='space-y-1 text-left'>
-                                                                        <h3 className="font-semibold">{abilityName}</h3>
-                                                                        <p className="text-sm">{abilityEffect}</p>
-                                                                    </div>
-                                                                );
-                                                            })
-                                                        ) : (
-                                                            <p className="text-white">Sin habilidad</p>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <MegaAbilities 
+                                            abilities={mega.abilities} 
+                                            openIndex={openIndex} 
+                                            toggleAccordion={toggleAccordion} 
+                                        />
                                     </>
                                 ) : (
                                     <>
