@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import MegaTabs from "./megaDetails/MegaTabs";
 import MegaAbilities from "./megaDetails/MegaAbilities";
 import MegaHeader from "./megaDetails/MegaHeader";
+import MegaSwiper from "./megaDetails/MegaSwiper";
 
 const MegaEvolutions = ({ megaEvolutions }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -50,28 +51,9 @@ const MegaEvolutions = ({ megaEvolutions }) => {
                                 {tab === 'info' ? (
                                     <>
                                         {/* Swiper para cambiar entre imagen normal y shiny */}
-                                        <Swiper
-                                            spaceBetween={10}
-                                            slidesPerView={1}
-                                            navigation={true} // Activa las flechas de navegación
-                                            modules={[Navigation]} // Se debe importar el módulo de navegación
-                                            className="relative w-full"
-                                        >
-                                            <SwiperSlide className="relative h-64 w-full pt-4">
-                                                <img 
-                                                    src={mega.sprite} 
-                                                    alt={`${mega.name} normal`} 
-                                                    className="rounded-lg w-full h-full object-contain"
-                                                />
-                                            </SwiperSlide>
-                                            <SwiperSlide className="relative h-64 w-full pt-4">
-                                                <img 
-                                                    src={mega.shinySprite} 
-                                                    alt={`${mega.name} shiny`} 
-                                                    className="rounded-lg w-full h-full object-contain"
-                                                />
-                                            </SwiperSlide>
-                                        </Swiper>
+                                        <MegaSwiper normalSprite={mega.sprite} shinySprite={mega.shinySprite} 
+                                            name={mega.name} 
+                                        />
 
                                         {/* Habilidades con efectos */}
                                         <MegaAbilities abilities={mega.abilities} openIndex={openIndex} 
