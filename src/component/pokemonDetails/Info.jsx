@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import InfoEvoluciones from "./informacion/InfoEvoluciones";
 import InfoSwiper from "./informacion/infoSwiper";
 import InfoDescription from "./informacion/infoDescription";
+import InfoAbilities from "./informacion/infoAbilities";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -30,7 +31,7 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
       <InfoEvoluciones evolutions={evolutions} />
 
       {/* Añadir habilidad */}
-      {pokemon.abilities && (
+      {/* {pokemon.abilities && (
         <div>
           <button
             onClick={() => toggleAccordion("abilities")}
@@ -58,10 +59,10 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
             </div>
           </div>                       
         </div>
-      )}
+      )} */}
 
       {/* Habilidades ocultas */}
-      {pokemon.abilities?.some(ability => ability.is_hidden) && (
+      {/* {pokemon.abilities?.some(ability => ability.is_hidden) && (
         <div>
           <button
             onClick={() => toggleAccordion("hidden-abilities")}
@@ -89,7 +90,8 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
             </div>
           </div>
         </div>
-      )}
+      )} */}
+      <InfoAbilities abilitiesDetails={abilitiesDetails} openIndex={openIndex} toggleAccordion={toggleAccordion} />
 
       {/* Descripcion Pokemon */}
       <InfoDescription description={description} openIndex={openIndex} toggleAccordion={toggleAccordion}/>
