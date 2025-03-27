@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Info } from "lucide-react";
 import useRegionId from "../../hooks/useRegionId";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import InfoEvoluciones from "./informacion/InfoEvoluciones";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
-    const { regionName } = useRegionId();
+  const { regionName } = useRegionId();
     const [openIndex, setOpenIndex] = useState(null);
     const getPokemonImage = (sprites) =>
       sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
@@ -48,21 +49,7 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
       </Swiper>
 
       {/* Evoluciones */}
-      <div className="space-y-2">
-        <h2 className="font-semibold">Evoluciones</h2>
-        <div className="flex justify-center">
-          {evolutions.map((evo, index) => (
-            <Link key={index} to={`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon/pokemon/${evo}`}>
-              <div className="flex items-center">
-                {index > 0 && <span className="mx-2">→</span>}
-                <span className="capitalize hover:underline hover:text-red-600">
-                  {evo.charAt(0).toUpperCase() + evo.slice(1)}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+      <InfoEvoluciones evolutions={evolutions} />
 
       {/* Añadir habilidad */}
       {pokemon.abilities && (
