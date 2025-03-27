@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { ChevronDown, Info } from "lucide-react";
-import useRegionId from "../../hooks/useRegionId";
+import { ChevronDown } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import InfoEvoluciones from "./informacion/InfoEvoluciones";
+import InfoSwiper from "./informacion/infoSwiper";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
-  const { regionName } = useRegionId();
     const [openIndex, setOpenIndex] = useState(null);
     const getPokemonImage = (sprites) =>
       sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
@@ -25,28 +23,7 @@ const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => 
   return (
     <div className="space-y-3">
       {/* Swiper para cambiar entre imagen normal y shiny */}
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
-        navigation={true} // Activa las flechas de navegación
-        modules={[Navigation]} // Se debe importar el módulo de navegación
-        className="relative"
-      >
-        <SwiperSlide className="relative h-64 w-full pt-4">
-          <img 
-            src={getPokemonImage(pokemon.sprites)} 
-            alt={`${pokemon.name} normal`} 
-            className="rounded-lg w-full h-full object-contain"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="relative h-64 w-full pt-4">
-          <img 
-            src={getPokemonImageShiny(pokemon.sprites)} 
-            alt={`${pokemon.name} shiny`} 
-            className="rounded-lg w-full h-full object-contain"
-          />
-        </SwiperSlide>
-      </Swiper>
+      <InfoSwiper normalSprite={getPokemonImage(pokemon.sprites)} shinySprite={getPokemonImageShiny(pokemon.sprites)} name={pokemon.name}/>
 
       {/* Evoluciones */}
       <InfoEvoluciones evolutions={evolutions} />
