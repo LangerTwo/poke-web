@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePokemonModal } from "../context/PokemonModalContext";
+import usePokemonDetails from "../hooks/usePokemonDetail";
+import TabsDetailsPokemon from "./TabsDetailsPokemon";
+import Header from "./normalDetails/Header";
+import Tabs from "./normalDetails/Tabs";
+import PokemonInfo from "./normalDetails/Info";
+import PokemonStats from "./normalDetails/Stats";
+import MovesList from "./Acordeon";
+import MegaEvolutions from "./MegaPokemon";
+import { useParams } from "react-router-dom";
+import usePokemonAbilities from "../hooks/usePokemonAbilities";
 
 function PokemonModal() {
     const { isOpen, closeModal, pokemon } = usePokemonModal();
+    const { name } = useParams();
+    const { evolutions, description, moves, types, megaEvolutions, loading, error } = usePokemonDetails(name);
+    const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
+    const [activeTab, setActiveTab] = useState("info");
+    const [tab, setTab] = useState('normal');
 
     if (!isOpen || !pokemon) return null; // No mostrar si el modal está cerrado o no hay datos
 
@@ -16,7 +31,22 @@ function PokemonModal() {
                     ✖
                 </button>
 
-                <h2 className="text-2xl font-bold text-center mb-4">{pokemon.name.toUpperCase()}</h2>
+                <TabsDetailsPokemon activeTab={tab} setActiveTab={setTab} />
+                {tab === 'normal' ? (
+                <>
+                    <Header pokemon={pokemon} />
+                    <div className='p-6 w-full'>
+                    <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+                    {activeTab === 'info' && <PokemonInfo pokemon={pokemon} evolutions={evolutions} abilitiesDetails={abilitiesDetails} description={description} />}
+                    {activeTab === 'stats' && <PokemonStats pokemon={pokemon} />}
+                    {activeTab === 'moves' && <MovesList moves={moves} />}
+                    </div>
+                </>
+                ) : (
+                <MegaEvolutions megaEvolutions={megaEvolutions} />
+                )}
+
+                {/* <h2 className="text-2xl font-bold text-center mb-4">{pokemon.name.toUpperCase()}</h2>
                 
                 <div className="flex justify-center">
                     <img 
@@ -30,7 +60,7 @@ function PokemonModal() {
                     <p><strong>Altura:</strong> {pokemon.height / 10} m</p>
                     <p><strong>Peso:</strong> {pokemon.weight / 10} kg</p>
                     <p><strong>Tipo:</strong> {pokemon.types.map(t => t.type.name).join(", ")}</p>
-                </div>
+                </div> */}
             </div>
         </div>
     );
