@@ -32,7 +32,7 @@ function RegionDetail() {
 
     const handleLeaderClick = useCallback(() => {
         navigate(`/${regionName?.toLowerCase() || 'unknown'}/lideres-gimnasio`);
-    }, [navigate, regionName]);    
+    }, [navigate]);    
 
     return (
         // Contenedor de Cards
