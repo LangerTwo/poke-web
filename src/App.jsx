@@ -7,6 +7,7 @@ import PokemonRegion from './page/PokemonRegion';
 import Navbar from './component/Navbar';
 import PokemonModal from './component/PokemonModal';
 import { PokemonModalProvider } from './context/PokemonModalContext';
+import LeadersPage from './page/LeadersPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PokemonRegion />} />
           <Route path="/:regionName" element={<RegionDetail />} />
+          <Route path="/:regionName/lideres-gimnasio" element={<LeadersPage />} />
           <Route path="/:regionName/lista-pokemon" element={<PokemonPage />} />
           <Route path="/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
         </Routes>
