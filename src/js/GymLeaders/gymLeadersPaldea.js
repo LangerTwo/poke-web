@@ -5,13 +5,13 @@ const gymLeadersPaldea = [
       type: "Bicho",
       badge: "Medalla Bicho",
       team: [
-        { pokemon: "Nymble", nivel: 14 },
-        { pokemon: "Tarountula", nivel: 14 },
-        { pokemon: "Teddiursa" ("Teratipo Bicho"), nivel: 15 }
+        { namePokemon: "Nymble", nivel: 14 },
+        { namePokemon: "Tarountula", nivel: 14 },
+        { namePokemon: "Teddiursa" ("Teratipo Bicho"), nivel: 15 }
       ],
       rewards: {
-        mt: "MT021 - Brinco",
-        dinero: 2700
+        tm: "MT021 - Brinco",
+        money: 2700
       }
     },
     {
@@ -20,13 +20,13 @@ const gymLeadersPaldea = [
       type: "Planta",
       badge: "Medalla Planta",
       team: [
-        { pokemon: "Petilil", nivel: 16 },
-        { pokemon: "Smoliv", nivel: 16 },
-        { pokemon: "Sudowoodo" ("Teratipo Planta"), nivel: 17 }
+        { namePokemon: "Petilil", nivel: 16 },
+        { namePokemon: "Smoliv", nivel: 16 },
+        { namePokemon: "Sudowoodo" ("Teratipo Planta"), nivel: 17 }
       ],
       rewards: {
-        mt: "MT020 - Abrecaminos",
-        dinero: 2880
+        tm: "MT020 - Abrecaminos",
+        money: 2880
       }
     },
     {
@@ -35,14 +35,14 @@ const gymLeadersPaldea = [
       type: "Eléctrico",
       badge: "Medalla Electro",
       team: [
-        { pokemon: "Wattrel", nivel: 23 },
-        { pokemon: "Bellibolt", nivel: 23 },
-        { pokemon: "Luxio", nivel: 23 },
-        { pokemon: "Mismagius" ("Teratipo Eléctrico"), nivel: 24 }
+        { namePokemon: "Wattrel", nivel: 23 },
+        { namePokemon: "Bellibolt", nivel: 23 },
+        { namePokemon: "Luxio", nivel: 23 },
+        { namePokemon: "Mismagius" ("Teratipo Eléctrico"), nivel: 24 }
       ],
       rewards: {
-        mt: "MT048 - Voltio Cambio",
-        dinero: 4320
+        tm: "MT048 - Voltio Cambio",
+        money: 4320
       }
     },
     {
@@ -51,13 +51,13 @@ const gymLeadersPaldea = [
       type: "Agua",
       badge: "Medalla Agua",
       team: [
-        { pokemon: "Veluza", nivel: 29 },
-        { pokemon: "Wugtrio", nivel: 29 },
-        { pokemon: "Crabominable" ("Teratipo Agua"), nivel: 30 }
+        { namePokemon: "Veluza", nivel: 29 },
+        { namePokemon: "Wugtrio", nivel: 29 },
+        { namePokemon: "Crabominable" ("Teratipo Agua"), nivel: 30 }
       ],
       rewards: {
-        mt: "MT022 - Agua Fría",
-        dinero: 5400
+        tm: "MT022 - Agua Fría",
+        money: 5400
       }
     },
     {
@@ -66,13 +66,13 @@ const gymLeadersPaldea = [
       type: "Normal",
       badge: "Medalla Normal",
       team: [
-        { pokemon: "Komala", nivel: 35 },
-        { pokemon: "Dudunsparce", nivel: 35 },
-        { pokemon: "Staraptor" ("Teratipo Normal"), nivel: 36 }
+        { namePokemon: "Komala", nivel: 35 },
+        { namePokemon: "Dudunsparce", nivel: 35 },
+        { namePokemon: "Staraptor" ("Teratipo Normal"), nivel: 36 }
       ],
       rewards: {
-        mt: "MT025 - Imagen",
-        dinero: 6120
+        tm: "MT025 - Imagen",
+        money: 6120
       }
     },
     {
@@ -81,14 +81,14 @@ const gymLeadersPaldea = [
       type: "Fantasma",
       badge: "Medalla Espectro",
       team: [
-        { pokemon: "Mimikyu", nivel: 41 },
-        { pokemon: "Banette", nivel: 41 },
-        { pokemon: "Houndstone", nivel: 41 },
-        { pokemon: "Toxtricity" ("Teratipo Fantasma"), nivel: 42 }
+        { namePokemon: "Mimikyu", nivel: 41 },
+        { namePokemon: "Banette", nivel: 41 },
+        { namePokemon: "Houndstone", nivel: 41 },
+        { namePokemon: "Toxtricity" ("Teratipo Fantasma"), nivel: 42 }
       ],
       rewards: {
-        mt: "MT114 - Bola Sombra",
-        dinero: 7560
+        tm: "MT114 - Bola Sombra",
+        money: 7560
       }
     },
     {
@@ -97,14 +97,14 @@ const gymLeadersPaldea = [
       type: "Psíquico",
       badge: "Medalla Psíquico",
       team: [
-        { pokemon: "Farigiraf", nivel: 44 },
-        { pokemon: "Gardevoir", nivel: 44 },
-        { pokemon: "Espathra", nivel: 44 },
-        { pokemon: "Florges" ("Teratipo Psíquico"), nivel: 45 }
+        { namePokemon: "Farigiraf", nivel: 44 },
+        { namePokemon: "Gardevoir", nivel: 44 },
+        { namePokemon: "Espathra", nivel: 44 },
+        { namePokemon: "Florges" ("Teratipo Psíquico"), nivel: 45 }
       ],
       rewards: {
-        mt: "MT120 - Psiquico",
-        dinero: 8100
+        tm: "MT120 - Psiquico",
+        money: 8100
       }
     },
     {
@@ -113,14 +113,14 @@ const gymLeadersPaldea = [
       type: "Hielo",
       badge: "Medalla Hielo",
       team: [
-        { pokemon: "Frosmoth", nivel: 47 },
-        { pokemon: "Beartic", nivel: 47 },
-        { pokemon: "Cetitan", nivel: 47 },
-        { pokemon: "Altaria" ("Teratipo Hielo"), nivel: 48 }
+        { namePokemon: "Frosmoth", nivel: 47 },
+        { namePokemon: "Beartic", nivel: 47 },
+        { namePokemon: "Cetitan", nivel: 47 },
+        { namePokemon: "Altaria" ("Teratipo Hielo"), nivel: 48 }
       ],
       rewards: {
-        mt: "MT124 - Pirueta Helada",
-        dinero: 8640
+        tm: "MT124 - Pirueta Helada",
+        money: 8640
       }
     }
   ];

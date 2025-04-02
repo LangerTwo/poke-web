@@ -5,8 +5,8 @@ const gymLeadersKantoFRLG = [
     type: "Roca",
     badge: "Medalla Roca",
     team: [
-      { name: "Geodude", level: 12 },
-      { name: "Onix", level: 14 }
+      { namePokemon: "Geodude", level: 12 },
+      { namePokemon: "Onix", level: 14 }
     ],
     rewards: {
       tm: "MT39 - Tumba Rocas",
@@ -19,8 +19,8 @@ const gymLeadersKantoFRLG = [
     type: "Agua",
     badge: "Medalla Cascada",
     team: [
-      { name: "Staryu", level: 18 },
-      { name: "Starmie", level: 21 }
+      { namePokemon: "Staryu", level: 18 },
+      { namePokemon: "Starmie", level: 21 }
     ],
     rewards: {
       tm: "MT03 - Hidropulso",
@@ -33,9 +33,9 @@ const gymLeadersKantoFRLG = [
     type: "Eléctrico",
     badge: "Medalla Trueno",
     team: [
-      { name: "Voltorb", level: 21 },
-      { name: "Pikachu", level: 18 },
-      { name: "Raichu", level: 24 }
+      { namePokemon: "Voltorb", level: 21 },
+      { namePokemon: "Pikachu", level: 18 },
+      { namePokemon: "Raichu", level: 24 }
     ],
     rewards: {
       tm: "MT24 - Onda Voltio",
@@ -48,9 +48,9 @@ const gymLeadersKantoFRLG = [
     type: "Planta",
     badge: "Medalla Arcoíris",
     team: [
-      { name: "Victreebel", level: 29 },
-      { name: "Tangela", level: 24 },
-      { name: "Vileplume", level: 29 }
+      { namePokemon: "Victreebel", level: 29 },
+      { namePokemon: "Tangela", level: 24 },
+      { namePokemon: "Vileplume", level: 29 }
     ],
     rewards: {
       tm: "MT19 - Gigadrenado",
@@ -63,10 +63,10 @@ const gymLeadersKantoFRLG = [
     type: "Veneno",
     badge: "Medalla Alma",
     team: [
-      { name: "Koffing", level: 37 },
-      { name: "Muk", level: 39 },
-      { name: "Koffing", level: 37 },
-      { name: "Weezing", level: 43 }
+      { namePokemon: "Koffing", level: 37 },
+      { namePokemon: "Muk", level: 39 },
+      { namePokemon: "Koffing", level: 37 },
+      { namePokemon: "Weezing", level: 43 }
     ],
     rewards: {
       tm: "MT06 - Tóxico",
@@ -79,10 +79,10 @@ const gymLeadersKantoFRLG = [
     type: "Psíquico",
     badge: "Medalla Pantano",
     team: [
-      { name: "Kadabra", level: 38 },
-      { name: "Mr. Mime", level: 37 },
-      { name: "Venomoth", level: 38 },
-      { name: "Alakazam", level: 43 }
+      { namePokemon: "Kadabra", level: 38 },
+      { Pokemon: "Mr. Mime", level: 37 },
+      { namePokemon: "Venomoth", level: 38 },
+      { namePokemon: "Alakazam", level: 43 }
     ],
     rewards: {
       tm: "MT04 - Paz Mental",
@@ -95,10 +95,10 @@ const gymLeadersKantoFRLG = [
     type: "Fuego",
     badge: "Medalla Volcán",
     team: [
-      { name: "Growlithe", level: 42 },
-      { name: "Ponyta", level: 40 },
-      { name: "Rapidash", level: 42 },
-      { name: "Arcanine", level: 47 }
+      { namePokemon: "Growlithe", level: 42 },
+      { namePokemon: "Ponyta", level: 40 },
+      { namePokemon: "Rapidash", level: 42 },
+      { namePokemon: "Arcanine", level: 47 }
     ],
     rewards: {
       tm: "MT38 - Llamarada",
@@ -111,11 +111,11 @@ const gymLeadersKantoFRLG = [
     type: "Tierra",
     badge: "Medalla Tierra",
     team: [
-      { name: "Rhyhorn", level: 45 },
-      { name: "Dugtrio", level: 42 },
-      { name: "Nidoqueen", level: 44 },
-      { name: "Nidoking", level: 45 },
-      { name: "Rhydon", level: 50 }
+      { namePokemon: "Rhyhorn", level: 45 },
+      { namePokemon: "Dugtrio", level: 42 },
+      { namePokemon: "Nidoqueen", level: 44 },
+      { namePokemon: "Nidoking", level: 45 },
+      { namePokemon: "Rhydon", level: 50 }
     ],
     rewards: {
       tm: "MT26 - Terremoto",

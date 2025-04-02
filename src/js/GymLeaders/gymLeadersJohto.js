@@ -1,12 +1,12 @@
 const cityLeadersJohto = [
   {
-    name: "Pegaso",
+    namePokemon: "Pegaso",
     city: "Ciudad Malva",
     type: "Volador",
     badge: "Medalla Céfiro",
     team: [
-      { name: "Pidgey", level: 7 },
-      { name: "Pidgeotto", level: 9 }
+      { namePokemon: "Pidgey", level: 7 },
+      { namePokemon: "Pidgeotto", level: 9 }
     ],
     rewards: {
       tm: "MT31 - Doble Filo",
@@ -14,14 +14,14 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Antón",
+    namePokemon: "Antón",
     city: "Ciudad Azalea",
     type: "Bicho",
     badge: "Medalla Colmena",
     team: [
-      { name: "Metapod", level: 14 },
-      { name: "Kakuna", level: 14 },
-      { name: "Scyther", level: 16 }
+      { namePokemon: "Metapod", level: 14 },
+      { namePokemon: "Kakuna", level: 14 },
+      { namePokemon: "Scyther", level: 16 }
     ],
     rewards: {
       tm: "MT49 - Doble Golpe",
@@ -29,13 +29,13 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Blanca",
+    namePokemon: "Blanca",
     city: "Ciudad Trigal",
     type: "Normal",
     badge: "Medalla Planicie",
     team: [
-      { name: "Clefairy", level: 18 },
-      { name: "Miltank", level: 20 }
+      { namePokemon: "Clefairy", level: 18 },
+      { namePokemon: "Miltank", level: 20 }
     ],
     rewards: {
       tm: "MT45 - Atracción",
@@ -43,15 +43,15 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Morti",
+    namePokemon: "Morti",
     city: "Ciudad Iris",
     type: "Fantasma",
     badge: "Medalla Niebla",
     team: [
-      { name: "Gastly", level: 21 },
-      { name: "Haunter", level: 21 },
-      { name: "Haunter", level: 23 },
-      { name: "Gengar", level: 25 }
+      { namePokemon: "Gastly", level: 21 },
+      { namePokemon: "Haunter", level: 21 },
+      { namePokemon: "Haunter", level: 23 },
+      { namePokemon: "Gengar", level: 25 }
     ],
     rewards: {
       tm: "MT30 - Bola Sombra",
@@ -59,14 +59,14 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Aníbal",
+    namePokemon: "Aníbal",
     city: "Ciudad Olivo",
     type: "Acero",
     badge: "Medalla Mineral",
     team: [
-      { name: "Magnemite", level: 30 },
-      { name: "Magnemite", level: 30 },
-      { name: "Steelix", level: 35 }
+      { namePokemon: "Magnemite", level: 30 },
+      { namePokemon: "Magnemite", level: 30 },
+      { namePokemon: "Steelix", level: 35 }
     ],
     rewards: {
       tm: "MT23 - Cola Férrea",
@@ -74,13 +74,13 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Yasmina",
+    namePokemon: "Yasmina",
     city: "Ciudad Orquídea",
     type: "Lucha",
     badge: "Medalla Tormenta",
     team: [
-      { name: "Primeape", level: 29 },
-      { name: "Poliwrath", level: 31 }
+      { namePokemon: "Primeape", level: 29 },
+      { namePokemon: "Poliwrath", level: 31 }
     ],
     rewards: {
       tm: "MT01 - Golpe Karate",
@@ -88,14 +88,14 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Fred",
+    namePokemon: "Fred",
     city: "Ciudad Caoba",
     type: "Hielo",
     badge: "Medalla Glaciar",
     team: [
-      { name: "Seel", level: 30 },
-      { name: "Dewgong", level: 32 },
-      { name: "Piloswine", level: 34 }
+      { namePokemon: "Seel", level: 30 },
+      { namePokemon: "Dewgong", level: 32 },
+      { namePokemon: "Piloswine", level: 34 }
     ],
     rewards: {
       tm: "MT16 - Rayo Hielo",
@@ -103,15 +103,15 @@ const cityLeadersJohto = [
     }
   },
   {
-    name: "Débora",
+    namePokemon: "Débora",
     city: "Ciudad Endrino",
     type: "Dragón",
     badge: "Medalla Dragón",
     team: [
-      { name: "Dragonair", level: 37 },
-      { name: "Dragonair", level: 37 },
-      { name: "Dragonair", level: 37 },
-      { name: "Kingdra", level: 40 }
+      { namePokemon: "Dragonair", level: 37 },
+      { namePokemon: "Dragonair", level: 37 },
+      { namePokemon: "Dragonair", level: 37 },
+      { namePokemon: "Kingdra", level: 40 }
     ],
     rewards: {
       tm: "MT24 - Cola Dragón",

@@ -5,12 +5,12 @@ const gymLeadersTeselia = [
         type: "Agua/Fuego/Planta",
         badge: "Medalla Trío",
         team: [
-          { pokemon: "Lillipup", nivel: 12 },
-          { pokemon: "Pansage/Pansear/Panpour", nivel: 14 }
+          { namePokemon: "Lillipup", nivel: 12 },
+          { namePokemon: "Pansage/Pansear/Panpour", nivel: 14 }
         ],
         rewards: {
-          mt: "MT83 - Avivar",
-          dinero: 1680
+          tm: "MT83 - Avivar",
+          money: 1680
         }
     },
     {
@@ -19,12 +19,12 @@ const gymLeadersTeselia = [
       type: "Normal",
       badge: "Medalla Base",
       team: [
-        { pokemon: "Herdier", nivel: 18 },
-        { pokemon: "Watchog", nivel: 20 }
+        { namePokemon: "Herdier", nivel: 18 },
+        { namePokemon: "Watchog", nivel: 20 }
       ],
       rewards: {
-        mt: "MT67 - Represalia",
-        dinero: 2400
+        tm: "MT67 - Represalia",
+        money: 2400
       }
     },
     {
@@ -33,9 +33,9 @@ const gymLeadersTeselia = [
         type: "Bicho",
         badge: "Medalla Élitro",
         team: [
-        { pokemon: "Whirlipede", nivel: 21 },
-          { pokemon: "Dwabble", nivel: 21 },
-          { pokemon: "Leavanny", nivel: 23 }
+        { namePokemon: "Whirlipede", nivel: 21 },
+          { namePokemon: "Dwabble", nivel: 21 },
+          { namePokemon: "Leavanny", nivel: 23 }
         ],
     },
     {
@@ -44,13 +44,13 @@ const gymLeadersTeselia = [
       type: "Eléctrico",
       badge: "Medalla Voltio",
       team: [
-        { pokemon: "Emolga", nivel: 25 },
-        { pokemon: "Emolga", nivel: 25 },
-        { pokemon: "Zebstrika", nivel: 27 }
+        { namePokemon: "Emolga", nivel: 25 },
+        { namePokemon: "Emolga", nivel: 25 },
+        { namePokemon: "Zebstrika", nivel: 27 }
       ],
       rewards: {
-        mt: "MT72 - Voltiocambio",
-        dinero: 3240
+        tm: "MT72 - Voltiocambio",
+        money: 3240
       }
     },
     {
@@ -59,13 +59,13 @@ const gymLeadersTeselia = [
       type: "Tierra",
       badge: "Medalla Temblor",
       team: [
-        { pokemon: "Krokorok", nivel: 29 },
-        { pokemon: "Palpitoad", nivel: 29 },
-        { pokemon: "Excadrill", nivel: 31 }
+        { namePokemon: "Krokorok", nivel: 29 },
+        { namePokemon: "Palpitoad", nivel: 29 },
+        { namePokemon: "Excadrill", nivel: 31 }
       ],
       rewards: {
-        mt: "MT78 - Terratemblor",
-        dinero: 3720
+        tm: "MT78 - Terratemblor",
+        money: 3720
       }
     },
     {
@@ -74,13 +74,13 @@ const gymLeadersTeselia = [
       type: "Volador",
       badge: "Medalla Jet",
       team: [
-        { pokemon: "Swoobat", nivel: 33 },
-        { pokemon: "Unfezant", nivel: 33 },
-        { pokemon: "Swanna", nivel: 35 }
+        { namePokemon: "Swoobat", nivel: 33 },
+        { namePokemon: "Unfezant", nivel: 33 },
+        { namePokemon: "Swanna", nivel: 35 }
       ],
       rewards: {
-        mt: "MT62 - Acróbata",
-        dinero: 4200
+        tm: "MT62 - Acróbata",
+        money: 4200
       }
     },
     {
@@ -89,13 +89,13 @@ const gymLeadersTeselia = [
       type: "Hielo",
       badge: "Medalla Candelizo",
       team: [
-        { pokemon: "Vanillish", nivel: 37 },
-        { pokemon: "Cryogonal", nivel: 37 },
-        { pokemon: "Beartic", nivel: 39 }
+        { namePokemon: "Vanillish", nivel: 37 },
+        { namePokemon: "Cryogonal", nivel: 37 },
+        { namePokemon: "Beartic", nivel: 39 }
       ],
       rewards: {
-        mt: "MT79 - Viento Gélido",
-        dinero: 4680
+        tm: "MT79 - Viento Gélido",
+        money: 4680
       }
     },
     {
@@ -104,13 +104,13 @@ const gymLeadersTeselia = [
         type: "Dragón",
         badge: "Medalla Leyenda",
         team: [
-          { pokemon: "Fraxure", nivel: 41 },
-          { pokemon: "Druddigon", nivel: 41 },
-          { pokemon: "Haxorus", nivel: 43 }
+          { namePokemon: "Fraxure", nivel: 41 },
+          { namePokemon: "Druddigon", nivel: 41 },
+          { namePokemon: "Haxorus", nivel: 43 }
         ],
         rewards: {
-          mt: "MT82 - Cola Dragón",
-          dinero: 5520
+          tm: "MT82 - Cola Dragón",
+          money: 5520
         }
       },
   ];

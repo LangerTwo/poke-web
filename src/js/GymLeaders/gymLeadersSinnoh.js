@@ -5,13 +5,13 @@ const gymLeadersSinnoh = [
       type: "Roca",
       badge: "Medalla Roca",
       team: [
-        { pokemon: "Geodude", nivel: 12 },
-        { pokemon: "Onix", nivel: 12 },
-        { pokemon: "Cranidos", nivel: 14 }
+        { namePokemon: "Geodude", nivel: 12 },
+        { namePokemon: "Onix", nivel: 12 },
+        { namePokemon: "Cranidos", nivel: 14 }
       ],
       rewards: {
-        mt: "MT76 - Trampa Rocas",
-        dinero: 1680
+        tm: "MT76 - Trampa Rocas",
+        money: 1680
       }
     },
     {
@@ -20,13 +20,13 @@ const gymLeadersSinnoh = [
       type: "Planta",
       badge: "Medalla Bosque",
       team: [
-        { pokemon: "Turtwig", nivel: 20 },
-        { pokemon: "Cherrim", nivel: 20 },
-        { pokemon: "Roserade", nivel: 22 }
+        { namePokemon: "Turtwig", nivel: 20 },
+        { namePokemon: "Cherrim", nivel: 20 },
+        { namePokemon: "Roserade", nivel: 22 }
       ],
       rewards: {
-        mt: "MT86 - Hierba Lazo",
-        dinero: 2760
+        tm: "MT86 - Hierba Lazo",
+        money: 2760
       }
     },
     {
@@ -35,13 +35,13 @@ const gymLeadersSinnoh = [
       type: "Lucha",
       badge: "Medalla Adoquín",
       team: [
-        { pokemon: "Meditite", nivel: 27 },
-        { pokemon: "Machoke", nivel: 27 },
-        { pokemon: "Lucario", nivel: 30 }
+        { namePokemon: "Meditite", nivel: 27 },
+        { namePokemon: "Machoke", nivel: 27 },
+        { namePokemon: "Lucario", nivel: 30 }
       ],
       rewards: {
-        mt: "MT60 - Puño Drenaje",
-        dinero: 3600
+        tm: "MT60 - Puño Drenaje",
+        money: 3600
       }
     },
     {
@@ -50,13 +50,13 @@ const gymLeadersSinnoh = [
       type: "Agua",
       badge: "Medalla Cienaga",
       team: [
-        { pokemon: "Gyarados", nivel: 33 },
-        { pokemon: "Quagsire", nivel: 34 },
-        { pokemon: "Floatzel", nivel: 37 }
+        { namePokemon: "Gyarados", nivel: 33 },
+        { namePokemon: "Quagsire", nivel: 34 },
+        { namePokemon: "Floatzel", nivel: 37 }
       ],
       rewards: {
-        mt: "MT55 - Salmuera",
-        dinero: 4200
+        tm: "MT55 - Salmuera",
+        money: 4200
       }
     },
     {
@@ -65,13 +65,13 @@ const gymLeadersSinnoh = [
       type: "Fantasma",
       badge: "Medalla Reliquia",
       team: [
-        { pokemon: "Duskull", nivel: 37 },
-        { pokemon: "Haunter", nivel: 37 },
-        { pokemon: "Mismagius", nivel: 39 }
+        { namePokemon: "Duskull", nivel: 37 },
+        { namePokemon: "Haunter", nivel: 37 },
+        { namePokemon: "Mismagius", nivel: 39 }
       ],
       rewards: {
-        mt: "MT65 - Garra Umbría",
-        dinero: 4680
+        tm: "MT65 - Garra Umbría",
+        money: 4680
       }
     },
     {
@@ -80,13 +80,13 @@ const gymLeadersSinnoh = [
       type: "Eléctrico",
       badge: "Medalla Faro",
       team: [
-        { pokemon: "Raichu", nivel: 46 },
-        { pokemon: "Octillery", nivel: 47 },
-        { pokemon: "Luxray", nivel: 50 }
+        { namePokemon: "Raichu", nivel: 46 },
+        { namePokemon: "Octillery", nivel: 47 },
+        { namePokemon: "Luxray", nivel: 50 }
       ],
       rewards: {
-        mt: "MT57 - Rayo Carga",
-        dinero: 5520
+        tm: "MT57 - Rayo Carga",
+        money: 5520
       }
     },
     {
@@ -95,14 +95,14 @@ const gymLeadersSinnoh = [
       type: "Hielo",
       badge: "Medalla Carámbano",
       team: [
-        { pokemon: "Snover", nivel: 44 },
-        { pokemon: "Sneasel", nivel: 44 },
-        { pokemon: "Abomasnow", nivel: 46 },
-        { pokemon: "Froslass", nivel: 48 }
+        { namePokemon: "Snover", nivel: 44 },
+        { namePokemon: "Sneasel", nivel: 44 },
+        { namePokemon: "Abomasnow", nivel: 46 },
+        { namePokemon: "Froslass", nivel: 48 }
       ],
       rewards: {
-        mt: "MT72 - Alud",
-        dinero: 5760
+        tm: "MT72 - Alud",
+        money: 5760
       }
     },
     {
@@ -111,13 +111,13 @@ const gymLeadersSinnoh = [
       type: "Acero",
       badge: "Medalla Mina",
       team: [
-        { pokemon: "Magneton", nivel: 37 },
-        { pokemon: "Steelix", nivel: 38 },
-        { pokemon: "Bastiodon", nivel: 41 },
+        { namePokemon: "Magneton", nivel: 37 },
+        { namePokemon: "Steelix", nivel: 38 },
+        { namePokemon: "Bastiodon", nivel: 41 },
       ],
       rewards: {
-        mt: "MT59 - Foco Resplandor",
-        dinero: 6120
+        tm: "MT59 - Foco Resplandor",
+        money: 6120
       }
     }
   ];

@@ -5,12 +5,12 @@ const gymLeadersKalos = [
       type: "Bicho",
       badge: "Medalla Insecto",
       team: [
-        { pokemon: "Surskit", nivel: 10 },
-        { pokemon: "Vivillon", nivel: 12 }
+        { namePokemon: "Surskit", nivel: 10 },
+        { namePokemon: "Vivillon", nivel: 12 }
       ],
       rewards: {
-        mt: "MT83 - Acoso",
-        dinero: 1920
+        tm: "MT83 - Acoso",
+        money: 1920
       }
     },
     {
@@ -19,12 +19,12 @@ const gymLeadersKalos = [
       type: "Roca",
       badge: "Medalla Muro",
       team: [
-        { pokemon: "Amaura", nivel: 25 },
-        { pokemon: "Tyrunt", nivel: 25 }
+        { namePokemon: "Amaura", nivel: 25 },
+        { namePokemon: "Tyrunt", nivel: 25 }
       ],
       rewards: {
-        mt: "MT39 - Tumbarrocas",
-        dinero: 4000
+        tm: "MT39 - Tumbarrocas",
+        money: 4000
       }
     },
     {
@@ -33,13 +33,13 @@ const gymLeadersKalos = [
       type: "Lucha",
       badge: "Medalla Lucha",
       team: [
-        { pokemon: "Mienfoo", nivel: 29 },
-        { pokemon: "Machoke", nivel: 28 },
-        { pokemon: "Hawlucha", nivel: 32 }
+        { namePokemon: "Mienfoo", nivel: 29 },
+        { namePokemon: "Machoke", nivel: 28 },
+        { namePokemon: "Hawlucha", nivel: 32 }
       ],
       rewards: {
-        mt: "MT98 - Puño Incremento",
-        dinero: 5280
+        tm: "MT98 - Puño Incremento",
+        money: 5280
       }
     },
     {
@@ -48,13 +48,13 @@ const gymLeadersKalos = [
       type: "Planta",
       badge: "Medalla Prisma",
       team: [
-        { pokemon: "Jumpluff", nivel: 30 },
-        { pokemon: "Weepinbell", nivel: 31 },
-        { pokemon: "Gogoat", nivel: 34 }
+        { namePokemon: "Jumpluff", nivel: 30 },
+        { namePokemon: "Weepinbell", nivel: 31 },
+        { namePokemon: "Gogoat", nivel: 34 }
       ],
       rewards: {
-        mt: "MT86 - Hierba Lazo",
-        dinero: 5440
+        tm: "MT86 - Hierba Lazo",
+        money: 5440
       }
     },
     {
@@ -63,13 +63,13 @@ const gymLeadersKalos = [
         type: "Eléctrico",
         badge: "Medalla Voltaje",
         team: [
-          { pokemon: "Emolga", nivel: 35 },
-          { pokemon: "Magneton", nivel: 35 },
-          { pokemon: "Heliolisk", nivel: 37 }
+          { namePokemon: "Emolga", nivel: 35 },
+          { namePokemon: "Magneton", nivel: 35 },
+          { namePokemon: "Heliolisk", nivel: 37 }
         ],
         rewards: {
-          mt: "MT24 - Rayo",
-          dinero: 6720
+          tm: "MT24 - Rayo",
+          money: 6720
         }
     },
     {
@@ -78,13 +78,13 @@ const gymLeadersKalos = [
       type: "Hada",
       badge: "Medalla Hada",
       team: [
-        { pokemon: "Mawile", nivel: 38 },
-        { pokemon: "Mr. Mime", nivel: 39 },
-        { pokemon: "Sylveon", nivel: 42 }
+        { namePokemon: "Mawile", nivel: 38 },
+        { namePokemon: "Mr. Mime", nivel: 39 },
+        { namePokemon: "Sylveon", nivel: 42 }
       ],
       rewards: {
-        mt: "MT99 - Brillo Mágico",
-        dinero: 6720
+        tm: "MT99 - Brillo Mágico",
+        money: 6720
       }
     },
     {
@@ -93,13 +93,13 @@ const gymLeadersKalos = [
       type: "Psíquico",
       badge: "Medalla Psique",
       team: [
-        { pokemon: "Sigilyph", nivel: 44 },
-        { pokemon: "Slowking", nivel: 45 },
-        { pokemon: "Meowstic", nivel: 48 }
+        { namePokemon: "Sigilyph", nivel: 44 },
+        { namePokemon: "Slowking", nivel: 45 },
+        { namePokemon: "Meowstic", nivel: 48 }
       ],
       rewards: {
-        mt: "MT04 - Paz Mental",
-        dinero: 7680
+        tm: "MT04 - Paz Mental",
+        money: 7680
       }
     },
     {
@@ -108,13 +108,13 @@ const gymLeadersKalos = [
       type: "Hielo",
       badge: "Medalla Iceberg",
       team: [
-        { pokemon: "Abomasnow", nivel: 56 },
-        { pokemon: "Cryogonal", nivel: 55 },
-        { pokemon: "Avalugg", nivel: 59 }
+        { namePokemon: "Abomasnow", nivel: 56 },
+        { namePokemon: "Cryogonal", nivel: 55 },
+        { namePokemon: "Avalugg", nivel: 59 }
       ],
       rewards: {
-        mt: "MT13 - Rayo Hielo",
-        dinero: 9600
+        tm: "MT13 - Rayo Hielo",
+        money: 9600
       }
     }
   ];
