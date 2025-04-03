@@ -21,9 +21,9 @@ const LeadersPage = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="text-4xl font-bold mb-4 mt-28">Líderes de Gimnasio de {regionName.toUpperCase()}</h1>
-                <div className=" grid gap-6 md:grid-cols-2 p-4 max-w-6xl mx-auto">
+                <div className="mx-auto container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-3 gap-4 lg:w-[95%]">
                     {leaders.map((leader) => (
-                        <div key={leader.name} className={`rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg  order-2 bg-white`}>
+                        <div key={leader.name} className={`rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg border-2 bg-white w-full`}>
                             {/* Colored header strip */}
                             <div className={`h-2 ${leader.type}2`}></div>
 
@@ -64,7 +64,7 @@ const LeadersPage = () => {
                                                 alt={pokemon.name}
                                                 className="w-8 h-8 rounded-full"
                                             />
-                                            <span>{pokemon.name}</span>
+                                            <span>{pokemon.namePokemon}</span>
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white border border-gray-300">
                                             Lv. {pokemon.level}
                                             </span>

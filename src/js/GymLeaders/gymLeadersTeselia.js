@@ -1,17 +1,17 @@
 const gymLeadersTeselia = [
     {
-        name: "Cilano, Millo y Maíz",
-        city: "Ciudad Gres",
-        type: "Agua/Fuego/Planta",
-        badge: "Medalla Trío",
-        team: [
-          { namePokemon: "Lillipup", nivel: 12 },
-          { namePokemon: "Pansage/Pansear/Panpour", nivel: 14 }
-        ],
-        rewards: {
-          tm: "MT83 - Avivar",
-          money: 1680
-        }
+      name: "Cilano, Millo y Maíz",
+      city: "Ciudad Gres",
+      type: "Agua/Fuego/Planta",
+      badge: "Medalla Trío",
+      team: [
+        { namePokemon: "Lillipup", nivel: 12 },
+        { namePokemon: "Pansage/Pansear/Panpour", nivel: 14 }
+      ],
+      rewards: {
+        tm: "MT83 - Avivar",
+        money: 1680
+      }
     },
     {
       name: "Aloe",
