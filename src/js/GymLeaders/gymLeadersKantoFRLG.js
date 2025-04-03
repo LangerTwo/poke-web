@@ -1,3 +1,4 @@
+// Lideres
 import imgBrock from '../../assets/kanto/lideresGym/VS_Brock_Masters.png'
 import imgMisty from '../../assets/kanto/lideresGym/VS_Misty_Masters.png'
 import imgSurge from '../../assets/kanto/lideresGym/VS_Teniente_Surge_Masters.png'
@@ -7,6 +8,7 @@ import imgSabrina from '../../assets/kanto/lideresGym/VS_Sabrina_Masters.png'
 import imgBlaine from '../../assets/kanto/lideresGym/VS_Blaine_Masters.png'
 import imgGiovanni from '../../assets/kanto/lideresGym/VS_Giovanni_(Kanto)_Masters.png'
 
+// Medallas
 import medallaBrock from '../../assets/kanto/medallasGym/Medalla_Roca_Brock.png'
 import medallaMisty from '../../assets/kanto/medallasGym/Medalla_Cascada_Misty.png'
 import medallaSurge from '../../assets/kanto/medallasGym/Medalla_Trueno_Surge.png'
