@@ -5,7 +5,7 @@ import imgErika from '../../assets/kanto/lideresGym/VS_Erika_Masters.png'
 import imgKoga from '../../assets/kanto/lideresGym/VS_Koga_Masters.png'
 import imgSabrina from '../../assets/kanto/lideresGym/VS_Sabrina_Masters.png'
 import imgBlaine from '../../assets/kanto/lideresGym/VS_Blaine_Masters.png'
-import imgGiovanni from '../../assets/kanto/lideresGym/VS_Giovanni_Masters.png'
+import imgGiovanni from '../../assets/kanto/lideresGym/VS_Giovanni_(Kanto)_Masters.png'
 
 import medallaBrock from '../../assets/kanto/medallasGym/Medalla_Roca_Brock.png'
 import medallaMisty from '../../assets/kanto/medallasGym/Medalla_Cascada_Misty.png'

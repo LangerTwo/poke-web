@@ -45,7 +45,7 @@ const LeadersPage = () => {
                                 <div className="flex items-center gap-2 mb-4">
                                     <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
                                         <img
-                                            src={`/placeholder.svg?height=48&width=48&text=${leader.name[0]}`}
+                                            src={leader.image}
                                             alt={leader.name}
                                             className="rounded-full"
                                         />
