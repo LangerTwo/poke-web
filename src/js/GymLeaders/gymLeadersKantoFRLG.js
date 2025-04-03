@@ -16,6 +16,48 @@ import medallaSabrina from '../../assets/kanto/medallasGym/Medalla_Pantano.png'
 import medallaBlaine from '../../assets/kanto/medallasGym/Medalla_Volcan.png'
 import medallaGiovanni from '../../assets/kanto/medallasGym/Medalla_Tierra.png'
 
+// Brock Pokemon
+import Geodude from '../../assets/pokemons/pokemonRoca/300px-Geodude.png'
+import Onix from '../../assets/pokemons/pokemonRoca/300px-Onix.png'
+
+// Misty Pokemon
+import Staryu from '../../assets/pokemons/pokemonAgua/300px-Staryu.png'
+import Starmie from '../../assets/pokemons/pokemonAgua/300px-Starmie.png'
+
+// Surge poke
+import Voltorb from '../../assets/pokemons/pokemonElectrico/300px-Voltorb.png'
+import Pikachu from '../../assets/pokemons/pokemonElectrico/300px-Pikachu.png'
+import Raichu from '../../assets/pokemons/pokemonElectrico/300px-Raichu.png'
+
+// Erika poke
+import Victreebel from '../../assets/pokemons/pokemonPlanta/300px-Victreebel.png'
+import Tangela from '../../assets/pokemons/pokemonPlanta/300px-Tangela.png'
+import Vileplume from '../../assets/pokemons/pokemonPlanta/300px-Vileplume.png'
+
+// Koga poke
+import Koffing from '../../assets/pokemons/pokemonVeneno/300px-Koffing.png'
+import Muk from '../../assets/pokemons/pokemonVeneno/300px-Muk.png'
+import Weezing from '../../assets/pokemons/pokemonVeneno/300px-Weezing.png'
+
+// Sabrina poke
+import Kadabra from '../../assets/pokemons/pokemonPsiquico/300px-Kadabra.png'
+import MrMine from '../../assets/pokemons/pokemonPsiquico/300px-Mr._Mime.png'
+import Venomoth from '../../assets/pokemons/pokemonPsiquico/300px-Venomoth.png'
+import Alakazam from '../../assets/pokemons/pokemonPsiquico/300px-Alakazam.png'
+
+// blaine poke
+import Growlithe from '../../assets/pokemons/pokemonFuego/300px-Growlithe.png'
+import Ponyta from '../../assets/pokemons/pokemonFuego/300px-Ponyta.png'
+import Rapidash from '../../assets/pokemons/pokemonFuego/300px-Rapidash.png'
+import Arcanine from '../../assets/pokemons/pokemonFuego/300px-Arcanine.png'
+
+// Giovanni poke
+import Rhyhorn from '../../assets/pokemons/pokemonTierra/300px-Rhyhorn.png'
+import Dugtrio from '../../assets/pokemons/pokemonTierra/300px-Dugtrio.png'
+import Nidoqueen from '../../assets/pokemons/pokemonTierra/300px-Nidoqueen.png'
+import Nidoking from '../../assets/pokemons/pokemonTierra/300px-Nidoking.png'
+import Rhydon from '../../assets/pokemons/pokemonTierra/300px-Rhydon.png'
+
 const gymLeadersKantoFRLG = [
   {
     name: "Brock",
@@ -25,8 +67,8 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Roca",
     imgBadge: medallaBrock,
     team: [
-      { namePokemon: "Geodude", level: 12 },
-      { namePokemon: "Onix", level: 14 }
+      { namePokemon: "Geodude", level: 12, imgPokemon: Geodude },
+      { namePokemon: "Onix", level: 14, imgPokemon: Onix }
     ],
     rewards: {
       tm: "MT39 - Tumba Rocas",
@@ -41,8 +83,8 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Cascada",
     imgBadge: medallaMisty,
     team: [
-      { namePokemon: "Staryu", level: 18 },
-      { namePokemon: "Starmie", level: 21 }
+      { namePokemon: "Staryu", level: 18, imgPokemon: Staryu },
+      { namePokemon: "Starmie", level: 21, imgPokemon: Starmie }
     ],
     rewards: {
       tm: "MT03 - Hidropulso",
@@ -57,9 +99,9 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Trueno",
     imgBadge: medallaSurge,
     team: [
-      { namePokemon: "Voltorb", level: 21 },
-      { namePokemon: "Pikachu", level: 18 },
-      { namePokemon: "Raichu", level: 24 }
+      { namePokemon: "Voltorb", level: 21, imgPokemon: Voltorb },
+      { namePokemon: "Pikachu", level: 18, imgPokemon: Pikachu },
+      { namePokemon: "Raichu", level: 24, imgPokemon: Raichu }
     ],
     rewards: {
       tm: "MT24 - Onda Voltio",
@@ -74,9 +116,9 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Arcoíris",
     imgBadge: medallaErika,
     team: [
-      { namePokemon: "Victreebel", level: 29 },
-      { namePokemon: "Tangela", level: 24 },
-      { namePokemon: "Vileplume", level: 29 }
+      { namePokemon: "Victreebel", level: 29, imgPokemon: Victreebel },
+      { namePokemon: "Tangela", level: 24, imgPokemon: Tangela },
+      { namePokemon: "Vileplume", level: 29, imgPokemon: Vileplume }
     ],
     rewards: {
       tm: "MT19 - Gigadrenado",
@@ -91,10 +133,10 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Alma",
     imgBadge: medallaKoga,
     team: [
-      { namePokemon: "Koffing", level: 37 },
-      { namePokemon: "Muk", level: 39 },
-      { namePokemon: "Koffing", level: 37 },
-      { namePokemon: "Weezing", level: 43 }
+      { namePokemon: "Koffing", level: 37, imgPokemon: Koffing },
+      { namePokemon: "Koffing", level: 37, imgPokemon: Koffing },
+      { namePokemon: "Muk", level: 39, imgPokemon: Muk },
+      { namePokemon: "Weezing", level: 43, imgPokemon: Weezing }
     ],
     rewards: {
       tm: "MT06 - Tóxico",
@@ -109,10 +151,10 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Pantano",
     imgBadge: medallaSabrina,
     team: [
-      { namePokemon: "Kadabra", level: 38 },
-      { Pokemon: "Mr. Mime", level: 37 },
-      { namePokemon: "Venomoth", level: 38 },
-      { namePokemon: "Alakazam", level: 43 }
+      { namePokemon: "Kadabra", level: 38, imgPokemon: Kadabra },
+      { namePokemon: "Mr. Mime", level: 37, imgPokemon:  MrMine},
+      { namePokemon: "Venomoth", level: 38, imgPokemon:  Venomoth},
+      { namePokemon: "Alakazam", level: 43, imgPokemon:  Alakazam}
     ],
     rewards: {
       tm: "MT04 - Paz Mental",
@@ -127,10 +169,10 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Volcán",
     imgBadge: medallaBlaine,
     team: [
-      { namePokemon: "Growlithe", level: 42 },
-      { namePokemon: "Ponyta", level: 40 },
-      { namePokemon: "Rapidash", level: 42 },
-      { namePokemon: "Arcanine", level: 47 }
+      { namePokemon: "Growlithe", level: 42, imgPokemon: Growlithe },
+      { namePokemon: "Ponyta", level: 40, imgPokemon: Ponyta },
+      { namePokemon: "Rapidash", level: 42, imgPokemon: Rapidash },
+      { namePokemon: "Arcanine", level: 47, imgPokemon: Arcanine }
     ],
     rewards: {
       tm: "MT38 - Llamarada",
@@ -145,11 +187,11 @@ const gymLeadersKantoFRLG = [
     badge: "Medalla Tierra",
     imgBadge: medallaGiovanni,
     team: [
-      { namePokemon: "Rhyhorn", level: 45 },
-      { namePokemon: "Dugtrio", level: 42 },
-      { namePokemon: "Nidoqueen", level: 44 },
-      { namePokemon: "Nidoking", level: 45 },
-      { namePokemon: "Rhydon", level: 50 }
+      { namePokemon: "Rhyhorn", level: 45, imgPokemon: Rhyhorn },
+      { namePokemon: "Dugtrio", level: 42, imgPokemon: Dugtrio },
+      { namePokemon: "Nidoqueen", level: 44, imgPokemon: Nidoqueen },
+      { namePokemon: "Nidoking", level: 45, imgPokemon: Nidoking },
+      { namePokemon: "Rhydon", level: 50, imgPokemon: Rhydon }
     ],
     rewards: {
       tm: "MT26 - Terremoto",
