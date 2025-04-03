@@ -44,7 +44,7 @@ const LeadersPage = () => {
                                         <img
                                             src={leader.image}
                                             alt={leader.name}
-                                            className="rounded-full bg-white w-52"
+                                            className="rounded-full bg-white w-52 h-52"
                                         />
                                     </div>
                                     <div className="flex flex-col items-center space-y-2">
