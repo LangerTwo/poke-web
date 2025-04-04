@@ -28,16 +28,21 @@ function Navbar() {
                     <div className="flex flex-col gap-6">
                         <div className="flex items-center justify-between">
                             <Link to="/">
-                                <h1 className="text-2xl md:text-3xl font-bold">Poké Web</h1>
+                                <h1 className="text-xl md:text-3xl font-bold">Poké Web</h1>
                             </Link>
-                            <div className="relative w-full max-w-sm ml-4">
+                            <div className="relative w-[60%] md:w-full max-w-sm ml-4">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
                                 <input
                                     type="text"
-                                    placeholder="Buscar Pokémon..."
+                                    placeholder="Buscar"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                                    className="w-full pl-10 pr-4 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent md:focus:ring-2 md:focus:ring-white/50 md:focus:border-transparent transition duration-200 ease-in-out"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            handleSearch();
+                                        }
+                                    }}
                                 />
                                 <button 
                                     onClick={handleSearch}

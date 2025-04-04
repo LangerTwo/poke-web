@@ -220,6 +220,13 @@
 	transition: all 0.3s;
 }
 
+@media (max-width: 500px) {
+	.cssbuttons-io-button .icon {
+		width: 1.5em;
+		height: 1.5em;
+	}
+}
+
 .cssbuttons-io-button:hover .icon {
 	width: calc(100% - 0.6em);
 }

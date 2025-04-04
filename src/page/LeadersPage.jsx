@@ -28,7 +28,7 @@ const LeadersPage = () => {
             <h1 className="text-xl text-center lg:text-4xl font-bold mb-4">Líderes de Gimnasio de {regionName.toUpperCase()}</h1>
                 <div className="mx-auto container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-3 gap-4 lg:w-[95%]">
                     {leaders.map((leader) => (
-                        <div key={leader.name} className={`rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg border-2 bg-slate-100 w-full`}>
+                        <div key={leader.name} className={`rounded-lg mx-auto overflow-hidden transition-all duration-300 hover:shadow-lg border-2 bg-slate-100 w-[90%] md:w-full ${leader.type}`}>
                             {/* Colored header strip */}
                             <div className={`h-2 ${leader.type}2`}></div>
 
@@ -48,8 +48,8 @@ const LeadersPage = () => {
                                         />
                                     </div>
                                     <div className="flex flex-col items-center space-y-2">
-                                        <h3 className="text-xl font-bold">{leader.name}</h3>
-                                        <p className="text-sm text-gray-500">{leader.city}</p>
+                                        <h3 className="text-xl text-gray-50 font-bold">{leader.name}</h3>
+                                        <p className="text-sm text-gray-50">{leader.city}</p>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ const LeadersPage = () => {
                                         />
                                     </div>
                                     <div>
-                                        <p className="font-medium">{leader.badge}</p>
+                                        <p className="font-medium text-gray-50">{leader.badge}</p>
                                     </div>
                                 </div>
 
@@ -91,11 +91,11 @@ const LeadersPage = () => {
                                 <div className="w-full space-y-2 items-center">
                                     <div className="flex items-center gap-4">
                                         <Gift size={16} className="text-purple-500" />
-                                        <span className="text-sm">{leader.rewards.tm}</span>
+                                        <span className="text-sm text-gray-50">{leader.rewards.tm}</span>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <Coins size={16} className="text-yellow-500" />
-                                        <span className="text-sm">{leader.rewards.money}¥</span>
+                                        <span className="text-sm text-gray-50">{leader.rewards.money}¥</span>
                                     </div>
                                 </div>
                             </div>

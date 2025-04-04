@@ -34,7 +34,7 @@ function PokemonDetails() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex items-center justify-center pt-[8rem]'>
       <div className='w-full bg-white/80 backdrop-blur border-2 border-green-200 rounded-xl shadow-lg overflow-hidden'>
-        <div className="flex items-center justify-between p-6 border-b border-green-100">
+        <div className="flex items-center justify-between p-3 md:p-6 border-b border-green-100">
 
           <div className='w-full max-w-2xl mx-auto'>
             <div className='absolute top-2 left-6'>
