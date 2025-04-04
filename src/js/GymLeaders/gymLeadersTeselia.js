@@ -37,6 +37,10 @@ const gymLeadersTeselia = [
           { namePokemon: "Dwabble", nivel: 21 },
           { namePokemon: "Leavanny", nivel: 23 }
         ],
+        rewards: {
+          tm: "MT76 - Estoicismo",
+          money: 2880
+        }
     },
     {
       name: "Camila",
