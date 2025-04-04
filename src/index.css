@@ -192,6 +192,13 @@
 	background-color: var(--color-dark2);
 }
 
+.AguaFuegoPlanta {
+	background: linear-gradient(180deg, var(--color-water) 50%, var(--color-fire) 50%);
+}
+.AguaFuegoPlanta2 {
+	background: linear-gradient(180deg, var(--color-water2) 50%, var(--color-fire2) 50%);
+}
+
 .cssbuttons-io-button {
 	border-radius: 0.9em;
 	/* border: none; */
@@ -218,6 +225,13 @@
 	/* box-shadow: 0.1em 0.1em 0.6em 0.2em #0000FF; */
 	left: 0.3em;
 	transition: all 0.3s;
+}
+
+@media (max-width: 500px) {
+	.cssbuttons-io-button .icon {
+		width: 1.5em;
+		height: 1.5em;
+	}
 }
 
 .cssbuttons-io-button:hover .icon {

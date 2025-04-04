@@ -5,19 +5,26 @@ import PokemonPage from './page/pokemonPage';
 import PokemonDetails from './page/PokemonDetails';
 import PokemonRegion from './page/PokemonRegion';
 import Navbar from './component/Navbar';
+import PokemonModal from './component/PokemonModal';
+import { PokemonModalProvider } from './context/PokemonModalContext';
+import LeadersPage from './page/LeadersPage';
 
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<PokemonRegion />} />
-        <Route path="/:regionName" element={<RegionDetail />} />
-        <Route path="/:regionName/lista-pokemon" element={<PokemonPage />} />
-        <Route path="/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
-      </Routes>
-    </Router>
+    <PokemonModalProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<PokemonRegion />} />
+          <Route path="/:regionName" element={<RegionDetail />} />
+          <Route path="/:regionName/lideres-gimnasio" element={<LeadersPage />} />
+          <Route path="/:regionName/lista-pokemon" element={<PokemonPage />} />
+          <Route path="/:regionName/lista-pokemon/pokemon/:name" element={<PokemonDetails />} />
+        </Routes>
+        <PokemonModal />
+      </Router>
+    </PokemonModalProvider>
   );
 }
 

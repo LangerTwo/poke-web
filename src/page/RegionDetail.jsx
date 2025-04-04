@@ -30,6 +30,10 @@ function RegionDetail() {
         navigate(`/${regionName?.toLowerCase() || 'unknown'}/lista-pokemon`);
     }, [navigate, regionName]);
 
+    const handleLeaderClick = useCallback(() => {
+        navigate(`/${regionName?.toLowerCase() || 'unknown'}/lideres-gimnasio`);
+    }, [navigate]);    
+
     return (
         // Contenedor de Cards
         <>
@@ -56,6 +60,7 @@ function RegionDetail() {
                     description="Conoce a los poderosos líderes de gimnasio"
                     infoText="8 Líderes disponibles"
                     buttonText="Explorar"
+                    onClick={handleLeaderClick}
                 />
             </div>
         </>

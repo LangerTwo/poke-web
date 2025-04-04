@@ -22,7 +22,7 @@ const CardRegionDetail = ({ title, description, imgSrc, infoText, buttonText, on
         <div className="flex justify-between items-center p-6 bg-card">
             <div className="flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">{infoText}</span>
+                <span className="text-xs md:text-sm text-muted-foreground">{infoText}</span>
             </div>
             <button 
                 onClick={onClick}
