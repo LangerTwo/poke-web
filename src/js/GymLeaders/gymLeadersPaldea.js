@@ -5,9 +5,9 @@ const gymLeadersPaldea = [
       type: "Bicho",
       badge: "Medalla Bicho",
       team: [
-        { namePokemon: "Nymble", nivel: 14 },
-        { namePokemon: "Tarountula", nivel: 14 },
-        { namePokemon: "Teddiursa" ("Teratipo Bicho"), nivel: 15 }
+        { namePokemon: "Nymble", level: 14 },
+        { namePokemon: "Tarountula", level: 14 },
+        { namePokemon: "Teddiursa - Teratipo Bicho", level: 15 }
       ],
       rewards: {
         tm: "MT021 - Brinco",
@@ -20,9 +20,9 @@ const gymLeadersPaldea = [
       type: "Planta",
       badge: "Medalla Planta",
       team: [
-        { namePokemon: "Petilil", nivel: 16 },
-        { namePokemon: "Smoliv", nivel: 16 },
-        { namePokemon: "Sudowoodo" ("Teratipo Planta"), nivel: 17 }
+        { namePokemon: "Petilil", level: 16 },
+        { namePokemon: "Smoliv", level: 16 },
+        { namePokemon: "Sudowoodo - Teratipo Planta", level: 17 }
       ],
       rewards: {
         tm: "MT020 - Abrecaminos",
@@ -35,10 +35,10 @@ const gymLeadersPaldea = [
       type: "Eléctrico",
       badge: "Medalla Electro",
       team: [
-        { namePokemon: "Wattrel", nivel: 23 },
-        { namePokemon: "Bellibolt", nivel: 23 },
-        { namePokemon: "Luxio", nivel: 23 },
-        { namePokemon: "Mismagius" ("Teratipo Eléctrico"), nivel: 24 }
+        { namePokemon: "Wattrel", level: 23 },
+        { namePokemon: "Bellibolt", level: 23 },
+        { namePokemon: "Luxio", level: 23 },
+        { namePokemon: "Mismagius - Teratipo Eléctrico", level: 24 }
       ],
       rewards: {
         tm: "MT048 - Voltio Cambio",
@@ -51,9 +51,9 @@ const gymLeadersPaldea = [
       type: "Agua",
       badge: "Medalla Agua",
       team: [
-        { namePokemon: "Veluza", nivel: 29 },
-        { namePokemon: "Wugtrio", nivel: 29 },
-        { namePokemon: "Crabominable" ("Teratipo Agua"), nivel: 30 }
+        { namePokemon: "Veluza", level: 29 },
+        { namePokemon: "Wugtrio", level: 29 },
+        { namePokemon: "Crabominable - Teratipo Agua", level: 30 }
       ],
       rewards: {
         tm: "MT022 - Agua Fría",
@@ -66,9 +66,9 @@ const gymLeadersPaldea = [
       type: "Normal",
       badge: "Medalla Normal",
       team: [
-        { namePokemon: "Komala", nivel: 35 },
-        { namePokemon: "Dudunsparce", nivel: 35 },
-        { namePokemon: "Staraptor" ("Teratipo Normal"), nivel: 36 }
+        { namePokemon: "Komala", level: 35 },
+        { namePokemon: "Dudunsparce", level: 35 },
+        { namePokemon: "Staraptor - Teratipo Normal", level: 36 }
       ],
       rewards: {
         tm: "MT025 - Imagen",
@@ -81,10 +81,10 @@ const gymLeadersPaldea = [
       type: "Fantasma",
       badge: "Medalla Espectro",
       team: [
-        { namePokemon: "Mimikyu", nivel: 41 },
-        { namePokemon: "Banette", nivel: 41 },
-        { namePokemon: "Houndstone", nivel: 41 },
-        { namePokemon: "Toxtricity" ("Teratipo Fantasma"), nivel: 42 }
+        { namePokemon: "Mimikyu", level: 41 },
+        { namePokemon: "Banette", level: 41 },
+        { namePokemon: "Houndstone", level: 41 },
+        { namePokemon: "Toxtricity - Teratipo Fantasma", level: 42 }
       ],
       rewards: {
         tm: "MT114 - Bola Sombra",
@@ -97,10 +97,10 @@ const gymLeadersPaldea = [
       type: "Psíquico",
       badge: "Medalla Psíquico",
       team: [
-        { namePokemon: "Farigiraf", nivel: 44 },
-        { namePokemon: "Gardevoir", nivel: 44 },
-        { namePokemon: "Espathra", nivel: 44 },
-        { namePokemon: "Florges" ("Teratipo Psíquico"), nivel: 45 }
+        { namePokemon: "Farigiraf", level: 44 },
+        { namePokemon: "Gardevoir", level: 44 },
+        { namePokemon: "Espathra", level: 44 },
+        { namePokemon: "Florges - Teratipo Psíquico", level: 45 }
       ],
       rewards: {
         tm: "MT120 - Psiquico",
@@ -113,10 +113,10 @@ const gymLeadersPaldea = [
       type: "Hielo",
       badge: "Medalla Hielo",
       team: [
-        { namePokemon: "Frosmoth", nivel: 47 },
-        { namePokemon: "Beartic", nivel: 47 },
-        { namePokemon: "Cetitan", nivel: 47 },
-        { namePokemon: "Altaria" ("Teratipo Hielo"), nivel: 48 }
+        { namePokemon: "Frosmoth", level: 47 },
+        { namePokemon: "Beartic", level: 47 },
+        { namePokemon: "Cetitan", level: 47 },
+        { namePokemon: "Altaria - Teratipo Hielo", level: 48 }
       ],
       rewards: {
         tm: "MT124 - Pirueta Helada",

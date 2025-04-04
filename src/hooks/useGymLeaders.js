@@ -9,7 +9,7 @@ import teselia from "../js/GymLeaders/gymLeadersTeselia";
 import kalos from "../js/GymLeaders/gymLeadersKalos";
 import alola from "../js/GymLeaders/kahunasAlola";
 import galar from "../js/GymLeaders/gymLeadersGalar";
-// import paldea from "../js/GymLeaders/gymLeadersPaldea";
+import paldea from "../js/GymLeaders/gymLeadersPaldea";
 
 // Mapeo de regiones a sus respectivos datos
 const regionsData = {
@@ -21,7 +21,7 @@ const regionsData = {
     kalos,
     alola,
     galar,
-    // paldea,
+    paldea,
 };
 
 const useGymLeaders = (region) => {
