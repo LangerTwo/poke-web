@@ -192,6 +192,13 @@
 	background-color: var(--color-dark2);
 }
 
+.AguaFuegoPlanta {
+	background: linear-gradient(180deg, var(--color-water) 50%, var(--color-fire) 50%);
+}
+.AguaFuegoPlanta2 {
+	background: linear-gradient(180deg, var(--color-water2) 50%, var(--color-fire2) 50%);
+}
+
 .cssbuttons-io-button {
 	border-radius: 0.9em;
 	/* border: none; */
