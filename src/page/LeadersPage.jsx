@@ -75,7 +75,7 @@ const LeadersPage = () => {
                                                 src={pokemon.imgPokemon}
                                                 onError={(e) => (e.target.src = "/fallback-image.png")}
                                                 alt={pokemon.name}
-                                                className="w-8 h-8 rounded-full"
+                                                className="w-12 h-12 rounded-full"
                                             />
                                             <span>{pokemon.namePokemon}</span>
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white border border-gray-300">
