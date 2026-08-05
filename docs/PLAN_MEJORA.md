@@ -15,39 +15,39 @@ Lista de acciones ordenadas por prioridad para corregir errores, reducir deuda t
 ## P1 — Bugs críticos (hacer ya)
 
 ### 1. `usePokemonDetail.js:72` → `formData.sprites.front_shiny` (2.1)
-- [ ] Cambiar `|| sprites?.front_shiny` por `|| formData.sprites?.front_shiny`
+- [x] Cambiar `|| sprites?.front_shiny` por `|| formData.sprites?.front_shiny`
 - **Por qué:** si una mega no tiene imagen shiny en `official-artwork`, el segundo operando de `||` evalúa una variable **inexistente**, lanzando `ReferenceError` y rompiendo la página de detalle. ESLint ya lo marca con `no-undef`.
 
 ### 2. Unificar mapa de regiones; corregir `unova` → `teselia` en `useRegionId` (2.2)
-- [ ] Crear un único mapa región → id (p. ej. en `src/js/regions.js`) y consumirlo desde `useRegionId`, `pokemonPage` y `useGymLeaders`
-- [ ] Cambiar la clave `unova` → `teselia` en `src/hooks/useRegionId.js:9`
+- [x] Crear un único mapa región → id (p. ej. en `src/js/regions.js`) y consumirlo desde `useRegionId`, `pokemonPage` y `useGymLeaders`
+- [x] Cambiar la clave `unova` → `teselia` en `src/hooks/useRegionId.js:9`
 - **Por qué:** `useRegionId` usa `unova: 5` mientras las rutas navegan a `/teselia`; al entrar, `generationUrl` queda `null` y `RegionDetail` muestra **"0 Pokémon originales"**. Tener tres mapas distintos garantiza que vuelvan a desincronizarse.
 
 ### 3. `PokemonModal.jsx` → que `usePokemonDetails` use el Pokémon del contexto (2.3)
-- [ ] En `src/component/PokemonModal.jsx:17`, pasar `pokemon?.name` (del contexto) en lugar de `name` (de `useParams`)
-- [ ] Usar o eliminar las variables `types`, `loading`, `error` sin uso
+- [x] En `src/component/PokemonModal.jsx:17`, pasar `pokemon?.name` (del contexto) en lugar de `name` (de `useParams`)
+- [x] Usar o eliminar las variables `types`, `loading`, `error` sin uso
 - **Por qué:** el modal abre desde el buscador en cualquier ruta; fuera de `/pokemon/:name` pide `pokemon/undefined` y mezcla el header del Pokémon buscado con las habilidades/movimientos/evoluciones del Pokémon de la URL.
 
 ### 4. Eliminar `DetailComponent.jsx` y `Home.jsx` (código muerto, 2.4/3.1)
-- [ ] Eliminar `src/component/DetailComponent.jsx`
-- [ ] Eliminar `src/component/Home.jsx`
-- [ ] Eliminar `src/useFetch.js`
-- [ ] Limpiar imports y `console.log` comentados (`App.jsx:1`, `usePokemonDetail.js:51,57`, `MegaPokemon.jsx:23`, `LeadersPage.jsx:9`)
-- [ ] Mover nota de depuración larga en `PokemonRegion.jsx:61-63` a un issue o eliminarla
+- [x] Eliminar `src/component/DetailComponent.jsx`
+- [x] Eliminar `src/component/Home.jsx`
+- [x] Eliminar `src/useFetch.js`
+- [x] Limpiar imports y `console.log` comentados (`App.jsx:1`, `usePokemonDetail.js:51,57`, `MegaPokemon.jsx:23`, `LeadersPage.jsx:9`)
+- [x] Mover nota de depuración larga en `PokemonRegion.jsx:61-63` a un issue o eliminarla
 - **Por qué:** `DetailComponent.jsx` usa variables inexistentes (`openIndex`, `setOpenIndex`) que lanzarían `ReferenceError`; los demás archivos no tienen consumidores. El código muerto confunde, se puede importar por error y duplica lógica. La nota de depuración ensucia el código.
 
 ### 5. Corregir `Progress.jsx` y los rangos de `getStatColor` (2.5, 2.6)
-- [ ] `Progress.jsx:2` → `Math.min((value / max) * 100, 100)`
-- [ ] Centralizar `getStatColor` en un solo lugar y corregir la condición duplicada (`>80` y `>20` devuelven el mismo `bg-yellow-500`)
+- [x] `Progress.jsx:2` → `Math.min((value / max) * 100, 100)`
+- [x] Centralizar `getStatColor` en un solo lugar y corregir la condición duplicada (`>80` y `>20` devuelven el mismo `bg-yellow-500`)
 - **Por qué:** `Math.min` con un solo argumento no limita nada (la barra se desborda), y la función de colores repetida en 3 archivos tiene un rango mal definido y se desincroniza.
 
 ### 6. `index.html`: `lang="es"` + favicon (2.7)
-- [ ] Cambiar `lang="en"` → `lang="es"`
-- [ ] Crear `public/favicon.svg` o quitar la referencia a `/vite.svg`
+- [x] Cambiar `lang="en"` → `lang="es"`
+- [x] Crear `public/favicon.svg` o quitar la referencia a `/vite.svg`
 - **Por qué:** el sitio es 100% en español y el `lang` incorrecto perjudica accesibilidad y SEO; `/vite.svg` no existe (404) porque no hay carpeta `public/`.
 
 ### 7. `response.ok` en todos los fetch (2.8)
-- [ ] Añadir `if (!response.ok) throw ...` en `RegionDetail.jsx`, `useFilter.js`, `usePokemonAbilities.js` y `usePokemonDetail.js`
+- [x] Añadir `if (!response.ok) throw ...` en `RegionDetail.jsx`, `useFilter.js`, `usePokemonAbilities.js` y `usePokemonDetail.js`
 - **Por qué:** sin esta comprobación, un 403/500 de PokeAPI se traduce en `SyntaxError: ... is not valid JSON`, un mensaje engañoso que oculta la causa real.
 
 ---
@@ -144,9 +144,9 @@ Lista de acciones ordenadas por prioridad para corregir errores, reducir deuda t
 
 | Prioridad | Total | Hechos |
 |---|---|---|
-| P1 | 7 | 0 |
+| P1 | 7 | 7 |
 | P2 | 8 | 0 |
 | P3 | 6 | 0 |
-| **Total** | **21** | **0** |
+| **Total** | **21** | **7** |
 
 > Actualiza la tabla de progreso a medida que marques casillas.

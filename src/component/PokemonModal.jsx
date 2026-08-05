@@ -8,13 +8,11 @@ import PokemonInfo from "./normalDetails/Info";
 import PokemonStats from "./normalDetails/Stats";
 import MovesList from "./Acordeon";
 import MegaEvolutions from "./MegaPokemon";
-import { useParams } from "react-router-dom";
 import usePokemonAbilities from "../hooks/usePokemonAbilities";
 
 function PokemonModal() {
     const { isOpen, closeModal, pokemon } = usePokemonModal();
-    const { name } = useParams();
-    const { evolutions, description, moves, types, megaEvolutions, loading, error } = usePokemonDetails(name);
+    const { evolutions, description, moves, megaEvolutions } = usePokemonDetails(pokemon?.name);
     const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
     const [activeTab, setActiveTab] = useState("info");
     const [tab, setTab] = useState('normal');

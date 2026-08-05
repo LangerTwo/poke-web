@@ -1,5 +1,5 @@
 function Progress({ value, max, className, indicatorClassName }) {
-    const percentage = Math.min((value / max) * 100); // Limitar al 100%
+    const percentage = Math.min((value / max) * 100, 100); // Limitar al 100%
   
     return (
       <div className="relative pt-1">

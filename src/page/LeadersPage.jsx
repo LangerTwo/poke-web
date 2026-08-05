@@ -6,7 +6,6 @@ import { Coins, Gift } from "lucide-react";
 const LeadersPage = () => {
     const { regionName } = useParams();
     const leaders = useGymLeaders(regionName);
-    // console.log(leaders); // Para verificar los líderes de gimnasio
 
     if (leaders.length === 0) {
         return (

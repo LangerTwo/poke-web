@@ -1,13 +1,8 @@
 import React from "react";
+import { getStatColor } from "../../js/getStatColor";
 
 const MegaStats = ({ stats }) => {
-    const getStatColor = (value) => {
-        if (value >= 100) return "bg-green-500"
-        if (value > 80) return "bg-yellow-500"
-        if (value > 40) return "bg-orange-500"
-        if (value > 20) return "bg-yellow-500"
-        return "bg-red-500"
-    }
+
       
     const statMapping = {
         'hp': 'HP',
