@@ -6,18 +6,30 @@ import { usePokemonModal } from '../context/PokemonModalContext';
 function Navbar() {
     const { openModal } = usePokemonModal();
     const [search, setSearch] = useState("");
+    const searchControllerRef = React.useRef(null);
 
     const handleSearch = async () => {
         if (!search.trim()) return;
 
+        if (searchControllerRef.current) {
+            searchControllerRef.current.abort();
+        }
+
+        const controller = new AbortController();
+        searchControllerRef.current = controller;
+
         try {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`);
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`, { signal: controller.signal });
             if (!response.ok) throw new Error("Pokémon no encontrado");
 
             const pokemonData = await response.json();
-            openModal(pokemonData); // Abrir modal con la información del Pokémon
+            if (!controller.signal.aborted) {
+                openModal(pokemonData); // Abrir modal con la información del Pokémon
+            }
         } catch (error) {
-            alert("Pokémon no encontrado. Verifica el nombre.");
+            if (!controller.signal.aborted) {
+                alert("Pokémon no encontrado. Verifica el nombre.");
+            }
         }
     };
 

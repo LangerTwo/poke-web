@@ -8,13 +8,16 @@ const usePokemonAbilities = (abilities) => {
     useEffect(() => {
         if (!abilities || abilities.length === 0) return;
 
+        const controller = new AbortController();
+        const { signal } = controller;
+
         const fetchAbilities = async () => {
             setLoading(true);
             try {
                 // Obtener las habilidades del pokemon y sus efectos
                 const abilitiesDetails = await Promise.all(
                     abilities.map(async (ability) => {
-                        const abilityResponse = await fetch(ability.ability.url);
+                        const abilityResponse = await fetch(ability.ability.url, { signal });
                         if (!abilityResponse.ok) throw new Error(`Error en la petición: ${abilityResponse.status}`);
                         const abilityData = await abilityResponse.json();
 
@@ -32,12 +35,18 @@ const usePokemonAbilities = (abilities) => {
                 );  
                 setAbilitiesDetails(abilitiesDetails);
             } catch (error) {
-                setError(error);
+                if (!signal.aborted) {
+                    setError(error);
+                }
             } finally {
-                setLoading(false);
+                if (!signal.aborted) {
+                    setLoading(false);
+                }
             }
         };
         fetchAbilities();
+
+        return () => controller.abort();
     }, [abilities]);
 
     return { abilitiesDetails, loading, error };

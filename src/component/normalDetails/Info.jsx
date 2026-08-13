@@ -3,14 +3,10 @@ import InfoEvoluciones from "./informacion/InfoEvoluciones";
 import InfoSwiper from "./informacion/infoSwiper";
 import InfoDescription from "./informacion/infoDescription";
 import InfoAbilities from "./informacion/infoAbilities";
+import { getPokemonImage, getPokemonImageShiny } from "../../js/getPokemonImage";
 
 const PokemonInfo = ({ pokemon, evolutions, abilitiesDetails, description }) => {
     const [openIndex, setOpenIndex] = useState(null);
-    const getPokemonImage = (sprites) =>
-      sprites?.other?.["official-artwork"]?.front_default || sprites?.other?.dream_world?.front_default || sprites?.front_default;
-
-    const getPokemonImageShiny = (sprites) =>
-      sprites?.other?.["official-artwork"]?.front_shiny || sprites?.front_shiny;
 
     const toggleAccordion = (key) => {
       setOpenIndex(openIndex === key ? null : key);

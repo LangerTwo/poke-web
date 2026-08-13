@@ -19,4 +19,8 @@ const typeTranslations = {
     fairy: "Hada",
 };
 
+export const typeTranslationsReverse = Object.fromEntries(
+    Object.entries(typeTranslations).map(([en, es]) => [es.toLowerCase(), en])
+);
+
 export default typeTranslations;
