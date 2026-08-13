@@ -4,15 +4,11 @@ import useRegionId from '../hooks/useRegionId';
 import typeTranslations from '../js/typeTranslations';
 import Boton from './Boton';
 import abilityTranslations from '../js/abilityTranslations';
+import { getPokemonImage } from '../js/getPokemonImage';
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const getPokemonImage = (sprites) => {
-    return sprites?.other?.['official-artwork']?.front_default ||
-           sprites?.other?.dream_world?.front_default ||
-           sprites?.front_default ||
-           null;
-};
+
 
 function Card({ filteredList }) {
     const { regionName } = useRegionId();      

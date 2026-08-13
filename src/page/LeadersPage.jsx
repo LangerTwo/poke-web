@@ -1,7 +1,8 @@
 import React from "react";
 import useGymLeaders from "../hooks/useGymLeaders";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Coins, Gift } from "lucide-react";
+import BackLink from "../component/BackLink";
 
 const LeadersPage = () => {
     const { regionName } = useParams();
@@ -20,9 +21,7 @@ const LeadersPage = () => {
     return (
         <div className="flex flex-col pt-28 bg-gray-100">
             <div className='top-2 left-6 pl-4'>
-                <Link to={`/${regionName?.toLowerCase() || 'unknown'}`} className="text-green-500 hover:underline">
-                    ← Regresar
-                </Link>
+                <BackLink to={`/${regionName?.toLowerCase() || 'unknown'}`} />
             </div>
             <h1 className="text-xl text-center lg:text-4xl font-bold mb-4">Líderes de Gimnasio de {regionName.toUpperCase()}</h1>
                 <div className="mx-auto container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-3 gap-4 lg:w-[95%]">

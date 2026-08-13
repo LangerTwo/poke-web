@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { usePokemonModal } from "../context/PokemonModalContext";
 import usePokemonDetails from "../hooks/usePokemonDetail";
-import TabsDetailsPokemon from "./TabsDetailsPokemon";
-import Header from "./normalDetails/Header";
-import Tabs from "./normalDetails/Tabs";
-import PokemonInfo from "./normalDetails/Info";
-import PokemonStats from "./normalDetails/Stats";
-import MovesList from "./Acordeon";
-import MegaEvolutions from "./MegaPokemon";
+import PokemonDetailView from './PokemonDetailView';
 import usePokemonAbilities from "../hooks/usePokemonAbilities";
 
 function PokemonModal() {
     const { isOpen, closeModal, pokemon } = usePokemonModal();
     const { evolutions, description, moves, megaEvolutions } = usePokemonDetails(pokemon?.name);
     const { abilitiesDetails } = usePokemonAbilities(pokemon?.abilities);
-    const [activeTab, setActiveTab] = useState("info");
-    const [tab, setTab] = useState('normal');
+
 
     if (!isOpen || !pokemon) return null; // No mostrar si el modal está cerrado o no hay datos
 
@@ -29,20 +22,14 @@ function PokemonModal() {
                     ✖
                 </button>
 
-                <TabsDetailsPokemon activeTab={tab} setActiveTab={setTab} />
-                {tab === 'normal' ? (
-                <>
-                    <Header pokemon={pokemon} />
-                    <div className='p-6 w-full'>
-                    <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-                    {activeTab === 'info' && <PokemonInfo pokemon={pokemon} evolutions={evolutions} abilitiesDetails={abilitiesDetails} description={description} />}
-                    {activeTab === 'stats' && <PokemonStats pokemon={pokemon} />}
-                    {activeTab === 'moves' && <MovesList moves={moves} />}
-                    </div>
-                </>
-                ) : (
-                    <MegaEvolutions megaEvolutions={megaEvolutions} />
-                )}
+                <PokemonDetailView
+                  pokemon={pokemon}
+                  evolutions={evolutions}
+                  description={description}
+                  moves={moves}
+                  megaEvolutions={megaEvolutions}
+                  abilitiesDetails={abilitiesDetails}
+                />
             </div>
         </div>
     );

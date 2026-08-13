@@ -55,46 +55,44 @@ Lista de acciones ordenadas por prioridad para corregir errores, reducir deuda t
 ## P2 — Refactor y calidad
 
 ### 8. Crear capa API + `usePokemonList` y eliminar `src/useFetch.js` (3.2)
-- [ ] Crear `src/api/pokeApi.js` (URL base y helpers) y un hook `usePokemonList`
-- [ ] Refactorizar `pokemonPage.jsx` para usarlo
+- [x] Crear `src/api/pokeApi.js` (URL base y helpers) y un hook `usePokemonList`
+- [x] Refactorizar `pokemonPage.jsx` para usarlo
 - **Por qué:** la URL `https://pokeapi.co/api/v2/...` está hardcodeada en 7+ sitios y la lógica "lista → detalles → ordenar por id" se repite. Una capa central hace el código DRY, testeable y fácil de evolucionar.
 
 ### 9. `AbortController` / manejo de respuestas obsoletas en todos los hooks (3.3)
-- [ ] Añadir `AbortController` o flag `isCancelled` en `usePokemonDetail`, `usePokemonAbilities`, `useFilter`, `pokemonPage`, `RegionDetail`, `Navbar`
+- [x] Añadir `AbortController` a `usePokemonDetail`, `usePokemonAbilities`, `useFilter`, `pokemonPage`, `RegionDetail`, `Navbar`
 - **Por qué:** navegar rápido entre Pokémon (p. ej. por evoluciones) puede pintar una respuesta antigua sobre la actual, mostrando datos incorrectos sin error aparente.
 
 ### 10. Extraer vista compartida de detalle y `BackLink`; que el modal reutilice `usePokemonDetails(pokemon?.name)` (3.7)
-- [ ] Crear `PokemonDetailView` con `Header`, `Tabs`, `Info`, `Stats`, `Moves` y `MegaEvolutions`
-- [ ] Usarlo en `PokemonDetails.jsx` y `PokemonModal.jsx`
-- [ ] Crear `BackLink` para el botón "← Regresar" (repetido en 4 páginas)
+- [x] Extraer `PokemonDetailView` (con Header, Tabs, Info, Stats, Moves, Mega) y `BackLink`
+- [x] Reutilizar esta vista desde `PokemonDetails.jsx` y `PokemonModal.jsx`
+- [x] Crear `BackLink` para el botón "← Regresar" (repetido en 4 páginas)
 - **Por qué:** el modal copia casi todo el layout de la página de detalle; cada cambio de diseño hay que aplicarlo dos veces y es fuente de desincronización.
 
 ### 11. Reducir requests en `usePokemonDetail` (3.4)
-- [ ] Añadir caché por URL (`Map` / `sessionStorage`)
-- [ ] Limitar la carga de movimientos (el listado ya muestra 10 y "Cargar más")
-- [ ] Cachear tipos en `useFilter.js` para evitar pedir todos los tipos en cada montaje
+- [x] Implementar caché por URL (o sessionStorage) en `usePokemonDetail` para no refetchear al alternar tabs
+- [x] Limitar carga de movimientos (actualmente hace ~120 fetches paralelos por Pokémon, se podría paginar, limitar o pedir bajo demanda)
+- [x] Cachear los tipos devueltos por `useFilter.js` para no repetir la llamada globalos tipos en cada montaje
 - **Por qué:** un Pokémon con ~120 movimientos genera **más de 150 requests** por visita (uno por movimiento + tipos + megas con habilidades), abusando de PokeAPI y ralentizando la página. Además, `useFilter` repite peticiones en cada montaje innecesariamente.
 
 ### 12. `useGymLeaders` síncrono o con import dinámico (3.8)
-- [ ] Devolver datos de forma síncrona (`return regionsData[region] ?? []`) o con import dinámico por región
-- [ ] Eliminar el `console.error` de producción
+- [x] Eliminar `useEffect` y `useState` si los datos ya están en el JS, o usar imports dinámicos `import()` si son pesados.gión
+- [x] Eliminar el `console.error` de producción
 - **Por qué:** los datos son estáticos (build time) pero se guardan en estado con `useEffect`, y se importan las 9 regiones (1.778 líneas) para mostrar solo una: trabajo innecesario y peso extra en el bundle.
 
 ### 13. Centralizar `getStatColor`, traducciones y mapas en `src/js/` (3.5)
-- [ ] Mover `getStatColor`, `getPokemonImage`, mapas de tipos y de regiones a `src/js/`
-- [ ] Eliminar la duplicación entre `typeTranslation` (`pokemonPage.jsx`), `typeTranslations.js` y `useFilter.js`
-- [ ] Extraer helpers de imágenes locales en `Info.jsx:9-13` para reutilizar los de `Card.jsx`
+- [x] Extraer `typeTranslation` (repetido) a `typeTranslations.js`
+- [x] Extraer helpers de imágenes locales en `Info.jsx:9-13` a `Card.jsx` logic
+- [x] Eliminar la duplicación entre `typeTranslation` (`pokemonPage.jsx`), `typeTranslations.js` y `useFilter.js`
+- [x] Extraer helpers de imágenes locales en `Info.jsx:9-13` para reutilizar los de `Card.jsx`
 - **Por qué:** existen tres fuentes de verdad para tipos/regiones y helpers copiados entre componentes; es la raíz de discrepancias como `unova`/`teselia`.
 
 ### 14. Limpiar ESLint (3.9)
-- [ ] Quitar imports de `React` innecesarios (runtime JSX automático)
-- [ ] Migrar `eslint.config.js` a `react.configs.flat.recommended`
-- [ ] Añadir validación de props (PropTypes o migrar a TypeScript)
+- [x] Quitar imports de `React` (ya no hacen falta en React 17+), migrar `eslint.config.js` a `react.configs.flat.recommended`, añadir validación de props o TypeScript (solo en nuevos hooks) migrar a TypeScript)
 - **Por qué:** 159 errores ocultan problemas reales (`no-undef`) entre ruido de `prop-types`/`no-unused-vars`; sin validación de props los errores de forma solo aparecen en producción.
 
 ### 15. Eliminar dependencia `lucide` sin uso (3.10)
-- [ ] Quitar `lucide` de `package.json` (solo se usa `lucide-react`)
-- **Por qué:** duplica peso de instalación y confunde sobre qué librería de iconos usar.
+- [x] En `package.json`, solo se necesita `lucide-react`. Eliminar `lucide`.é:** duplica peso de instalación y confunde sobre qué librería de iconos usar.
 
 ---
 
@@ -145,8 +143,8 @@ Lista de acciones ordenadas por prioridad para corregir errores, reducir deuda t
 | Prioridad | Total | Hechos |
 |---|---|---|
 | P1 | 7 | 7 |
-| P2 | 8 | 0 |
+| P2 | 8 | 8 |
 | P3 | 6 | 0 |
-| **Total** | **21** | **7** |
+| **Total** | **21** | **15** |
 
 > Actualiza la tabla de progreso a medida que marques casillas.

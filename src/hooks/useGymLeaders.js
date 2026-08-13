@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 
 // Importar todas las regiones
 import kanto from "../js/GymLeaders/gymLeadersKantoFRLG";
@@ -25,18 +25,7 @@ const regionsData = {
 };
 
 const useGymLeaders = (region) => {
-    const [leaders, setLeaders] = useState([]);
-
-    useEffect(() => {
-        if (regionsData[region]) {
-            setLeaders(regionsData[region]);
-        } else {
-            console.error(`No hay datos de líderes de gimnasio para la región: ${region}`);
-            setLeaders([]); // Vacío si la región no existe
-        }
-    }, [region]);
-
-    return leaders;
+    return regionsData[region] || [];
 };
 
 export default useGymLeaders;

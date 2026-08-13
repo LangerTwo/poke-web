@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import useRegionId from '../hooks/useRegionId';
 import listPoke from '../assets/list-poke-min.jpg';
 import Card from '../component/CardRegionDetail';
+import BackLink from '../component/BackLink';
 
 
 function RegionDetail() {
@@ -11,20 +12,26 @@ function RegionDetail() {
     const { regionName, generationUrl } = useRegionId();
 
     // Función para obtener la cantidad de Pokémon
-    const fetchNumPokemons = async () => {
+    const fetchNumPokemons = async (signal) => {
         if (!generationUrl) return;
         try {
-            const response = await fetch(generationUrl);
+            const response = await fetch(generationUrl, { signal });
             if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             const data = await response.json();
-            setNumPokemon(data.pokemon_species.length);
+            if (!signal.aborted) {
+                setNumPokemon(data.pokemon_species.length);
+            }
         } catch (error) {
-            console.error('Error al obtener el número de Pokémon:', error);
+            if (!signal.aborted) {
+                console.error('Error al obtener el número de Pokémon:', error);
+            }
         }
     };
 
     useEffect(() => {
-        fetchNumPokemons();
+        const controller = new AbortController();
+        fetchNumPokemons(controller.signal);
+        return () => controller.abort();
     }, [generationUrl]);
 
     const handleRegionClick = useCallback(() => {
@@ -39,9 +46,7 @@ function RegionDetail() {
         // Contenedor de Cards
         <>
             <div className='pt-28 px-4'>
-                <Link to="/" className="text-green-500 hover:underline">
-                    ← Regresar
-                </Link>
+                <BackLink to="/" />
             </div>
             <div className="grid gap-6 md:grid-cols-2 p-4 max-w-6xl mx-auto">
 
