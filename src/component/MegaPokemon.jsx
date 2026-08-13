@@ -20,7 +20,6 @@ const MegaEvolutions = ({ megaEvolutions }) => {
     return (
             <div className="">
                 {megaEvolutions.map((mega) => {
-                    // console.log("Mega evolución:", mega); // Verifica la estructura de los datos
                     return (
                         <div key={mega.id} className='w-full'> 
                             {/* Tipos, nombre, Id */}

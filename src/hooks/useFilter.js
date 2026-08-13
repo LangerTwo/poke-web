@@ -11,12 +11,14 @@ export function useFilter() {
     setError(null);
     try {
       const response = await fetch('https://pokeapi.co/api/v2/type');
+      if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
       const data = await response.json();
 
       // Obtner los detalles de los tipos
       const typesData = await Promise.all(
         data.results.map(async (type) => {
           const typeResponse = await fetch(type.url);
+          if (!typeResponse.ok) throw new Error(`Error en la petición: ${typeResponse.status}`);
           const typesData = await typeResponse.json();
 
           // Buscar el nombre en español

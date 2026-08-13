@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { regionIdMap } from '../js/regions';
 import Filter from '../component/Filter';
 import Card from '../component/Card';
 
@@ -10,11 +11,7 @@ function PokemonPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Mapa de regiones a generaciones
-  const regionIdMap = useMemo(() => ({
-    kanto: 1, johto: 2, hoenn: 3, sinnoh: 4, teselia: 5,
-    kalos: 6, alola: 7, galar: 8, paldea: 9,
-  }), []);
+
 
   // Función para obtener detalles de cada Pokémon
   const fetchPokemonDetails = useCallback(async (pokemonNames) => {
@@ -67,7 +64,7 @@ function PokemonPage() {
       }
     };
     fetchPokemonByRegion();
-  }, [regionName, regionIdMap, fetchPokemonDetails]);
+  }, [regionName, fetchPokemonDetails]);
 
   // Maneja el filtrado
   const typeTranslation = useMemo(() => ({

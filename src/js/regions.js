@@ -92,4 +92,16 @@ const regions = [
   }
 ]
 
+export const regionIdMap = {
+    kanto: 1,
+    johto: 2,
+    hoenn: 3,
+    sinnoh: 4,
+    teselia: 5,
+    kalos: 6,
+    alola: 7,
+    galar: 8,
+    paldea: 9,
+};
+
 export default regions;

@@ -15,6 +15,7 @@ function RegionDetail() {
         if (!generationUrl) return;
         try {
             const response = await fetch(generationUrl);
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             const data = await response.json();
             setNumPokemon(data.pokemon_species.length);
         } catch (error) {

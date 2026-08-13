@@ -15,6 +15,7 @@ const usePokemonAbilities = (abilities) => {
                 const abilitiesDetails = await Promise.all(
                     abilities.map(async (ability) => {
                         const abilityResponse = await fetch(ability.ability.url);
+                        if (!abilityResponse.ok) throw new Error(`Error en la petición: ${abilityResponse.status}`);
                         const abilityData = await abilityResponse.json();
 
                         // Obtener el nombre en español de la habilidad
